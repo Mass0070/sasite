@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Hjem</router-link> |
+      <router-link to="/login">Login</router-link>
     </div>
     <router-view/>
   </div>
@@ -14,7 +14,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: green;
 }
 
 #nav {
@@ -23,10 +23,14 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  font-size: 20px;
+  color: wheat;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+body {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3e %3crect width='50' height='50' fill='%23282828'/%3e %3ccircle cx='3' cy='4.3' r='1.8' fill='%23393939'/%3e %3ccircle cx='3' cy='3' r='1.8' fill='black'/%3e %3ccircle cx='10.5' cy='12.5' r='1.8' fill='%23393939'/%3e %3ccircle cx='10.5' cy='11.3' r='1.8' fill='black'/%3e %3c/svg%3e") 
 }
 </style>
