@@ -4,10 +4,11 @@ import Home from '../views/Home.vue'
 import Ansøgning from '../views/Ansøgning.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
+import auth from '../views/auth.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -19,18 +20,24 @@ Vue.use(VueRouter)
     component: Login
   },
   {
+    path: '/auth',
+    name: 'auth',
+    component: auth
+  },
+  {
     path: '/ansøgning/:id',
     name: 'Ansøgning',
     component: Ansøgning
   },
   {
-    path: '/profile/:id',
+    path: '/profile',
     name: 'profile',
     component: Profile
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
