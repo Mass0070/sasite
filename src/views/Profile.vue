@@ -43,10 +43,12 @@ export default {
         }
     )
     .then(response => {
-        this.user = response.data
-        axios
-            .get('https://localhost:4040/api/user/' + response.data.id)
-            .then(response => (this.info = response.data))  
+        if(response.data) {
+            this.user = response.data
+            axios
+                .get('https://localhost:4040/api/user/' + response.data.id)
+                .then(response => (this.info = response.data))  
+        }
     })
   }
 }
