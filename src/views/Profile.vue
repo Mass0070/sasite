@@ -45,7 +45,7 @@ export default {
     .then(response => {
         this.user = response.data
         axios
-            .get('http://localhost:4040/api/user/' + response.data.id)
+            .get('https://api.superawesome.ml/api/user/' + response.data.id)
             .then(response => (this.info = response.data))  
     })
   }
