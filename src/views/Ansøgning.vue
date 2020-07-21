@@ -56,7 +56,7 @@ export default {
   },
   mounted () {
     axios
-      .get('https://api.superawesome.ml/api/apply/' + this.$route.params.id)
+      .get('http://localhost:4040/api/apply/' + this.$route.params.id)
       .then(response => (this.info = response.data))
     this.question = questionARK
   }

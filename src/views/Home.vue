@@ -29,8 +29,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      motd: '',
-      players: ''
+      motd: 'Indlæser!',
+      players: 'Indlæser!'
     }
   },
   mounted () {
