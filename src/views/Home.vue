@@ -17,10 +17,11 @@
   width: 400px; 
   height: auto; 
   border-radius: 40px;
-  
+  position: inherit;
 }
 .Online {
   margin: 0 auto;
+  color: green;
 }
 </style>
 

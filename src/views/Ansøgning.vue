@@ -24,6 +24,10 @@
 </template>
 
 <style>
+.hover {
+  font-family: arial;
+}
+
 .Hover:hover {
   opacity: 0.8
 } 
@@ -38,9 +42,7 @@
 }
 p {
   color: gray;
-  font-size: 150%;
-  padding-left: 7.25%;
-  padding-right: 7.25%;
+  font-size: 100%;
 }
 </style>
 

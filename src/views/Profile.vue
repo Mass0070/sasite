@@ -46,7 +46,7 @@ export default {
         if(response.data) {
             this.user = response.data
             axios
-                .get('https://localhost:4040/api/user/' + response.data.id)
+                .get('http://localhost:4040/api/user/' + response.data.id)
                 .then(response => (this.info = response.data))  
         }
     })
