@@ -32,11 +32,14 @@
   opacity: 0.8
 } 
 #about {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: grid;
   background-color: #272626;
   border-radius: 30px;
   width: 65%;
-  margin: 0 auto;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(250px, auto);
 }
@@ -58,7 +61,12 @@ export default {
   },
   mounted () {
     axios
-      .get('https://api.superawesome.ml/api/apply/' + this.$route.params.id)
+      .get('http://localhost:4040/api/apply/' + this.$route.params.id,
+        {
+          headers: {
+            "API-Key": `${localStorage.token}`
+          }
+        })
       .then(response => (this.info = response.data))
     this.question = questionARK
   }
