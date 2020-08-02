@@ -30,7 +30,7 @@ export default {
         }
     },
     mounted () {
-        this.profile = true;
+        this.profile = false;
     }
 }
 </script>
