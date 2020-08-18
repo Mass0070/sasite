@@ -26,23 +26,30 @@
 </style>
 
 <script>
-window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    if (fragment.has("access_token")) {
-        console.log("Test")
-    }
-}
 import axios from 'axios'
 export default {
-    data () {
+  data () {
     return {
-      info: []
+      info: [],
+      user: []
     }
   },
   mounted () {
-    axios
-      .get('http://localhost:4040/api/user/' + this.$route.params.id)
-      .then(response => (this.info = response.data))
+    axios.get("https://discordapp.com/api/v6/users/@me",
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        }
+    )
+    .then(response => {
+        if(response.data) {
+            this.user = response.data
+            axios
+                .get('http://localhost:4040/api/user/' + response.data.id)
+                .then(response => (this.info = response.data))  
+        }
+    })
   }
 }
 </script>

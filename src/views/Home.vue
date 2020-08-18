@@ -17,10 +17,11 @@
   width: 400px; 
   height: auto; 
   border-radius: 40px;
-  
+  position: inherit;
 }
 .Online {
   margin: 0 auto;
+  color: green;
 }
 </style>
 
@@ -29,8 +30,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      motd: '',
-      players: ''
+      motd: 'Indlæser!',
+      players: 'Indlæser!'
     }
   },
   mounted () {
