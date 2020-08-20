@@ -29,8 +29,8 @@
   </div>
   <div v-else-if="info=== 'Ikke adgang'" id="Notloggedin"> 
     <div id="Notloggedindiv">
-      <h1>Du er ikke logget ind.</h1>
-      <p>Tryk <a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
+      <h1>Du har ikke adgang til at se den ansøgning.</h1>
+      <p>Bliv staff for at kunne se den ansøgning eller kigge på din egen istedet</p>
     </div>
   </div>
   <div v-else id="Notloggedin">
@@ -80,17 +80,11 @@ p {
 }
 </style>
 
-<script defer>
+<script>
 import axios from 'axios'
 import questionARK from '../question'
 export default {
-  data () {
-    return {
-      info: {},
-      question: {}
-    }
-  },
-  mounted () {
+  async created() {
     if(localStorage.token) {
       axios
       .get('http://localhost:4040/api/apply/' + this.$route.params.id,
@@ -118,9 +112,32 @@ export default {
         this.info = response.data
         this.question = questionARK
       })
-      .catch
+      .catch((error) => {
+        if(error.response) {
+          switch(error.response.status) {
+            case 200:
+              break;
+            case 401:
+              this.info = "Ikke adgang"
+              break;
+            case 403:
+              this.info = "Not authorized"
+              break;
+            case 500:
+              this.info = "Fejl, kontakt venlist staffs."
+              break;
+          }
+        }
+        this.info = "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem"
+      })
     } else {
       this.info = "Ikke login"
+    }
+  },
+  data () {
+    return {
+      info: {},
+      question: {}
     }
   }
 }

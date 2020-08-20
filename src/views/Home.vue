@@ -1,8 +1,12 @@
 <template>
-  <div class="stats">
-    <h1 class="Online">Online: {{ players.online }}/{{ players.max }}</h1>
-    <p><span v-html="motd"></span></p>
+  <div>
+    <div class="stats">
+      <h1 class="Online">Online: {{ players.online }}/{{ players.max }}</h1>
+      <p><span v-html="motd"></span></p>
+    </div>
+    <iframe src="https://discordapp.com/widget?id=313097609948430336&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
   </div>
+  
 </template>
 
 <style>
@@ -34,7 +38,7 @@ export default {
       players: 'Indlæser!'
     }
   },
-  mounted () {
+  async created() {
     axios
       .get('https://api.mcsrvstat.us/2/superawesome.dk')
       .then(response => {

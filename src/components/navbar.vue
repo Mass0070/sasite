@@ -8,6 +8,7 @@
 
 <script defer>
 import Droptown from './Dropdown'
+import Axios from 'axios'
 
 export default {
     name: 'navbar',
@@ -29,8 +30,27 @@ export default {
             profile: false
         }
     },
-    mounted () {
-        this.profile = false;
+    async created() {
+        Axios.get('http://localhost:4040/api/auth/', 
+        {
+            headers: {
+                "API-Key": `${localStorage.token}`
+            }
+        })
+        .then(Response => {
+            this.profile = true;
+        })
+        .catch((error) => {
+            if(error.response) {
+                switch(error.response.status) {
+                case 200:
+                    this.profile = true
+                    break;
+                case 403:
+                    break;
+                }
+            }
+        })
     }
 }
 </script>
