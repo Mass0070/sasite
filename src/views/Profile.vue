@@ -16,8 +16,12 @@
     text-align: left;
 }
 .Grid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: grid;
-    width: 1250px;
+    width: 65%;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(250px, auto);
     margin: 0 auto;
@@ -26,23 +30,21 @@
 </style>
 
 <script>
-window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    if (fragment.has("access_token")) {
-        console.log("Test")
-    }
-}
 import axios from 'axios'
 export default {
-    data () {
+  data () {
     return {
-      info: []
+      info: [],
+      user: []
     }
   },
   mounted () {
-    axios
-      .get('http://localhost:4040/api/user/' + this.$route.params.id)
-      .then(response => (this.info = response.data))
+    axios.get('http://localhost:4040/api/user/', {
+        headers: {
+            "API-Key": `${localStorage.token}`
+        }
+    })
+    .then(response => (this.info = response.data))  
   }
 }
 </script>
