@@ -21,10 +21,21 @@
       <p>{{ info.svar5 }}</p>
     </div>
   </div>
-  <div v-else-if="info" id="Notloggedin"> 
+  <div v-else-if="info=== 'Ikke login'" id="Notloggedin"> 
     <div id="Notloggedindiv">
       <h1>Du er ikke logget ind.</h1>
-      <p>Tryk her for at login.</p>
+      <p>Tryk <a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
+    </div>
+  </div>
+  <div v-else-if="info=== 'Ikke adgang'" id="Notloggedin"> 
+    <div id="Notloggedindiv">
+      <h1>Du er ikke logget ind.</h1>
+      <p>Tryk <a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
+    </div>
+  </div>
+  <div v-else id="Notloggedin">
+    <div id="Notloggedindiv">
+      <h1>{{ info }}</h1>
     </div>
   </div>
 </template>
@@ -89,22 +100,27 @@ export default {
           }
         })
       .then(response => {
+        console.log(response.status)
         switch(response.status) {
           case 200:
-
+            break;
           case 401:
-
+            this.info = "Ikke adgang"
+            break;
           case 403:
-
+            this.info = "Not authorized"
+            break;
           case 500:
-
+            this.info = "Fejl, kontakt venlist staffs."
+            break;
         }
         console.log(response)
         this.info = response.data
         this.question = questionARK
       })
+      .catch
     } else {
-      this.info = "Ikke adgang"
+      this.info = "Ikke login"
     }
   }
 }
