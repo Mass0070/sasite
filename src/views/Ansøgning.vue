@@ -96,7 +96,7 @@ export default {
   async created() {
     if(localStorage.token) {
       axios
-      .get('http://localhost:4040/api/apply/' + this.$route.params.id,
+      .get('https://api.superawesome.ml/api/apply/' + this.$route.params.id,
         {
           headers: {
             "API-Key": `${localStorage.token}`
@@ -137,7 +137,9 @@ export default {
               break;
           }
         }
-        this.info = "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem"
+        if(!this.info) {
+          this.info = "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem"
+        }
       })
     } else {
       this.info = "Ikke login"

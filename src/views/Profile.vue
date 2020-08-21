@@ -39,7 +39,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://localhost:4040/api/user/', {
+    axios.get('https://api.superawesome.ml/api/user/', {
         headers: {
             "API-Key": `${localStorage.token}`
         }
