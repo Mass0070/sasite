@@ -25,7 +25,7 @@ p.Hjemmeside-Motd {
   background: linear-gradient(to right, blue, green);
   padding: 0.3%;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 4.5%;
   text-align: center; 
   box-sizing: content-box; 
 }
