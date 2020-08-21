@@ -23,8 +23,8 @@
   </div>
   <div v-else-if="info=== 'Ikke login'" id="Notloggedin"> 
     <div id="Notloggedindiv">
-      <h1>Du er ikke logget ind.</h1>
-      <p>Tryk <a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
+      <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
+      <p class="Logind">Tryk <a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
     </div>
   </div>
   <div v-else-if="info=== 'Ikke adgang'" id="Notloggedin"> 
@@ -45,7 +45,9 @@
   font-family: arial;
 }
 #Notloggedindiv {
+  margin: auto;
   text-align: center;
+  color: #e6e6e6;
 }
 .Hover:hover {
   opacity: 0.8
@@ -56,7 +58,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: grid;
-  background-color: #272626;
+  background-color: #1f1e1e;
   border-radius: 30px;
   width: 65%;
   grid-template-columns: repeat(1, 1fr);
@@ -77,6 +79,13 @@
 p {
   color: gray;
   font-size: 100%;
+}
+.Logind {
+  padding-top: 3px;
+  color: #d3d3d3;
+}
+.Notloggedindiv-span span {
+  color: crimson;
 }
 </style>
 
