@@ -13,7 +13,7 @@
     width: 225px;
     height: 225px;
     border-radius: 30px;
-    text-align: left;
+    text-align: center;
 }
 .Grid {
     position: fixed;
