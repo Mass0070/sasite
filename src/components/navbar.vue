@@ -27,7 +27,7 @@ export default {
                     link: '/logout'
                 }
             ],
-            profile: false
+            profile: true
         }
     },
     async created() {
