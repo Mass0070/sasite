@@ -2,7 +2,7 @@
     <nav>
         <div class="menu-item"><a href="/">Hjem</a></div>
         <Droptown v-if="profile === true" title="Profile" :items="services" />
-        <div v-else class="menu-item"><a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">Login</a></div>
+        <div v-else class="menu-item"><a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">Login</a></div>
     </nav>
 </template>
 
@@ -31,7 +31,7 @@ export default {
         }
     },
     async created() {
-        Axios.get('http://localhost:4040/api/auth/', 
+        Axios.get('https://api.superawesome.ml/api/auth/', 
         {
             headers: {
                 "API-Key": `${localStorage.token}`

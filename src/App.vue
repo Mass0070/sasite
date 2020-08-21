@@ -16,7 +16,8 @@
 
 body {
   font-family: 'montserrat', sans-serif;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3e %3crect width='50' height='50' fill='%23282828'/%3e %3ccircle cx='3' cy='4.3' r='1.8' fill='%23393939'/%3e %3ccircle cx='3' cy='3' r='1.8' fill='black'/%3e %3ccircle cx='10.5' cy='12.5' r='1.8' fill='%23393939'/%3e %3ccircle cx='10.5' cy='11.3' r='1.8' fill='black'/%3e %3c/svg%3e") 
+  background:
+    url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freecreatives.com%2Fwp-content%2Fuploads%2F2016%2F02%2FBlack-wood-Background-for-website-Background.jpg&f=1&nofb=1");
 }
 
 header {
