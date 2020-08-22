@@ -1,12 +1,23 @@
 <template>
     <div class="Grid">
         <div v-for="x in info" class="Unban" :key="x.id">
-            <p>Id: {{ x.UnbanId }}</p>
+            <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId">{{ x.UnbanId }}</a></p>
+            <p>Status: {{ x.status }}</p>
+            <p>Oprettet: {{ x.createdAt }}</p>
+            <p>Seneste opdateret: {{ x.updatedAt }}</p>
         </div>
     </div>
 </template>
 
 <style>
+.UnbanId {
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+.UnbanId:hover {
+  opacity: 0.8
+}
 .Unban {
     margin: 0 auto;
     background-color: #4CA3F4;
@@ -14,6 +25,10 @@
     height: 225px;
     border-radius: 30px;
     text-align: center;
+}
+p {
+  color: black;
+  font-size: 15px;
 }
 .Grid {
     position: fixed;

@@ -103,7 +103,6 @@ export default {
           }
         })
       .then(response => {
-        console.log(response.status)
         switch(response.status) {
           case 200:
             break;
@@ -117,7 +116,6 @@ export default {
             this.info = "Fejl, kontakt venlist staffs."
             break;
         }
-        console.log(response)
         this.info = response.data
         this.question = questionARK
       })
