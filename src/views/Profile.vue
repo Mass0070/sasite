@@ -1,5 +1,5 @@
 <template>
-    <div class="Grid">
+    <div class="Grid" v-if="info.length > 0">
         <div v-for="x in info" class="Unban" :key="x.id">
             <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId">{{ x.UnbanId }}</a></p>
             <p>Status: {{ x.status }}</p>
@@ -7,9 +7,31 @@
             <p>Seneste opdateret: {{ x.updatedAt }}</p>
         </div>
     </div>
+    <div v-else-if="info.length = 0" id="zeroClass">
+      <div id="zeroClassdiv">
+        <h1>Du har ikke lavet nogen ansøgninger</h1>
+      </div>
+    </div>
 </template>
 
 <style>
+#zeroClassdiv {
+  margin: auto;
+  text-align: center;
+  color: #e6e6e6;
+}
+#zeroClass {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  background-color: #1f1e1e;
+  border-radius: 30px;
+  width: 65%;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(250px, auto);
+}
 .UnbanId {
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
@@ -53,7 +75,7 @@ export default {
       user: []
     }
   },
-  mounted () {
+  async created() {
     axios.get('https://api.superawesome.ml/api/user/', {
         headers: {
             "API-Key": `${localStorage.token}`

@@ -34,6 +34,7 @@ nav .menu-item svg {
     margin-left: 10px;
 }
 nav .menu-item .sub-menu {
+    z-index: 100;
     position: absolute;
     background-color: #222;
     top: calc(100% + 18px);

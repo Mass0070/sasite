@@ -33,7 +33,7 @@
       <p>Bliv staff for at kunne se den ansøgning eller kigge på din egen istedet</p>
     </div>
   </div>
-  <div v-else id="Notloggedin">
+  <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
     <div id="Notloggedindiv">
       <h1>{{ info }}</h1>
     </div>
