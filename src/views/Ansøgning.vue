@@ -24,7 +24,7 @@
   <div v-else-if="info=== 'Ikke login'" id="Notloggedin"> 
     <div id="Notloggedindiv">
       <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
-      <p class="Logind">Tryk <a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
+      <p class="Logind">Tryk <a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
     </div>
   </div>
   <div v-else-if="info=== 'Ikke adgang'" id="Notloggedin"> 
