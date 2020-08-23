@@ -27,12 +27,14 @@ p.Hjemmeside-Motd {
   margin: auto;
   margin-top: 4.5%;
   text-align: center; 
-  box-sizing: content-box; 
+  box-sizing: content-box;
+  z-index: 0; 
 }
 .Server-stats-module {
   background: #222;
   color: white;
   padding: 2rem;
+  z-index: 0;
 }
 .Online span{
 	color: #00b300;
@@ -43,6 +45,7 @@ p.Hjemmeside-Motd {
 .Online {
   margin: auto;
   color: green;
+  z-index: 0;
 }
 iframe{
   margin-right: 1.5%;
@@ -53,6 +56,7 @@ iframe{
   -webkit-box-shadow: 0.6% 0.6% 1.6% #000;
   box-shadow: 0.6% 0.6% 1.6% #000;
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
+  z-index: -1;
 } 
 </style>
 
