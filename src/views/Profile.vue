@@ -32,6 +32,11 @@
   grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: minmax(250px, auto);
 }
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
 .UnbanId {
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
