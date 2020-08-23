@@ -2,7 +2,7 @@
   <div>
     <iframe align="right" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="18%" height="700" allowtransparency="true" frameborder="0"></iframe>
 
-    <div class="Server-stats">
+    <div v-if="motd !== 'Indlæser!'" class="Server-stats">
       <div class="Server-stats-module">
         <h1 class="Online">Online: <span>{{ players.online }}</span>/<span>{{ players.max }}</span></h1>
         <p class="Hjemmeside-Motd"><span v-html="motd"></span></p>
@@ -25,14 +25,16 @@ p.Hjemmeside-Motd {
   background: linear-gradient(to right, blue, green);
   padding: 0.3%;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 4.5%;
   text-align: center; 
-  box-sizing: content-box; 
+  box-sizing: content-box;
+  z-index: 0; 
 }
 .Server-stats-module {
   background: #222;
   color: white;
   padding: 2rem;
+  z-index: 0;
 }
 .Online span{
 	color: #00b300;
@@ -43,6 +45,7 @@ p.Hjemmeside-Motd {
 .Online {
   margin: auto;
   color: green;
+  z-index: 0;
 }
 iframe{
   margin-right: 1.5%;
@@ -53,6 +56,7 @@ iframe{
   -webkit-box-shadow: 0.6% 0.6% 1.6% #000;
   box-shadow: 0.6% 0.6% 1.6% #000;
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
+  z-index: -1;
 } 
 </style>
 

@@ -1,30 +1,30 @@
 <template>
   <div id="about" v-if="info.svar1">
     <div class="Hover">
-      <h3>{{ question.q1 }}</h3>
-      <p>{{ info.svar1 }}</p>
+      <h3 class="ansøgnings-h3">{{ question.q1 }}</h3>
+      <p class="ansøgnings-p">{{ info.svar1 }}</p>
     </div>
     <div class="Hover">
-      <h3>{{ question.q2 }}</h3>
-      <p>{{ info.svar2 }}</p>
+      <h3 class="ansøgnings-h3">{{ question.q2 }}</h3>
+      <p class="ansøgnings-p">{{ info.svar2 }}</p>
     </div>
     <div class="Hover">
-      <h3>{{ question.q3 }}</h3>
-      <p>{{ info.svar3 }}</p>
+      <h3 class="ansøgnings-h3">{{ question.q3 }}</h3>
+      <p class="ansøgnings-p">{{ info.svar3 }}</p>
     </div>
     <div class="Hover">
-      <h3>{{ question.q4 }}</h3>
-      <p>{{ info.svar4 }}</p>
+      <h3 class="ansøgnings-h3">{{ question.q4 }}</h3>
+      <p class="ansøgnings-p">{{ info.svar4 }}</p>
     </div>
     <div class="Hover">
-      <h3>{{ question.q5 }}</h3>
-      <p>{{ info.svar5 }}</p>
+      <h3 class="ansøgnings-h3">{{ question.q5 }}</h3>
+      <p class="ansøgnings-p">{{ info.svar5 }}</p>
     </div>
   </div>
   <div v-else-if="info=== 'Ikke login'" id="Notloggedin"> 
     <div id="Notloggedindiv">
       <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
-      <p class="Logind">Tryk <a href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
+      <p class="Logind">Tryk <a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
     </div>
   </div>
   <div v-else-if="info=== 'Ikke adgang'" id="Notloggedin"> 
@@ -33,7 +33,7 @@
       <p>Bliv staff for at kunne se den ansøgning eller kigge på din egen istedet</p>
     </div>
   </div>
-  <div v-else id="Notloggedin">
+  <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
     <div id="Notloggedindiv">
       <h1>{{ info }}</h1>
     </div>
@@ -70,19 +70,30 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: grid;
-  background-color: #272626;
+  background-color: #2f2f2f;
   border-radius: 30px;
   width: 65%;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(250px, auto);
 }
-p {
-  color: gray;
-  font-size: 100%;
+.ansøgnings-h3 {
+    color: #3a56e2;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    margin-top: 3%;
+}
+.ansøgnings-p {
+    color: #34a206;
+    font-size: 85%;
+    text-align: center;
+    margin-top: 2%;
+    font-family: "Lucida Console", Courier, monospace;
+    width: 70%;
+    margin-left: 15%;
 }
 .Logind {
-  padding-top: 3px;
-  color: #d3d3d3;
+    padding-top: 3px;
+    color: #d3d3d3;
 }
 .Notloggedindiv-span span {
   color: crimson;
@@ -103,7 +114,6 @@ export default {
           }
         })
       .then(response => {
-        console.log(response.status)
         switch(response.status) {
           case 200:
             break;
@@ -117,7 +127,6 @@ export default {
             this.info = "Fejl, kontakt venlist staffs."
             break;
         }
-        console.log(response)
         this.info = response.data
         this.question = questionARK
       })
