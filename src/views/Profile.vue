@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-      <p>Test</p>
     </div>
     <hr>
     <div class="Grid" v-if="info.length > 0">
