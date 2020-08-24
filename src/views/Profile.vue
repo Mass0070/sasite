@@ -9,7 +9,7 @@
         <p class="P-Opdateret">Seneste opdateret:<br><span>{{ x.updatedAt }}</span></p>
       </div>
     </div>
-    <div v-else-if="info.length <= 0" id="zeroClass">
+    <div v-show="info.length === 0" id="zeroClass">
       <div id="zeroClassdiv">
         <h1>Du har <span>ikke</span> lavet nogen ansøgninger</h1>
       </div>
@@ -72,7 +72,7 @@ a {
     display: grid;
     width: 65%;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(250px, auto);
+    grid-auto-rows: minmax(auto, auto);
     margin: 0 auto;
     text-align: left;
 }
@@ -126,17 +126,18 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      info: [],
+      info: false,
       user: []
     }
   },
   async created() {
-    axios.get('https://api.superawesome.ml/api/user/', {
+    await axios.get('https://api.superawesome.ml/api/user/', {
         headers: {
             "API-Key": `${localStorage.token}`
         }
     })
     .then(response => (this.info = response.data))  
+    await console.log(this.info.length)
   }
 }
 </script>
