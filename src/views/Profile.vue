@@ -58,6 +58,11 @@ a {
 .UnbanId:hover {
   opacity: 0.8
 }
+.UnbanId span {
+  color: #04ef04;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 110%;
+}
 .Unban {
     margin: 0 auto;
     background-color: #3495ef;
@@ -73,37 +78,27 @@ a {
     transform: translate(-50%, -50%);
     display: grid;
     width: 65%;
+    grid-column-gap: 2.5%;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(auto, auto);
     margin: 0 auto;
     text-align: left;
 }
-.Grid span {
+.P-Status-accepteret {
   color: #04ef04;
-  font-size: 110%;
   font-family: "Times New Roman", Times, serif;
 }
-
+.P-Status-afvis  {
+  color: crimson;
+  font-family: "Times New Roman", Times, serif;
+}
 .P-Status {
   font-size: 125%;
   margin-top: 4%;
 }
 .P-Status span {
-  color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
-
-.P-Status-afvis  {
-  color: crimson;
-  font-family: "Times New Roman", Times, serif;
-  z-index: 100;
-}
-
-.P-Status-accepteret {
-  color: #04ef04;
-  font-family: "Times New Roman", Times, serif;
-}
-
 .P-Oprettet {
   font-size: 95%;
   margin-top: 4%;
@@ -112,7 +107,6 @@ a {
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
-
 .P-Opdateret {
   font-size: 95%;
   margin-top: 4%;
