@@ -7,8 +7,8 @@
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
         <p class="P-Status">Status:<br><span class="P-Status-afvis" v-if="x.status === 'Afvist'">{{ x.status }}</span><span class="P-Status-accepteret" v-else-if="x.status === 'Accepteret'">{{ x.status }}</span><span v-else>{{ x.status }}</span></p>
-        <p class="P-Oprettet">Oprettet:<br><span>{{ x.createdAt }}</span></p>
-        <p class="P-Opdateret">Seneste opdateret:<br><span>{{ x.updatedAt }}</span></p>
+        <p class="P-Oprettet">Oprettet:<br><span>{{ getTime(x.createdAt) }}</span></p>
+        <p class="P-Opdateret">Seneste opdateret:<br><span>{{ getTime(x.updatedAt) }}</span></p>
       </div>
     </div>
     <div v-show="info.length === 0" id="zeroClass">
@@ -121,6 +121,8 @@ a {
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
+
 export default {
   data () {
     return {
@@ -136,6 +138,12 @@ export default {
     })
     .then(response => (this.info = response.data))  
     await console.log(this.info.length)
+  },
+  methods: {
+    getTime: function (time) {
+      moment.locale("da")
+      return moment(time).format("D MMMM YYYY HH:MM")
+    }
   }
 }
 </script>
