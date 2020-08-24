@@ -1,8 +1,8 @@
 <template>
   <div>
+    <hr>
     <div>
     </div>
-    <hr>
     <div class="Grid" v-if="info.length > 0">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
@@ -80,16 +80,18 @@ a {
     width: 65%;
     grid-column-gap: 2.5%;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(auto, auto);
+    grid-auto-rows: minmax(250px, auto);
     margin: 0 auto;
     text-align: left;
 }
 .P-Status-accepteret {
-  color: #04ef04;
+  color: #00FF00;
+  font-weight: bold;
   font-family: "Times New Roman", Times, serif;
 }
 .P-Status-afvis  {
-  color: crimson;
+  color: #800000;
+  font-weight: bold;
   font-family: "Times New Roman", Times, serif;
 }
 .P-Status {

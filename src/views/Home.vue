@@ -1,5 +1,6 @@
 <template>
   <div>
+    <hr>
     <iframe align="right" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="18%" height="700" allowtransparency="true" frameborder="0"></iframe>
 
     <div v-show="motd" class="Server-stats">
