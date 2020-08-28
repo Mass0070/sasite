@@ -38,6 +38,10 @@ const routes = [
     path: '/logout',
     name: 'Logout',
     component: logout
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
