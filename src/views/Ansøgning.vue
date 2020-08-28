@@ -6,22 +6,22 @@
         <h3 class="ansøgnings-h3">{{ question.q1 }}</h3>
         <p class="ansøgnings-p">{{ info.svar1 }}</p>
       </div>
-      <hr class="Split">
+      <hr v-show="isMobile()" class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q2 }}</h3>
         <p class="ansøgnings-p">{{ info.svar2 }}</p>
       </div>
-      <hr class="Split">
+      <hr v-show="isMobile()" class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q3 }}</h3>
         <p class="ansøgnings-p">{{ info.svar3 }}</p>
       </div>
-      <hr class="Split">
+      <hr v-show="isMobile()" class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q4 }}</h3>
         <p class="ansøgnings-p">{{ info.svar4 }}</p>
       </div>
-      <hr class="Split">
+      <hr v-show="isMobile()" class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q5 }}</h3>
         <p class="ansøgnings-p-sidst">{{ info.svar5 }}</p>
@@ -272,6 +272,15 @@ export default {
     return {
       info: {},
       question: {}
+    }
+  }, 
+  methods: {
+    isMobile() {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
