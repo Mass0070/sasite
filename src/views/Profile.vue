@@ -127,13 +127,10 @@ a {
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
-
-
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
 }
-
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   hr {

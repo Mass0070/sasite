@@ -127,12 +127,10 @@ hr {
 .Notloggedindiv-span span {
   color: crimson;
 }
-
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
 }
-
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .Split {
