@@ -6,22 +6,22 @@
         <h3 class="ansøgnings-h3">{{ question.q1 }}</h3>
         <p class="ansøgnings-p">{{ info.svar1 }}</p>
       </div>
-      <hr>
+      <hr class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q2 }}</h3>
         <p class="ansøgnings-p">{{ info.svar2 }}</p>
       </div>
-      <hr>
+      <hr class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q3 }}</h3>
         <p class="ansøgnings-p">{{ info.svar3 }}</p>
       </div>
-      <hr>
+      <hr class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q4 }}</h3>
         <p class="ansøgnings-p">{{ info.svar4 }}</p>
       </div>
-      <hr>
+      <hr class="Split">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q5 }}</h3>
         <p class="ansøgnings-p-sidst">{{ info.svar5 }}</p>
@@ -48,11 +48,16 @@
 </template>
 
 <style>
+.Split {
+  height: 1px;
+  margin-top: 15%;
+  background: linear-gradient(to right, blue, green);
+  border: none;
+}
 hr {
-    height: 1px;
-    margin-top: 15%;
-    background: linear-gradient(to right, blue, green);
-    border: none;
+  height: 1px;
+  background: linear-gradient(to right, blue, green);
+  border: none;
 }
 .hover {
   font-family: arial;
@@ -130,12 +135,17 @@ hr {
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  hr {
+  .Split {
     height: 1px;
     margin-top: 15%;
     background: linear-gradient(to right, blue, green);
     border: none;
-}
+  }
+  hr {
+    height: 1px;
+    background: linear-gradient(to right, blue, green);
+    border: none;
+  }
   .hover {
     font-family: arial;
   }

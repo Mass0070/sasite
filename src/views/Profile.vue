@@ -18,6 +18,11 @@
 </template>
 
 <style>
+hr {
+  height: 1px;
+  background: linear-gradient(to right, blue, green);
+  border: none;
+}
 p {
   color: black;
   font-size: 15px;
@@ -26,12 +31,6 @@ a {
   color: inherit;
   text-decoration: none;
   font-weight: bold;
-}
-hr {
-    height: 1px;
-    margin-top: 15%;
-    background: linear-gradient(to right, blue, green);
-    border: none;
 }
 #zeroClassdiv {
   margin: auto;
@@ -137,6 +136,11 @@ hr {
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  hr {
+    height: 1px;
+    background: linear-gradient(to right, blue, green);
+    border: none;
+  }
   p {
     color: black;
     font-size: 15px;
@@ -145,12 +149,6 @@ hr {
     color: inherit;
     text-decoration: none;
     font-weight: bold;
-  }
-  hr {
-    height: 1px;
-    margin-top: 15%;
-    background: linear-gradient(to right, blue, green);
-    border: none;
   }
   #zeroClassdiv {
     margin: auto;

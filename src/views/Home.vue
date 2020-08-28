@@ -15,10 +15,9 @@
 
 <style>
 hr {
-    height: 1px;
-    margin-top: 15%;
-    background: linear-gradient(to right, blue, green);
-    border: none;
+  height: 1px;
+  background: linear-gradient(to right, blue, green);
+  border: none;
 }
 p.Hjemmeside-Motd {
     margin-top: 2.5%;
@@ -65,7 +64,6 @@ iframe{
   /* For desktop: */
   hr {
     height: 1px;
-    margin-top: 15%;
     background: linear-gradient(to right, blue, green);
     border: none;
   }
