@@ -3,9 +3,9 @@
     <hr>
     <iframe align="right" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="18%" height="700" allowtransparency="true" frameborder="0"></iframe>
 
-    <div v-if="motd !== 'Indlæser!'" class="Server-stats">
+    <div v-show="motd" class="Server-stats">
       <div class="Server-stats-module">
-        <h1 class="Online">Online: <span>{{ players.online }}</span>/<span>{{ players.max }}</span></h1>
+        <h1 v-show="players" class="Online">Online: <span>{{ players.online }}</span>/<span>{{ players.max }}</span></h1>
         <p class="Hjemmeside-Motd"><span v-html="motd"></span></p>
       </div>
     </div>
@@ -115,8 +115,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      motd: 'Indlæser!',
-      players: 'Indlæser!'
+      motd: false,
+      players: false
     }
   },
   async created() {
