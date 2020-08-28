@@ -27,7 +27,7 @@
         <p class="ansøgnings-p-sidst">{{ info.svar5 }}</p>
       </div>
     </div>
-    <div v-else-if="info=== 'Ikke login'" id="Notloggedin"> 
+    <div v-else-if="info=== 'Ikke login' || info === 'Not authorized'" id="Notloggedin"> 
       <div id="Notloggedindiv">
         <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
         <p class="Logind">Tryk <a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
@@ -217,7 +217,7 @@ import questionARK from '../question'
 export default {
   async created() {
     if(localStorage.token) {
-      axios
+      await axios
       .get('https://api.superawesome.ml/api/apply/' + this.$route.params.id,
         {
           headers: {
@@ -238,7 +238,9 @@ export default {
             this.info = "Fejl, kontakt venlist staffs."
             break;
         }
-        this.info = response.data
+        if(!this.info) {
+          this.info = response.data
+        }
         this.question = questionARK
       })
       .catch((error) => {
@@ -267,7 +269,7 @@ export default {
   },
   data () {
     return {
-      info: {},
+      info: false,
       question: {}
     }
   }, 
