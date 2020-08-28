@@ -168,16 +168,13 @@ hr {
     grid-auto-rows: minmax(250px, auto);
   }
   #about {
-    position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     display: grid;
-    background-color: #2f2f2f;
     border-radius: 30px;
     width: 65%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(250px, auto);
+    grid-auto-rows: minmax(250px,auto);
+    margin-bottom: 5%;
   }
   .ansøgnings-h3 {
       color: #3a56e2;
