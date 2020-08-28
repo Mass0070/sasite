@@ -22,3 +22,4 @@ pnpm-debug.log*
 *.sw?
 Package-lock.json
 src/views/tansøgning.vue
+package-lock.json
