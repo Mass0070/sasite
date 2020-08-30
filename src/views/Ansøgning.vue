@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hr>
+    <hr class="Bar">
     <div id="about" v-if="info.svar1">
       <div class="Hover">
         <h3 class="ansøgnings-h3">{{ question.q1 }}</h3>
@@ -57,11 +57,6 @@
 .Split {
   height: 1px;
   margin-top: 15%;
-  background: linear-gradient(to right, blue, green);
-  border: none;
-}
-hr {
-  height: 1px;
   background: linear-gradient(to right, blue, green);
   border: none;
 }
@@ -133,46 +128,8 @@ hr {
 .Notloggedindiv-span span {
   color: crimson;
 }
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
-}
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 900px) {
   /* For desktop: */
-  .Split {
-    height: 1px;
-    margin-top: 15%;
-    background: linear-gradient(to right, blue, green);
-    border: none;
-  }
-  hr {
-    height: 1px;
-    background: linear-gradient(to right, blue, green);
-    border: none;
-  }
-  .hover {
-    font-family: arial;
-  }
-  #Notloggedindiv {
-    margin: auto;
-    text-align: center;
-    color: #e6e6e6;
-  }
-  .Hover:hover {
-    opacity: 0.8
-  } 
-  #Notloggedin {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: grid;
-    background-color: #1f1e1e;
-    border-radius: 30px;
-    width: 65%;
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: minmax(250px, auto);
-  }
   #about {
     top: 50%;
     left: 50%;
@@ -206,13 +163,6 @@ hr {
       width: 70%;
       margin-top: 5%;
       margin-left: 15%;
-  }
-  .Logind {
-      padding-top: 3px;
-      color: #d3d3d3;
-  }
-  .Notloggedindiv-span span {
-    color: crimson;
   }
 }
 </style>
