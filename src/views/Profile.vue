@@ -50,11 +50,6 @@
 .Notloggedindiv-span span {
   color: crimson;
 }
-hr {
-  height: 1px;
-  background: linear-gradient(to right, blue, green);
-  border: none;
-}
 p {
   color: black;
   font-size: 15px;
@@ -159,10 +154,6 @@ a {
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
-}
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   #Notloggedindiv {
@@ -170,54 +161,8 @@ a {
     text-align: center;
     color: #e6e6e6;
   }
-  #Notloggedin {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: grid;
-    background-color: #1f1e1e;
-    border-radius: 30px;
-    width: 65%;
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: minmax(250px, auto);
-  }
   .Notloggedindiv-span span {
     color: crimson;
-  }
-  hr {
-    height: 1px;
-    background: linear-gradient(to right, blue, green);
-    border: none;
-  }
-  p {
-    color: black;
-    font-size: 15px;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  #zeroClassdiv {
-    margin: auto;
-    text-align: center;
-    color: #e6e6e6;
-  }
-  #zeroClassdiv span {
-    color: crimson;
-  }
-  #zeroClass {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: grid;
-    background-color: #1f1e1e;
-    border-radius: 30px;
-    width: 65%;
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: minmax(250px, auto);
   }
   .Ingen-ansøgning {
     font-size: 200%;
@@ -227,14 +172,6 @@ a {
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     margin-top: 3.5%;
-  }
-  .UnbanId:hover {
-    opacity: 0.8
-  }
-  .UnbanId span {
-    color: #04ef04;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 110%;
   }
   .Unban {
       margin: 0 auto;
@@ -257,40 +194,6 @@ a {
       grid-auto-rows: minmax(250px, auto);
       margin: 0 auto;
       text-align: left;
-  }
-  .P-Status-accepteret {
-    color: #04ef04;
-    font-family: "Times New Roman", Times, serif;
-  }
-  .P-Status-afvis  {
-    color: crimson;
-    font-family: "Times New Roman", Times, serif;
-  }
-  .P-Status {
-    font-size: 125%;
-    margin-top: 4%;
-    color: lightgrey;
-  }
-  .P-Status span {
-    font-family: "Times New Roman", Times, serif;
-  }
-  .P-Oprettet {
-    font-size: 95%;
-    margin-top: 4%;
-    color: lightgrey;
-  }
-  .P-Oprettet span {
-    color: #04ef04;
-    font-family: "Times New Roman", Times, serif;
-  }
-  .P-Opdateret {
-    font-size: 95%;
-    margin-top: 4%;
-    color: lightgrey;
-  }
-  .P-Opdateret span {
-    color: #04ef04;
-    font-family: "Times New Roman", Times, serif;
   }
 }
 </style>

@@ -57,6 +57,16 @@ export default {
 </script>
 
 <style>
+hr {
+  height: 1px;
+  background: linear-gradient(to right, blue, green);
+  border: none;
+}
+.Bar {
+  height: 2px;
+  background: linear-gradient(to right, blue, green);
+  border: none;
+}
 nav {
     display: flex;
     align-items: center;
