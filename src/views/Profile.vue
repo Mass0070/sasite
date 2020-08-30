@@ -154,7 +154,7 @@ a {
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 860px) {
   /* For desktop: */
   #Notloggedindiv {
     margin: auto;
