@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hr>
+    <hr class="Bar">
     <iframe align="right" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="18%" height="700" allowtransparency="true" frameborder="0"></iframe>
 
     <div v-show="motd" class="Server-stats">
@@ -14,11 +14,6 @@
 </template>
 
 <style>
-hr {
-  height: 1px;
-  background: linear-gradient(to right, blue, green);
-  border: none;
-}
 p.Hjemmeside-Motd {
     margin-top: 2.5%;
 }
@@ -54,17 +49,8 @@ p.Hjemmeside-Motd {
 iframe{
   visibility: hidden;
 } 
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
-}
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  hr {
-    height: 1px;
-    background: linear-gradient(to right, blue, green);
-    border: none;
-  }
   .Server-stats {
     max-width: 20%;
     padding: 1rem;
@@ -76,23 +62,6 @@ iframe{
     text-align: center; 
     box-sizing: content-box;
     z-index: 0; 
-  }
-  .Server-stats-module {
-    background: #222;
-    color: white;
-    padding: 2rem;
-    z-index: 0;
-  }
-  .Online span{
-    color: #00b300;
-  }
-  .Online h1 {
-    color: black; 
-  }
-  .Online {
-    margin: auto;
-    color: green;
-    z-index: 0;
   }
   iframe{
     visibility: visible;
