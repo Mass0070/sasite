@@ -49,7 +49,7 @@ p.Hjemmeside-Motd {
 iframe{
   visibility: hidden;
 } 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 870px) {
   /* For desktop: */
   .Server-stats {
     max-width: 20%;
