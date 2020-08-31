@@ -128,7 +128,7 @@
 .Notloggedindiv-span span {
   color: crimson;
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 768px) {
   /* For desktop: */
   #about {
     top: 50%;
