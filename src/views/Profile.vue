@@ -1,6 +1,8 @@
 <template>
   <div>
     <hr>
+    <h1 v-show="username">Kigger på {{ username }} profile</h1>
+    <img v-show="finaleAvatar" v-bind:src="finaleAvatar" alt="Lamp" width="128" height="128">
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
@@ -22,7 +24,7 @@
     </div>
     <div v-else-if="info === 'Ikke fundet'" id="Notloggedin"> 
       <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">Kunne <span>ikke</span> finde en profile med det id</h1>
+        <h1 class="Notloggedindiv-span">Kunne <span>ikke</span> finde en profile med det id eller har måske profilen ingen ansøgning lavet</h1>
         <p class="Logind">Prøv et andet id.</p>
       </div>
     </div>
@@ -204,7 +206,10 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      info: false
+      info: false,
+      username: false,
+      userid: false,
+      finaleUrl: false
     }
   },
   async created() {
@@ -216,7 +221,7 @@ export default {
             "API-Key": `${localStorage.token}`
         }
     })
-    .then(response => {
+    .then(async(response) => {
       switch(response.status) {
         case 200:
           break;
@@ -234,6 +239,10 @@ export default {
           break;
       }
       if(!this.info) {
+        this.userid = await response.data.shift().userid
+        this.avatar = await response.data.shift().avatar
+        this.username = response.data.shift().username
+        this.finaleAvatar = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + ".png" + "?size=256";
         this.info = response.data
       }
     })  
