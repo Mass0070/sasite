@@ -2,7 +2,7 @@
   <div>
     <hr>
     <h1 v-show="username">Kigger på {{ username }} profile</h1>
-    <img v-show="finaleAvatar" v-bind:src="finaleAvatar" alt="Lamp" width="128" height="128">
+    <img v-show="finaleUrl" v-bind:src="finaleUrl" width="128" height="128">
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
@@ -239,10 +239,14 @@ export default {
           break;
       }
       if(!this.info) {
+        let filetype = ".png"
         this.userid = await response.data.shift().userid
         this.avatar = await response.data.shift().avatar
         this.username = response.data.shift().username
-        this.finaleAvatar = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + ".png" + "?size=256";
+        if(this.avatar.startsWith("a_")) {
+          filetype = ".gif"
+        }
+        this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
         this.info = response.data
       }
     })  
