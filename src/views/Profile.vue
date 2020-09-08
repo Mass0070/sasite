@@ -1,8 +1,12 @@
 <template>
   <div>
     <hr>
-    <h1 v-show="username">Kigger på {{ username }} profile</h1>
-    <img v-show="finaleAvatar" v-bind:src="finaleAvatar" alt="Lamp" width="128" height="128">
+    <div class="Box-Profil">
+      <div class="Box-M">
+        <a class="Discord-A">Du kigger i øjeblikket på <span>{{ username }}</span>'s profil.</a>
+      </div>
+        <img class="Discord-Billede" v-show="finaleUrl" v-bind:src="finaleUrl" alt="Lamp" width="60" height="60">
+    </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
@@ -156,7 +160,67 @@ a {
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
-@media only screen and (min-width: 860px) {
+.Box-Profil {
+  position: absolute;
+	top: 0;
+	left: 0;
+  height: 15%;
+  
+  margin: 0 auto;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2f2f2f;
+  border: 3px solid #197b19;
+  width: 300px;
+  height: 100px;
+  border-radius: 30px;
+}
+.Discord-A {
+  text-align: center;
+  margin-left: 6%;
+  font-size: 105%;
+  color: #e6e6e6;
+}
+.Discord-A span {
+  color: crimson;
+}
+.Discord-Billede {
+  border: 3px solid green;
+  margin-top: 1%;
+  margin-left: 1.5%;
+  border-radius: 50%;
+}
+.Box-M {
+  margin-top: 1%;
+}
+
+@media only screen and (min-width : 0px) and (max-width : 780px) {
+  .Grid {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    margin: 0 auto;
+    text-align: left;
+    
+  }
+}
+
+@media only screen and (min-width : 780px) and (max-width : 1190px) {
+  .Grid {
+      display: grid;
+      width: 65%;
+      grid-column-gap: 50%;
+      grid-template-columns: 60px 60px;
+      grid-template-rows: 250px 250px;
+      margin: 0 auto;
+      text-align: left;
+  }
+
+}
+
+@media only screen and (min-width : 1190px) and (max-width : 6000px) {
   /* For desktop: */
   #Notloggedindiv {
     margin: auto;
@@ -197,6 +261,40 @@ a {
       margin: 0 auto;
       text-align: left;
   }
+  .Box-Profil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15%;
+
+    margin: 0 auto;
+    top: 15%;
+    left: 18%;
+    transform: translate(-50%, -50%);
+    background-color: #2f2f2f;
+    border: 3px solid #197b19;
+    width: 350px;
+    height: 100px;
+    border-radius: 30px;
+  }
+  .Discord-A {
+    text-align: center;
+    margin-left: 6%;
+    font-size: 105%;
+    color: #e6e6e6;
+  }
+  .Discord-A span {
+    color: crimson;
+  }
+  .Discord-Billede {
+    border: 3px solid green;
+    margin-top: 1%;
+    margin-left: 1.5%;
+    border-radius: 50%;
+  }
+  .Box-M {
+    margin-top: 1%;
+  } 
 }
 </style>
 
@@ -239,10 +337,14 @@ export default {
           break;
       }
       if(!this.info) {
+        let filetype = ".png"
         this.userid = await response.data.shift().userid
         this.avatar = await response.data.shift().avatar
         this.username = response.data.shift().username
-        this.finaleAvatar = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + ".png" + "?size=256";
+        if(this.avatar.startsWith("a_")) {
+          filetype = ".gif"
+        }
+        this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
         this.info = response.data
       }
     })  
