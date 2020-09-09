@@ -1,11 +1,11 @@
 <template>
   <div>
     <hr>
-    <div class="Box-Profil">
+    <div v-show="username" class="Box-Profil">
+      <img class="Discord-Billede" v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="60" height="60">
       <div class="Box-M">
         <a class="Discord-A">Du kigger i øjeblikket på <span>{{ username }}</span>'s profil.</a>
       </div>
-        <img class="Discord-Billede" v-show="finaleUrl" v-bind:src="finaleUrl" alt="Lamp" width="60" height="60">
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
@@ -162,10 +162,7 @@ a {
 }
 .Box-Profil {
   position: absolute;
-	top: 0;
-	left: 0;
   height: 15%;
-  
   margin: 0 auto;
   top: 18%;
   left: 50%;
@@ -173,8 +170,8 @@ a {
   background-color: #2f2f2f;
   border: 3px solid #197b19;
   width: 300px;
-  height: 100px;
   border-radius: 30px;
+  z-index: 5;
 }
 .Discord-A {
   text-align: center;
