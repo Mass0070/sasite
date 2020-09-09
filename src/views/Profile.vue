@@ -195,7 +195,13 @@ a {
   margin-top: 1%;
 }
 
-@media only screen and (min-width : 0px) and (max-width : 780px) {
+@media only screen and (min-width : 0px) and (max-width : 620px) {
+  .Box-Profil {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width : 620px) and (max-width : 780px) {
   .Grid {
     display: block;
     margin-left: auto;
@@ -203,23 +209,83 @@ a {
     width: 75%;
     margin: 0 auto;
     text-align: left;
-    
+  }
+  .Box-Profil {
+    margin: 0 auto;
+    transform: translate(10%,-80%);
+    background-color: #2f2f2f;
+    border: 3px solid #197b19;
+    width: 210px;
+    height: 110px;
+    border-radius: 30px;
+    position: absolute;
+    top: 14%;
+    left: -2%;
+  }
+  .Discord-A {
+    text-align: center;
+    margin-left: 6%;
+    font-size: 100%;
+    color: #e6e6e6;
+    top: 6%;
+    left: -6%;
+    position: absolute;
+  }
+  .Discord-Billede {
+    border: 3px solid green;
+    margin-top: 1%;
+    margin-left: 1.5%;
+    border-radius: 50%;
+    top: 40%;
+    left: 1%;
+    position: absolute;
   }
 }
 
 @media only screen and (min-width : 780px) and (max-width : 1190px) {
   .Grid {
-      display: grid;
-      width: 65%;
-      grid-column-gap: 50%;
-      grid-template-columns: 60px 60px;
-      grid-template-rows: 250px 250px;
-      margin: 0 auto;
-      text-align: left;
+    display: grid;
+    width: 65%;
+    grid-column-gap: 50%;
+    grid-template-columns: 60px 60px;
+    grid-template-rows: 250px 250px;
+    margin: 0 auto;
+    text-align: left;
+    position: absolute;
+    top: 20%;
+    left: 20%;
   }
-
+  .Box-Profil {
+    margin: 0 auto;
+    transform: translate(10%,-80%);
+    background-color: #2f2f2f;
+    border: 3px solid #197b19;
+    width: 270px;
+    height: 125px;
+    border-radius: 30px;
+    position: absolute;
+    top: 17%;
+    left: 0;
+  }
+  .Discord-A {
+    text-align: center;
+    margin-left: 6%;
+    font-size: 105%;
+    color: #e6e6e6;
+    top: 6%;
+    left: -8%;
+    position: absolute;
+  }
+  .Discord-Billede {
+    border: 3px solid green;
+    margin-top: 1%;
+    margin-left: 1.5%;
+    border-radius: 50%;
+    top: 42%;
+    left: 1%;
+    position: absolute;
+  }
 }
-
 @media only screen and (min-width : 1190px) and (max-width : 6000px) {
   /* For desktop: */
   #Notloggedindiv {
@@ -268,8 +334,8 @@ a {
     height: 15%;
 
     margin: 0 auto;
-    top: 15%;
-    left: 18%;
+    top: 14%;
+    left: 15%;
     transform: translate(-50%, -50%);
     background-color: #2f2f2f;
     border: 3px solid #197b19;
@@ -282,13 +348,16 @@ a {
     margin-left: 6%;
     font-size: 105%;
     color: #e6e6e6;
+    position: absolute;
+    top: 8px;
+    left: -8%;
   }
   .Discord-A span {
     color: crimson;
   }
   .Discord-Billede {
     border: 3px solid green;
-    margin-top: 1%;
+    margin-top: 8.5%;
     margin-left: 1.5%;
     border-radius: 50%;
   }
