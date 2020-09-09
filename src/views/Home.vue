@@ -14,6 +14,11 @@
 </template>
 
 <style>
+@keyframes blinker-one {
+  0% {
+    opacity: 0;
+  }
+}
 p.Hjemmeside-Motd {
     margin-top: 2.5%;
 }
@@ -31,12 +36,13 @@ p.Hjemmeside-Motd {
 }
 .Server-stats-module {
   background: #222;
-  color: white;
+  color: #e6e6e6;
   padding: 2rem;
   z-index: 0;
 }
 .Online span{
 	color: #00b300;
+  animation: blinker-one 2.3s linear infinite;
 }
 .Online h1 {
   color: black; 
