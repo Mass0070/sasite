@@ -17,7 +17,7 @@
 body {
   font-family: 'montserrat', sans-serif;
   background:
-    url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freecreatives.com%2Fwp-content%2Fuploads%2F2016%2F02%2FBlack-wood-Background-for-website-Background.jpg&f=1&nofb=1");
+    url("http://mass0070.ddns.net/SA.jpeg");
 }
 
 header {
