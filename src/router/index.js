@@ -8,36 +8,40 @@ import logout from '../views/Logout.vue'
 
 Vue.use(VueRouter)
 
+function lazyLoad(view){
+  return() => import(`@/views/${view}.vue`)
+}
+
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: lazyload(Home)
   },
   {
     path: '/auth',
     name: 'auth',
-    component: auth
+    component: lazyload(auth)
   },
   {
     path: '/ansøgning/:id',
     name: 'Ansøgning',
-    component: Ansøgning
+    component: lazyload(Ansøgning)
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: lazyload(Profile)
   },
   {
     path: '/profile/:id',
     name: 'Profile',
-    component: Profile
+    component: lazyload(Profile)
   },
   {
     path: '/logout',
     name: 'Logout',
-    component: logout
+    component: lazyload(logout)
   },
   {
     path: '*',
