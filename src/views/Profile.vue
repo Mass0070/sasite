@@ -1,12 +1,19 @@
 <template>
   <div>
     <hr>
-    <div v-show="username" class="Box-Profil">
-      <img class="Discord-Billede" v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="60" height="60">
-      <div class="Box-M">
-        <a class="Discord-A">Du kigger i øjeblikket på <span>{{ username }}</span>'s profil.</a>
+
+    <div v-if="Array.isArray(info) && info.length > 0" class="Discord-Boks">
+      <a class="Discord-Profil" href="#">
+        <img v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="125" height="125">
+      </a>
+
+      <div class="Discord-Navn">
+        <div class="Discord-Navn-P">Du kigger på</div>
+  <span>{{ username }}</span>'s profil
       </div>
     </div>
+
+
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
@@ -28,12 +35,12 @@
     </div>
     <div v-else-if="info === 'Ikke fundet'" id="Notloggedin"> 
       <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">Kunne <span>ikke</span> finde en profile med det id eller har måske profilen ingen ansøgning lavet</h1>
-        <p class="Logind">Prøv et andet id.</p>
+        <h1 class="Notloggedindiv-span">Profilen med dette id kunne <span>ikke</span> findes.</h1>
+        <p class="Logind">Måske har profilen ikke nogen ansøgninger, men ellers prøv et andet id.</p>
       </div>
     </div>
     <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
-      <div id="Notloggedindiv">
+      <div class="Notloggedindiv2">
         <h1>{{ info }}</h1>
       </div>
     </div>
@@ -41,30 +48,6 @@
 </template>
 
 <style>
-#Notloggedin {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  background-color: #1f1e1e;
-  border-radius: 30px;
-  width: 65%;
-  grid-template-columns: repeat(1, 1fr);
-  grid-auto-rows: minmax(250px, auto);
-}
-.Notloggedindiv-span span {
-  color: crimson;
-}
-p {
-  color: black;
-  font-size: 15px;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: bold;
-}
 #zeroClassdiv {
   margin: auto;
   text-align: center;
@@ -85,282 +68,125 @@ a {
   grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: minmax(250px, auto);
 }
-.Ingen-ansøgning {
-  font-size: 150%;
-  margin-left: 1%;
-  margin-right: 1%;
+
+.Notloggedindiv2 {
+  color: #e6e6e6;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 40px;
+  padding-bottom: 40px;
 }
-.UnbanId {
-  font-size: 20px;
+p.Logind {
+    margin-bottom: 5%;
+}
+
+p {
+  font-size: 24px;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
-  margin-top: 10%;
   color: lightgrey;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-.UnbanId:hover {
-  opacity: 0.8
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+.Unban {
+  margin: 0 auto;
+  background-color: #2f2f2f;
+
+  border: 3px solid #1f5bbb;
+  border-radius: 30px;
+  text-align: center;
+}
+.Unban:hover {
+  border: 3px solid green;
+  transform: scale(.9);
+  transition: .7s;
+}
+.Grid {
+  display: grid;
+  gap: 2rem;
+
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-rows: 260px;
+}
+
+.UnbanId {
+  font-size: 22px;
+  text-decoration: none;
+  margin-top: 5%;
+  color: lightgrey;
 }
 .UnbanId span {
   color: #04ef04;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 110%;
+  font-size: 22px;
 }
-.Unban {
-    margin: 0 auto;
-    margin-top: 5%;
-    background-color: #2f2f2f;
-    border: 3px solid #1f5bbb;
-    width: 225px;
-    height: 225px;
-    border-radius: 30px;
-    text-align: center;
-}
-.Grid {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-    grid-column-gap: 2.5%;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(250px, auto);
-    margin: 0 auto;
-    text-align: left;
+
+
+.P-Status {
+  margin-top: 10px;
 }
 .P-Status-accepteret {
+  font-size: 19px;
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
 .P-Status-afvis  {
+  font-size: 19px;
   color: crimson;
   font-family: "Times New Roman", Times, serif;
 }
-.P-Status {
-  font-size: 125%;
-  margin-top: 4%;
-  color: lightgrey;
-}
-.P-Status span {
-  font-family: "Times New Roman", Times, serif;
-}
+
+
 .P-Oprettet {
-  font-size: 95%;
-  margin-top: 4%;
-  color: lightgrey;
+  margin-top: 8px;
 }
 .P-Oprettet span {
+  font-size: 19px;
   color: #04ef04;
-  font-family: "Times New Roman", Times, serif;
 }
 .P-Opdateret {
-  font-size: 95%;
-  margin-top: 4%;
-  color: lightgrey;
+  margin-top: 8px;
 }
 .P-Opdateret span {
+  font-size: 19px;
   color: #04ef04;
-  font-family: "Times New Roman", Times, serif;
 }
-.Box-Profil {
-  position: absolute;
-  height: 15%;
-  margin: 0 auto;
-  top: 18%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #2f2f2f;
-  border: 3px solid #197b19;
-  width: 300px;
-  border-radius: 30px;
-  z-index: 5;
+
+
+.Discord-Boks {
+  position: relative;
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  align-items: center;
+  margin: 3rem 0 2em;
 }
-.Discord-A {
-  text-align: center;
-  margin-left: 6%;
-  font-size: 105%;
-  color: #e6e6e6;
-}
-.Discord-A span {
-  color: crimson;
-}
-.Discord-Billede {
-  border: 3px solid green;
-  margin-top: 1%;
-  margin-left: 1.5%;
+.Discord-Profil img {
+  display: block;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  margin: -25px 10px;
+  border: 3px outset orange;
 }
-.Box-M {
-  margin-top: 1%;
+.Discord-Profil {
+  display: block;
+  width: 40px;
+  height: 40px;
 }
-
-@media only screen and (min-width : 0px) and (max-width : 620px) {
-  .Box-Profil {
-    visibility: hidden;
-  }
+.Discord-Navn {
+  font-size: 110%;
+  font-family: 'DM Mono', monospace;
+  color: white;
+  margin-left: 1em;
 }
-
-@media only screen and (min-width : 620px) and (max-width : 780px) {
-  .Grid {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-    margin: 0 auto;
-    text-align: left;
-  }
-  .Box-Profil {
-    margin: 0 auto;
-    transform: translate(10%,-80%);
-    background-color: #2f2f2f;
-    border: 3px solid #197b19;
-    width: 210px;
-    height: 110px;
-    border-radius: 30px;
-    position: absolute;
-    top: 14%;
-    left: -2%;
-  }
-  .Discord-A {
-    text-align: center;
-    margin-left: 6%;
-    font-size: 100%;
-    color: #e6e6e6;
-    top: 6%;
-    left: -6%;
-    position: absolute;
-  }
-  .Discord-Billede {
-    border: 3px solid green;
-    margin-top: 1%;
-    margin-left: 1.5%;
-    border-radius: 50%;
-    top: 40%;
-    left: 1%;
-    position: absolute;
-  }
-}
-
-@media only screen and (min-width : 780px) and (max-width : 1190px) {
-  .Grid {
-    display: grid;
-    width: 65%;
-    grid-column-gap: 50%;
-    grid-template-columns: 60px 60px;
-    grid-template-rows: 250px 250px;
-    margin: 0 auto;
-    text-align: left;
-    position: absolute;
-    top: 20%;
-    left: 20%;
-  }
-  .Box-Profil {
-    margin: 0 auto;
-    transform: translate(10%,-80%);
-    background-color: #2f2f2f;
-    border: 3px solid #197b19;
-    width: 270px;
-    height: 125px;
-    border-radius: 30px;
-    position: absolute;
-    top: 17%;
-    left: 0;
-  }
-  .Discord-A {
-    text-align: center;
-    margin-left: 6%;
-    font-size: 105%;
-    color: #e6e6e6;
-    top: 6%;
-    left: -8%;
-    position: absolute;
-  }
-  .Discord-Billede {
-    border: 3px solid green;
-    margin-top: 1%;
-    margin-left: 1.5%;
-    border-radius: 50%;
-    top: 42%;
-    left: 1%;
-    position: absolute;
-  }
-}
-@media only screen and (min-width : 1190px) and (max-width : 6000px) {
-  /* For desktop: */
-  #Notloggedindiv {
-    margin: auto;
-    text-align: center;
-    color: #e6e6e6;
-  }
-  .Notloggedindiv-span span {
-    color: crimson;
-  }
-  .Ingen-ansøgning {
-    font-size: 200%;
-  }
-  .UnbanId {
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    margin-top: 3.5%;
-  }
-  .Unban {
-      margin: 0 auto;
-      background-color: #2f2f2f;
-      border: 3px solid #1f5bbb;
-      width: 225px;
-      height: 225px;
-      border-radius: 30px;
-      text-align: center;
-  }
-  .Grid {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: grid;
-      width: 65%;
-      grid-column-gap: 2.5%;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(250px, auto);
-      margin: 0 auto;
-      text-align: left;
-  }
-  .Box-Profil {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 15%;
-
-    margin: 0 auto;
-    top: 14%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-    background-color: #2f2f2f;
-    border: 3px solid #197b19;
-    width: 350px;
-    height: 100px;
-    border-radius: 30px;
-  }
-  .Discord-A {
-    text-align: center;
-    margin-left: 6%;
-    font-size: 105%;
-    color: #e6e6e6;
-    position: absolute;
-    top: 8px;
-    left: -8%;
-  }
-  .Discord-A span {
-    color: crimson;
-  }
-  .Discord-Billede {
-    border: 3px solid green;
-    margin-top: 8.5%;
-    margin-left: 1.5%;
-    border-radius: 50%;
-  }
-  .Box-M {
-    margin-top: 1%;
-  } 
+.Discord-Navn span {
+  color: crimson;
 }
 </style>
 

@@ -35,18 +35,18 @@
     </div>
     <div v-else-if="info === 'Ikke fundet'" id="Notloggedin"> 
       <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">Kunne <span>ikke</span> finde en profile med det id</h1>
-        <p class="Logind">Prøv et andet id.</p>
+        <h1 class="Notloggedindiv-span">Kunne <span>ikke</span> finde en profile med dette id</h1>
+        <p class="AndetID">Prøv et andet id.</p>
       </div>
     </div>
     <div v-else-if="info=== 'Ikke adgang'" id="Notloggedin"> 
       <div id="Notloggedindiv">
         <h1>Du har ikke adgang til at se den ansøgning.</h1>
-        <p>Bliv staff for at kunne se den ansøgning eller kigge på din egen istedet</p>
+        <p>Bliv staff for at kunne se denne ansøgning ellers kig på din egen istedet</p>
       </div>
     </div>
     <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
-      <div id="Notloggedindiv">
+      <div class="Notloggedindiv-span">
         <h1>{{ info }}</h1>
       </div>
     </div>
@@ -54,35 +54,50 @@
 </template>
 
 <style>
+#Notloggedin {
+  display: grid;
+  gap: 2rem;
+
+
+
+  margin: 0 auto;
+  background-color: #2f2f2f;
+
+  border: 2px solid crimson;
+  border-radius: 30px;
+
+  text-align: center;
+
+  width: 70%;
+  margin-top: 10%;
+}
+.Notloggedindiv-span {
+  color: #e6e6e6;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 40px;
+}
+.Notloggedindiv-span span {
+  color: crimson;
+}
+.AndetID {
+  color: #d3d3d3;
+  margin-bottom: 40px;
+}
+
+
 .Split {
   height: 1px;
   margin-top: 15%;
   background: linear-gradient(to right, blue, green);
   border: none;
 }
-.hover {
+.Hover {
   font-family: arial;
-}
-#Notloggedindiv {
-  margin: auto;
-  text-align: center;
-  color: #e6e6e6;
 }
 .Hover:hover {
   opacity: 0.8
 } 
-#Notloggedin {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  background-color: #1f1e1e;
-  border-radius: 30px;
-  width: 65%;
-  grid-template-columns: repeat(1, 1fr);
-  grid-auto-rows: minmax(250px, auto);
-}
 #about {
   margin: 0 auto;
   margin-top: 6%;
@@ -120,13 +135,6 @@
     margin-top: 5%;
     margin-left: 15%;
     margin-bottom: 15%;
-}
-.Logind {
-    padding-top: 3px;
-    color: #d3d3d3;
-}
-.Notloggedindiv-span span {
-  color: crimson;
 }
 @media only screen and (min-width: 930px) {
   /* For desktop: */
