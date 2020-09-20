@@ -20,6 +20,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-Package-lock.json
-src/views/tansøgning.vue
-package-lock.json

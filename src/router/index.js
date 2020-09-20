@@ -1,47 +1,39 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Ansøgning from '../views/Ansøgning.vue'
-import Profile from '../views/Profile.vue'
-import auth from '../views/auth.vue'
-import logout from '../views/Logout.vue'
 
+const Profile = import(/* webpackChunkName: "group-Profile" */ `../views/Profile.vue`)
 Vue.use(VueRouter)
-
-function lazyLoad(view){
-  return() => import(`@/views/${view}.vue`)
-}
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: lazyload(Home)
+    component: import(/* webpackChunkName: "group-Home" */ `../views/Home.vue`)
   },
   {
     path: '/auth',
     name: 'auth',
-    component: lazyload(auth)
+    component: import(/* webpackChunkName: "group-Auth" */ `../views/auth.vue`)
   },
   {
     path: '/ansøgning/:id',
     name: 'Ansøgning',
-    component: lazyload(Ansøgning)
+    component: import(/* webpackChunkName: "group-Ansøgning" */ `../views/Ansøgning.vue`)
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: lazyload(Profile)
+    component: Profile
   },
   {
     path: '/profile/:id',
     name: 'Profile',
-    component: lazyload(Profile)
+    component: Profile
   },
   {
     path: '/logout',
     name: 'Logout',
-    component: lazyload(logout)
+    component: import(/* webpackChunkName: "group-Logout" */ `../views/Logout.vue`)
   },
   {
     path: '*',
