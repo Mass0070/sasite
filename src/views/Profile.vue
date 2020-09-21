@@ -2,7 +2,7 @@
   <div>
     <hr>
 
-    <div v-if="Array.isArray(info) && info.length > 0" class="Discord-Boks">
+    <div v-show="username" class="Discord-Boks">
       <a class="Discord-Profil" href="#">
         <img v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="125" height="125">
       </a>
@@ -28,13 +28,13 @@
       </div>
     </div>
     <div v-else-if="info === 'Ikke login' || info === 'Not authorized'" id="Notloggedin"> 
-      <div id="Notloggedindiv2">
+      <div class="Notloggedindiv2">
         <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
         <p class="Logind">Tryk <a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
       </div>
     </div>
     <div v-else-if="info === 'Ikke fundet'" id="Notloggedin"> 
-      <div id="Notloggedindiv2">
+      <div class="Notloggedindiv2">
         <h1 class="Notloggedindiv-span">Profilen med dette id kunne <span>ikke</span> findes.</h1>
         <p class="Logind">Måske har profilen ikke nogen ansøgninger, men ellers prøv et andet id.</p>
       </div>
@@ -192,7 +192,7 @@ a {
 
 <script>
 import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs'
 export default {
   data () {
     return {
@@ -278,14 +278,16 @@ export default {
             filetype = ".gif"
             this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
           } 
+          if(this.avatar) {
+            this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
+          }
         }
       }
     })
   },
   methods: {
     getTime: function (time) {
-      moment.locale("da")
-      return moment(time).format("D MMMM YYYY HH:MM")
+      return dayjs(time).locale("da").format("D MMMM YYYY HH:MM")
     }
   }
 }

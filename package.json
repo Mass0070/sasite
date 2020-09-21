@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "moment": "^2.27.0",
+    "dayjs": "^1.8.36",
     "vue": "^2.6.12",
     "vue-router": "^3.4.3",
     "vuex": "^3.4.0"
