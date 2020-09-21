@@ -69,6 +69,21 @@
   grid-auto-rows: minmax(250px, auto);
 }
 
+#Notloggedin {
+  display: grid;
+  gap: 2rem;
+
+  margin: 0 auto;
+  background-color: #2f2f2f;
+
+  border: 2px solid crimson;
+  border-radius: 30px;
+
+  text-align: center;
+
+  width: 70%;
+  margin-top: 10%;
+}
 .Notloggedindiv2 {
   color: #e6e6e6;
   margin-left: 2%;
