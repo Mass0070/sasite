@@ -24,7 +24,7 @@
     </div>
     <div v-else-if="info === 'Ingen ansøgning'" id="zeroClass">
       <div id="zeroClassdiv">
-        <h1 class="Ingen-ansøgning">Du har <span>ikke</span> lavet nogen ansøgninger</h1>
+        <h1 class="Ingen-ansøgning">Du/profilen har <span>ikke</span> lavet nogen ansøgninger</h1>
       </div>
     </div>
     <div v-else-if="info === 'Ikke login' || info === 'Not authorized'" id="Notloggedin"> 
