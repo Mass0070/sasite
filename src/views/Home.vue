@@ -19,6 +19,11 @@
     opacity: 0;
   }
 }
+a {
+  font-weight: 700;
+  font-family: montserrat,sans-serif;
+}
+
 p.Hjemmeside-Motd {
     margin-top: 2.5%;
 }
