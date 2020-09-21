@@ -17,7 +17,7 @@
 body {
   font-family: 'montserrat', sans-serif;
   background:
-    url("http://mass0070.ddns.net/SA.jpeg");
+    url("https://superawesome.ml/SA.jpeg");
 }
 
 header {

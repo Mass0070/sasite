@@ -234,6 +234,9 @@ export default {
           this.info = "Ikke adgang"
           break;
         case 402:
+          this.info = "Ingen ansøgning"
+          break;
+        case 405:
           this.info = "Ikke fundet"
           break;
         case 403:
@@ -244,18 +247,20 @@ export default {
           break;
       }
       if(!this.info) {
+        this.info = response.data
+      } 
+      if(response.status === 402 || response.status === 200) {
         let filetype = ".png"
         this.userid = await response.data.shift().userid
         this.avatar = await response.data.shift().avatar
         this.username = response.data.shift().username
         if(this.avatar.startsWith("a_")) {
           filetype = ".gif"
-        }
+        } 
         this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
-        this.info = response.data
       }
     })  
-    .catch((error) => {
+    .catch(async (error) => {
       if(error.response) {
         switch(error.response.status) {
           case 200:
@@ -264,6 +269,9 @@ export default {
             this.info = "Ikke adgang"
             break;
           case 402:
+            this.info = "Ingen ansøgning"
+            break;
+          case 405:
             this.info = "Ikke fundet"
             break;
           case 403:
@@ -275,6 +283,16 @@ export default {
         }
         if(!this.info) {
           this.info = "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem"
+        }
+        if(error.response.status === 402 || error.response.status === 200) {
+          let filetype = ".png"
+          this.userid = await error.response.data.shift().userid
+          this.avatar = await error.response.data.shift().avatar
+          this.username = await error.response.data.shift().username
+          if(this.avatar && this.avatar.startsWith("a_")) {
+            filetype = ".gif"
+            this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
+          } 
         }
       }
     })
