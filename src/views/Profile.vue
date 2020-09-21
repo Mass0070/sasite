@@ -1,10 +1,9 @@
 <template>
   <div>
     <hr>
-
     <div v-show="username" class="Discord-Boks">
-      <a class="Discord-Profil" href="#">
-        <img v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="125" height="125">
+      <a class="Discord-Profil">
+        <img v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="128" height="128">
       </a>
 
       <div class="Discord-Navn">
@@ -295,6 +294,8 @@ export default {
           } 
           if(this.avatar) {
             this.finaleUrl = "https://cdn.discordapp.com/avatars/" + this.userid + "/" + this.avatar + filetype + "?size=256";
+          } else {
+            this.finaleUrl = "https://cdn.discordapp.com/embed/avatars/0.png?size=256"
           }
         }
       }
