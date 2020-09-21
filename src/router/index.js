@@ -1,24 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Profile = import(/* webpackChunkName: "group-Profile" */ `../views/Profile.vue`)
+const Home = () => import(/* webpackChunkName: "group-Home" */ `../views/Home.vue`)
+const Auth = () => import(/* webpackChunkName: "group-Auth" */ `../views/auth.vue`)
+const Ansøgning = () => import(/* webpackChunkName: "group-Ansøgning" */ `../views/Ansøgning.vue`)
+const Profile = () => import(/* webpackChunkName: "group-Profile" */ `../views/Profile.vue`)
+const Logout = () => import(/* webpackChunkName: "group-Logout" */ `../views/Logout.vue`)
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: import(/* webpackChunkName: "group-Home" */ `../views/Home.vue`)
+    component: Home
   },
   {
     path: '/auth',
     name: 'auth',
-    component: import(/* webpackChunkName: "group-Auth" */ `../views/auth.vue`)
+    component: Auth
   },
   {
     path: '/ansøgning/:id',
     name: 'Ansøgning',
-    component: import(/* webpackChunkName: "group-Ansøgning" */ `../views/Ansøgning.vue`)
+    component: Ansøgning
   },
   {
     path: '/profile',
@@ -33,7 +38,7 @@ const routes = [
   {
     path: '/logout',
     name: 'Logout',
-    component: import(/* webpackChunkName: "group-Logout" */ `../views/Logout.vue`)
+    component: Logout
   },
   {
     path: '*',

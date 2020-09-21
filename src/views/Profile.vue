@@ -22,19 +22,19 @@
         <p class="P-Opdateret">Seneste opdateret:<br><span>{{ getTime(x.updatedAt) }}</span></p>
       </div>
     </div>
-    <div v-else-if="info.length === 0" id="zeroClass">
+    <div v-else-if="info === 'Ingen ansøgning'" id="zeroClass">
       <div id="zeroClassdiv">
         <h1 class="Ingen-ansøgning">Du har <span>ikke</span> lavet nogen ansøgninger</h1>
       </div>
     </div>
     <div v-else-if="info === 'Ikke login' || info === 'Not authorized'" id="Notloggedin"> 
-      <div id="Notloggedindiv">
+      <div id="Notloggedindiv2">
         <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
         <p class="Logind">Tryk <a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">her</a> for at login.</p>
       </div>
     </div>
     <div v-else-if="info === 'Ikke fundet'" id="Notloggedin"> 
-      <div id="Notloggedindiv">
+      <div id="Notloggedindiv2">
         <h1 class="Notloggedindiv-span">Profilen med dette id kunne <span>ikke</span> findes.</h1>
         <p class="Logind">Måske har profilen ikke nogen ansøgninger, men ellers prøv et andet id.</p>
       </div>

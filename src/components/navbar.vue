@@ -38,7 +38,7 @@ export default {
                 "API-Key": `${localStorage.token}`
             }
         })
-        .then(Response => {
+        .then(() => {
             this.profile = true;
         })
         .catch((error) => {
