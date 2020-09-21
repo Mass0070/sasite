@@ -8,10 +8,13 @@
 
       <div class="Discord-Navn">
         <div class="Discord-Navn-P">Du kigger på</div>
-  <span>{{ username }}</span>'s profil
+        <span>{{ username }}</span>'s profil
       </div>
     </div>
 
+    <div v-for="x in Linked" :key="x.uuid">
+      <p>{{ x }}</p>
+    </div>
 
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
@@ -23,7 +26,7 @@
     </div>
     <div v-else-if="info === 'Ingen ansøgning'" id="zeroClass">
       <div id="zeroClassdiv">
-        <h1 class="Ingen-ansøgning">Du/profilen har <span>ikke</span> lavet nogen ansøgninger</h1>
+        <h1 class="Ingen-ansøgning">{{ (this.$route.params.id ? "Profilen": "Du") }} har <span>ikke</span> lavet nogen ansøgninger</h1>
       </div>
     </div>
     <div v-else-if="info === 'Ikke login' || info === 'Not authorized'" id="Notloggedin"> 
@@ -211,7 +214,8 @@ export default {
       info: false,
       username: false,
       userid: false,
-      finaleUrl: false
+      finaleUrl: false,
+      Linked: false
     }
   },
   async created() {
@@ -297,6 +301,15 @@ export default {
           }
         }
       }
+    })
+    await axios.get('https://api.superawesome.ml/api/verify/', {
+      headers: {
+        "API-Key": `${localStorage.token}`
+      }
+    })
+    .then(async(response) => {
+      this.Linked = response.data
+      console.log(this.Linked)
     })
   },
   methods: {
