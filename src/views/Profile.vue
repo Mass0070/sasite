@@ -111,12 +111,13 @@ a {
   margin: 0 auto;
   background-color: #2f2f2f;
 
-  border: 3px solid #1f5bbb;
+  border: 4px solid #1f5bbb;
   border-radius: 30px;
   text-align: center;
+  transition: .7s;
 }
 .Unban:hover {
-  border: 3px solid green;
+  border: 4px solid green;
   transform: scale(.9);
   transition: .7s;
 }
