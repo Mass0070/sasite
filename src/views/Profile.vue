@@ -81,8 +81,8 @@
 
   text-align: center;
 
-  width: 70%;
-  margin-top: 10%;
+  width: 50%;
+  margin-top: 15%;
 }
 .Notloggedindiv2 {
   color: #e6e6e6;
@@ -90,9 +90,6 @@
   margin-right: 2%;
   margin-top: 40px;
   padding-bottom: 40px;
-}
-p.Logind {
-    margin-bottom: 5%;
 }
 
 p {
