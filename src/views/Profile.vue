@@ -13,7 +13,12 @@
     </div>
     <div v-for="x in Linked" :key="x.uuid">
       <div>
-        <img v-tooltip.bottom="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+		<v-popover>
+  			<img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+			<div slot="popover">
+				<a>{{ x.username }}</a>
+			</div>
+		</v-popover>
       </div>
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
