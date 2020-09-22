@@ -13,13 +13,16 @@
     </div>
     <div v-for="x in Linked" :key="x.uuid">
       <div>
-		<v-popover>
+		  <v-popover>
   			<img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
-			<template slot="popover">
-				<a>{{ x.username }}</a><br /><a>Test</a>
-			</template>
-		</v-popover>
+			  <template slot="popover">
+				  <a>{{ x.username }}</a><br /><a>Test</a>
+			  </template>
+		  </v-popover>
       </div>
+    </div>
+    <div v-if="Linked.length">
+      
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
@@ -311,15 +314,31 @@ export default {
         }
       }
     })
-    await axios.get('https://api.superawesome.ml/api/verify/', {
-      headers: {
-        "API-Key": `${localStorage.token}`
-      }
-    })
-    .then(async(response) => {
-      this.Linked = response.data
-      console.log(this.Linked)
-    })
+    if(this.$route.params.id) {
+      await axios.get('https://api.superawesome.ml/api/verify/' + this.$route.params.id, {
+        headers: {
+          "API-Key": `${localStorage.token}`
+        }
+      })
+      .then(async(response) => {
+        this.Linked = response.data
+      })
+      .catch(error => {
+        
+      })
+    } else {
+      await axios.get('https://api.superawesome.ml/api/verify/', {
+        headers: {
+          "API-Key": `${localStorage.token}`
+        }
+      })
+      .then(async(response) => {
+        this.Linked = response.data
+      })
+      .catch(error => {
+        
+      })
+    }
   },
   methods: {
     getTime: function (time) {
