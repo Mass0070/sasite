@@ -11,11 +11,11 @@
         <span>{{ username }}</span>'s profil
       </div>
     </div>
-
     <div v-for="x in Linked" :key="x.uuid">
-      <p>{{ x }}</p>
+      <div>
+        <img v-tooltip.bottom="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+      </div>
     </div>
-
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId"><a v-bind:href="'/ansøgning/'+ x.UnbanId"><span>ID:</span> {{ x.UnbanId }}</a></p>
@@ -208,6 +208,7 @@ a {
 <script>
 import axios from 'axios'
 import dayjs from 'dayjs'
+import Dropdown from './../components/Dropdown'
 export default {
   data () {
     return {
@@ -217,6 +218,9 @@ export default {
       finaleUrl: false,
       Linked: false
     }
+  },
+  components: {
+    Dropdown
   },
   async created() {
     let profile;
