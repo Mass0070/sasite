@@ -22,7 +22,7 @@
       </div>
     </div>
     <div v-if="Linked.length">
-      <v-icon>add</v-icon>
+      
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
