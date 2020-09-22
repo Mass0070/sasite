@@ -15,9 +15,9 @@
       <div>
 		<v-popover>
   			<img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
-			<div slot="popover">
-				<a>{{ x.username }}</a>
-			</div>
+			<template slot="popover">
+				<a>{{ x.username }}</a><br /><a>Test</a>
+			</template>
 		</v-popover>
       </div>
     </div>
