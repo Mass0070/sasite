@@ -1,24 +1,26 @@
 <template>
   <div>
     <hr>
-    <div v-show="username" class="Discord-Boks">
-      <a class="Discord-Profil">
-        <img v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="128" height="128">
-      </a>
+    <div style="display: inline-flex; padding-top: 1%; padding-bottom: 1%;">
+      <div v-show="username" class="Discord-Boks">
+        <a class="Discord-Profil">
+          <img v-show="finaleUrl" v-bind:src="finaleUrl" alt="Billede" width="128" height="128">
+        </a>
 
-      <div class="Discord-Navn">
-        <div class="Discord-Navn-P">Du kigger på</div>
-        <span>{{ username }}</span>'s profil
+        <div class="Discord-Navn">
+          <div class="Discord-Navn-P">Du kigger på</div>
+          <span>{{ username }}</span>'s profil
+        </div>
       </div>
-    </div>
-    <div v-for="x in Linked" :key="x.uuid">
-      <div>
-		  <v-popover>
-  			<img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
-			  <template slot="popover">
-				  <a>{{ x.username }}</a><br /><a>Test</a>
-			  </template>
-		  </v-popover>
+      <div class="Links">
+        <div v-for="x in Linked" :key="x.uuid" class="Links-for">
+          <v-popover>
+            <img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+            <template slot="popover">
+              <a>{{ x.username }}</a><br /><a>Test</a>
+            </template>
+          </v-popover>
+        </div>
       </div>
     </div>
     <div v-if="Linked.length">
@@ -58,6 +60,13 @@
 </template>
 
 <style>
+.Links {
+  display: inline-flex;
+  padding-left: 65px;
+}
+.Links-for {
+  padding-left: 5%;
+}
 #zeroClassdiv {
   margin: auto;
   text-align: center;
