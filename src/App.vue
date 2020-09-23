@@ -10,7 +10,6 @@
 <style>
 * {
   margin: 0;
-  padding: auto;
   box-sizing: border-box;
 }
 
