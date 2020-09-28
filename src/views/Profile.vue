@@ -330,6 +330,7 @@ a {
 import axios from 'axios'
 import dayjs from 'dayjs'
 import Dropdown from './../components/Dropdown'
+import { BPopover } from 'bootstrap-vue'
 export default {
   data () {
     return {
@@ -341,7 +342,8 @@ export default {
     }
   },
   components: {
-    Dropdown
+    Dropdown,
+    BPopover
   },
   async created() {
     let profile;
