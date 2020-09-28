@@ -8,11 +8,12 @@
         </a>
 
         <div class="Discord-Navn">
-          <div class="Discord-Navn-P">Du kigger på</div>
-          <span>{{ username }}</span>'s profil
+          <div class="Discord-Navn-P">Discord konto<span>:</span></div>
+          <span>{{ username }}</span>
         </div>
       </div>
       <div class="Links">
+        <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
         <div v-for="x in Linked" :key="x.uuid" class="Links-for">
           <v-popover>
             <img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
@@ -53,7 +54,7 @@
     </div>
     <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
       <div class="Notloggedindiv2">
-        <h1>{{ info }}</h1>
+        <h1 class="Notloggedindiv2">{{ info }}</h1>
       </div>
     </div>
   </div>
@@ -78,7 +79,7 @@
   border-style: solid;
   position: absolute;
   margin: 5px;
-  border-color: black;
+  border-color: rgb(185, 110, 110);
   z-index: 1;
 }
 
@@ -146,12 +147,14 @@
   background: #f9f9f9;
   color: black;
   padding: 24px;
-  border-radius: 5px;
   box-shadow: 0 5px 30px rgba(black, .1);
+  text-align: center;
 }
 
 .tooltip.popover .popover-arrow {
   border-color: #f9f9f9;
+  left: 63px;
+  top: -10px;
 }
 
 .tooltip[aria-hidden='true'] {
@@ -168,10 +171,11 @@
 
 .Links {
   display: inline-flex;
-  padding-left: 65px;
+  padding-left: 45px;
 }
 .Links-for {
-  padding-left: 5%;
+  padding-left: 0.5em;
+  padding-top: 0.2em;
 }
 #zeroClassdiv {
   margin: auto;
@@ -195,25 +199,26 @@
 }
 
 #Notloggedin {
-  display: grid;
-  gap: 2rem;
-
-  margin: 0 auto;
-  background-color: #2f2f2f;
-
-  border: 2px solid crimson;
-  border-radius: 30px;
-
-  text-align: center;
-
-  width: 50%;
-  margin-top: 15%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: grid;
+    background-color: #1f1e1e;
+    border-radius: 30px;
+    width: 65%;
+    grid-template-columns: repeat(1,1fr);
+    grid-auto-rows: minmax(250px,auto);
+    margin: 0 auto;
+    border: 2px solid crimson;
+    border-radius: 30px;
+    text-align: center;
 }
 .Notloggedindiv2 {
   color: #e6e6e6;
   margin-left: 2%;
   margin-right: 2%;
-  margin-top: 40px;
+  margin-top: 50px;
   padding-bottom: 40px;
 }
 
@@ -324,6 +329,22 @@ a {
   margin-left: 1em;
 }
 .Discord-Navn span {
+  color: crimson;
+}
+.Links img {
+    display: grid;
+    height: 45%;
+    border-radius: 50%;
+    margin: 20px 1px;
+    border: 3px dotted #c60cc4;
+}
+.LinkedKontoer {
+  position: fixed;
+  font-size: 105%;
+  font-family: 'DM Mono', monospace;
+  color: white;
+}
+.LinkedKontoer span {
   color: crimson;
 }
 </style>
