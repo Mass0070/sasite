@@ -61,6 +61,7 @@ hr {
   height: 1px;
   background: linear-gradient(to right, blue, green);
   border: none;
+  margin: 0;
 }
 .Bar {
   height: 2px;
