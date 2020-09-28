@@ -16,7 +16,7 @@
 body {
   font-family: 'montserrat', sans-serif;
   background:
-    url("https://superawesome.ml/SA.jpeg");
+    url("/SA.jpeg");
 }
 
 header {
