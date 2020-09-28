@@ -331,7 +331,6 @@ a {
 }
 .Links img {
     display: grid;
-    height: 45%;
     border-radius: 50%;
     margin: 20px 1px;
     border: 3px dotted #c60cc4;
