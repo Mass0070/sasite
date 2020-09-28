@@ -12,14 +12,15 @@
           <span>{{ username }}</span>
         </div>
       </div>
-      <div class="Links">
-        <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
-        <div v-for="x in Linked" :key="x.uuid" class="Links-for">
-          <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
-          <b-popover :target="x.username" triggers="hover" :title="x.username" placement="auto">
-            <template v-slot-content>Slet profil</template>
-          </b-popover>
-        </div>
+    </div>
+
+    <div class="Links">
+      <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
+      <div v-for="x in Linked" :key="x.uuid" class="Links-for">
+        <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+        <b-popover :target="x.username" triggers="hover" :title="x.username" placement="auto">
+          <template v-slot-content>Slet profil</template>
+        </b-popover>
       </div>
     </div>
     <div v-if="Linked.length">
@@ -171,9 +172,13 @@
   display: inline-flex;
   padding-left: 45px;
 }
+.Links img {
+    border-radius: 50%;
+    border: 3px dotted #c60cc4;
+}
 .Links-for {
+  padding-top: 2em;
   padding-left: 0.5em;
-  padding-top: 0.2em;
 }
 #zeroClassdiv {
   margin: auto;
@@ -329,16 +334,9 @@ a {
 .Discord-Navn span {
   color: crimson;
 }
-.Links img {
-    display: grid;
-    height: 45%;
-    border-radius: 50%;
-    margin: 20px 1px;
-    border: 3px dotted #c60cc4;
-}
 .LinkedKontoer {
   position: fixed;
-  font-size: 105%;
+  font-size: 120%;
   font-family: 'DM Mono', monospace;
   color: white;
 }
