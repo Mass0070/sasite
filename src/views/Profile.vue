@@ -14,12 +14,10 @@
       </div>
       <div class="Links">
         <div v-for="x in Linked" :key="x.uuid" class="Links-for">
-          <v-popover>
-            <img v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
-            <template slot="popover">
-              <a>{{ x.username }}</a><br /><a>Test</a>
-            </template>
-          </v-popover>
+          <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+          <b-popover :target="x.username" triggers="hover" :title="x.username" placement="auto">
+            <template v-slot-content>Slet profil</template>
+          </b-popover>
         </div>
       </div>
     </div>
@@ -55,7 +53,7 @@
       <div class="Notloggedindiv2">
         <h1>{{ info }}</h1>
       </div>
-    </div>
+    </div> 
   </div>
 </template>
 
