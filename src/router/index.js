@@ -41,6 +41,10 @@ const routes = [
     component: Logout
   },
   {
+    path: '/regler',
+    redirect: 'https://docs.google.com/document/d/1ekdhxDC2iwOvJg_395BlG1UaZ2HiMjCTlyoHk8oTcI8/'
+  },
+  {
     path: '*',
     redirect: '/'
   }
