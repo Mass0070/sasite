@@ -1,10 +1,17 @@
 <template>
-    <nav>
-        <div class="menu-item"><a href="/">Hjem</a></div>
-        <div class="menu-item"><a href="/ansøg">Ansøg</a></div>
-        <Droptown v-if="profile === true" title="Profile" :items="services" />
-        <div v-else class="menu-item"><a href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">Login</a></div>
-    </nav>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+            <b-navbar-brand href="/">SuperAwesome</b-navbar-brand>
+            <b-navbar-nav class="ml-auto">
+                <b-nav-item-dropdown v-if="profile === true" right>
+                    <template v-slot:button-content>
+                        <em>Profil</em>
+                    </template>
+                    <b-dropdown-item href="/profile">Profil</b-dropdown-item>
+                    <b-dropdown-item href="/logout">Log ud</b-dropdown-item>
+                </b-nav-item-dropdown>
+                <b-nav-item v-else href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=https%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">Log ind</b-nav-item>
+            </b-navbar-nav>
+        </b-navbar>
 </template>
 
 <script defer>
@@ -55,43 +62,3 @@ export default {
     }
 }
 </script>
-
-<style>
-hr {
-  height: 1px;
-  background: linear-gradient(to right, blue, green);
-  border: none;
-  margin: 0;
-}
-.Bar {
-  height: 2px;
-  background: linear-gradient(to right, blue, green);
-  border: none;
-}
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-nav .menu-item {
-    color: #fff;
-    padding: 10px 20px;
-    position: relative;
-    text-align: center;
-    border-bottom: 3px solid transparent;
-    display: flex;
-    transition: 0.4s;
-}
-
-nav .menu-item.active,
-nav .menu-item:hover {
-    background-color: #444;
-    border-bottom-color: #FF5858;
-}
-
-nav .menu-item a {
-    color: inherit;
-    text-decoration: none;
-}
-</style>

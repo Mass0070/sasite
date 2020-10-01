@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <header>
+    <div id="Navbar">
       <navbar />
-    </header>
-    <router-view/>
+    </div>
+    <div id="Router">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -12,16 +14,9 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'montserrat', sans-serif;
   background: url("/SA.jpeg");
-}
-
-header {
-  width: 100vw;
-  background-color: #222;
-  padding: 15px;
 }
 </style>
 
