@@ -15,14 +15,10 @@
 </template>
 
 <script defer>
-import Droptown from './Dropdown'
 import Axios from 'axios'
 
 export default {
     name: 'navbar',
-    components: {
-        Droptown
-    },
     data () {
         return {
             services: [
