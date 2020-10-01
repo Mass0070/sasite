@@ -22,10 +22,12 @@
           <template v-slot-content>Slet profil</template>
         </b-popover>
       </div>
-      <b-button variant="success" class="Links-for">
-        <b-icon v-b-modal="'Plus'" class="Plus" icon="plus" aria-label="Help"></b-icon>
-        <b-modal id="Plus">Hello From My Modal!</b-modal>
-      </b-button>
+      <div class="Button-Plus-Div">
+        <b-button variant="success">
+          <b-icon v-b-modal="'Plus'" icon="plus" aria-label="Help" class="Button-Plus-Icon"></b-icon>
+          <b-modal id="Plus">Hello From My Modal!</b-modal>
+        </b-button>
+      </div>
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
@@ -61,23 +63,6 @@
 </template>
 
 <style>
-.Links {
-  display: inline-flex;
-  padding-left: 45px;
-}
-.Links img {
-    border-radius: 50%;
-    border: 3px dotted #c60cc4;
-}
-.Links button {
-  z-index: 2;
-    border-radius: 50%;
-    border: 3px dotted #c60cc4;
-}
-.Links-for {
-  padding-top: 2em;
-  padding-left: 0.5em;
-}
 #zeroClassdiv {
   margin: auto;
   text-align: center;
@@ -100,20 +85,20 @@
 }
 
 #Notloggedin {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    display: grid;
-    background-color: #1f1e1e;
-    border-radius: 30px;
-    width: 65%;
-    grid-template-columns: repeat(1,1fr);
-    grid-auto-rows: minmax(250px,auto);
-    margin: 0 auto;
-    border: 2px solid crimson;
-    border-radius: 30px;
-    text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: grid;
+  background-color: #1f1e1e;
+  border-radius: 30px;
+  width: 65%;
+  grid-template-columns: repeat(1,1fr);
+  grid-auto-rows: minmax(250px,auto);
+  margin: 0 auto;
+  border: 2px solid crimson;
+  border-radius: 30px;
+  text-align: center;
 }
 .Notloggedindiv2 {
   color: #e6e6e6;
@@ -135,6 +120,36 @@ a {
   color: inherit;
   text-decoration: none;
   font-weight: bold;
+}
+
+
+.Links {
+  display: inline-flex;
+  padding-left: 45px;
+}
+.Links img {
+    border-radius: 50%;
+    border: 3px dotted #c60cc4;
+}
+.Links button {
+  z-index: 2;
+  border-radius: 50%;
+  border: 3px dotted #c60cc4;
+}
+.Links-for {
+  padding-top: 2.5em;
+  padding-left: 0.5em;
+}
+.Button-Plus-Div {
+  padding-top: 2.5em;
+  padding-left: 0.5em;
+}
+.Button-Plus-Icon {
+  width: 85px;
+  height: 85px;
+}
+.btn-success {
+  background-color: #28a745;
 }
 
 
@@ -237,6 +252,7 @@ a {
   font-size: 120%;
   font-family: 'DM Mono', monospace;
   color: white;
+  padding-top: 5px;
 }
 .LinkedKontoer span {
   color: crimson;
