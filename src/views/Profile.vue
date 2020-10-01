@@ -22,9 +22,10 @@
           <template v-slot-content>Slet profil</template>
         </b-popover>
       </div>
-    </div>
-    <div v-if="Linked.length">
-      
+      <b-button variant="success" class="Links-for">
+        <b-icon v-b-modal="'Plus'" class="Plus" icon="plus" aria-label="Help"></b-icon>
+        <b-modal id="Plus">Hello From My Modal!</b-modal>
+      </b-button>
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
@@ -65,6 +66,11 @@
   padding-left: 45px;
 }
 .Links img {
+    border-radius: 50%;
+    border: 3px dotted #c60cc4;
+}
+.Links button {
+  z-index: 2;
     border-radius: 50%;
     border: 3px dotted #c60cc4;
 }
@@ -241,7 +247,7 @@ a {
 import axios from 'axios'
 import dayjs from 'dayjs'
 import Dropdown from './../components/Dropdown'
-import { BPopover } from 'bootstrap-vue'
+import { BPopover, BIcon, BButton, BIconPlus } from 'bootstrap-vue'
 export default {
   data () {
     return {
@@ -254,7 +260,10 @@ export default {
   },
   components: {
     Dropdown,
-    BPopover
+    BPopover,
+    BButton,
+    BIcon,
+    BIconPlus
   },
   async created() {
     let profile;
@@ -369,6 +378,9 @@ export default {
   methods: {
     getTime: function (time) {
       return dayjs(time).locale("da").format("D MMMM YYYY HH:MM")
+    },
+    Add: function() {
+      console.log("Test")
     }
   }
 }

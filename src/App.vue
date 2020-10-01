@@ -15,8 +15,7 @@
 
 body {
   font-family: 'montserrat', sans-serif;
-  background:
-    url("/SA.jpeg");
+  background: url("/SA.jpeg");
 }
 
 header {
