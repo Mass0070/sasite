@@ -6,7 +6,7 @@
                 <template v-slot:button-content>
                     <em>Profil</em>
                 </template>
-                <b-dropdown-item class="test" href="/profile">Profil</b-dropdown-item>
+                <b-dropdown-item href="/profile">Profil</b-dropdown-item>
                 <b-dropdown-item href="/logout">Log ud</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item v-else href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=https%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify">Log ind</b-nav-item>
