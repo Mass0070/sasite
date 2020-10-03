@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="Links">
+    <div class="Links" v-show="Linked">
       <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
