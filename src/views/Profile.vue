@@ -169,9 +169,9 @@ a {
 .Grid {
   display: grid;
   gap: 2rem;
-
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-auto-rows: 260px;
+  margin-top: 15px;
 }
 
 .UnbanId {
@@ -365,6 +365,7 @@ export default {
         }
       }
     })
+    this.UpdateLinks()
     setInterval(() => {
       this.UpdateLinks()
     }, 5000);
