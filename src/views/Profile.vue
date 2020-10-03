@@ -25,7 +25,9 @@
       <div class="Button-Plus-Div">
         <b-button variant="success">
           <b-icon v-b-modal="'Plus'" icon="plus" aria-label="Help" class="Button-Plus-Icon"></b-icon>
-          <b-modal id="Plus">Hello From My Modal!</b-modal>
+          <b-modal @ok="Add" id="Plus">
+            <b-form-input v-model="code" id="Number" type="number" placeholder="Indtast koden"></b-form-input>
+          </b-modal>
         </b-button>
       </div>
     </div>
@@ -245,7 +247,7 @@ a {
   color: crimson;
 }
 .LinkedKontoer {
-  position: fixed;
+  position: absolute;
   font-size: 120%;
   font-family: 'DM Mono', monospace;
   color: white;
@@ -268,7 +270,8 @@ export default {
       username: false,
       userid: false,
       finaleUrl: false,
-      Linked: false
+      Linked: false,
+      code: ''
     }
   },
   components: {
@@ -393,7 +396,39 @@ export default {
       return dayjs(time).locale("da").format("D MMMM YYYY HH:MM")
     },
     Add: function() {
-      console.log("Test")
+      axios.post('https://api.superawesome.ml/api/verify/' + this.code, {}, {
+        headers: {
+          "API-Key": `${localStorage.token}`
+        }
+      })
+      this.UpdateLinks()
+    },
+    UpdateLinks: async function() {
+      if(this.$route.params.id) {
+        await axios.get('https://api.superawesome.ml/api/verify/' + this.$route.params.id, {
+          headers: {
+            "API-Key": `${localStorage.token}`
+          }
+        })
+        .then(async(response) => {
+          this.Linked = response.data
+        })
+        .catch(error => {
+          
+        })
+      } else {
+        await axios.get('https://api.superawesome.ml/api/verify/', {
+          headers: {
+            "API-Key": `${localStorage.token}`
+          }
+        })
+        .then(async(response) => {
+          this.Linked = response.data
+        })
+        .catch(error => {
+          
+        })
+      }
     }
   }
 }

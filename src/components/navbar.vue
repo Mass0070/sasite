@@ -2,6 +2,11 @@
     <b-navbar toggleable="lg" type="dark" variant="info">
         <b-navbar-brand href="/">Super<span>Awesome</span></b-navbar-brand>
         <b-navbar-nav class="ml-auto">
+            <b-nav-item href="/ansøg" center>
+                Ansøg
+            </b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown v-if="profile === true" right>
                 <template v-slot:button-content>
                     <em>Profil</em>
