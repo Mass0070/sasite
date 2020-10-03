@@ -1,0 +1,36 @@
+em {
+    color: white;
+    font-family: 'DM Mono', monospace;
+}
+
+.navbar-brand {
+    color: blue!important;
+    font-size: 135%;
+}
+.navbar-brand span {
+    color: green!important;
+    font-family: 'DM Mono', monospace;
+}
+.bg-info {
+    background-color: #282d31!important;
+}
+ul.dropdown-menu.dropdown-menu-right.show {
+    background-color: #62676b;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+    font-family: 'DM Mono', monospace;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: white;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-family: 'DM Mono', monospace;
+}

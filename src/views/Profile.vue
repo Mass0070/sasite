@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="Links">
+    <div v-if="Array.isArray(info) && info.length > 0" class="Links">
       <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
@@ -72,15 +72,12 @@
   color: crimson;
 }
 #zeroClass {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+  margin-top: 10%;
   display: grid;
   background-color: #1f1e1e;
   border-radius: 30px;
   width: 65%;
-  grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: minmax(250px, auto);
 }
 

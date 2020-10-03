@@ -1,6 +1,6 @@
 <template>
     <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="/">SuperAwesome</b-navbar-brand>
+        <b-navbar-brand href="/">Super<span>Awesome</span></b-navbar-brand>
         <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown v-if="profile === true" right>
                 <template v-slot:button-content>
@@ -16,6 +16,7 @@
 
 <script defer>
 import Axios from 'axios'
+import css from '../views/Navbar.css'
 
 export default {
     name: 'navbar',
