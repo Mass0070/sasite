@@ -365,31 +365,9 @@ export default {
         }
       }
     })
-    if(this.$route.params.id) {
-      await axios.get('https://api.superawesome.ml/api/verify/' + this.$route.params.id, {
-        headers: {
-          "API-Key": `${localStorage.token}`
-        }
-      })
-      .then(async(response) => {
-        this.Linked = response.data
-      })
-      .catch(error => {
-        
-      })
-    } else {
-      await axios.get('https://api.superawesome.ml/api/verify/', {
-        headers: {
-          "API-Key": `${localStorage.token}`
-        }
-      })
-      .then(async(response) => {
-        this.Linked = response.data
-      })
-      .catch(error => {
-        
-      })
-    }
+    setInterval(() => {
+      this.UpdateLinks()
+    }, 5000);
   },
   methods: {
     getTime: function (time) {
