@@ -18,7 +18,7 @@
       <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
-        <b-popover :target="x.username" triggers="hover" :title="x.username" placement="auto">
+        <b-popover :target="x.username" triggers="hover" :title="x.username" placement="bottom">
           <template v-slot-content>Slet profil</template>
         </b-popover>
       </div>
