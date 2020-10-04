@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr class="Bar">
-    <iframe align="right" rel="preconnect" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="18%" height="700" allowtransparency="true" frameborder="0"></iframe>
+    <iframe align="right" rel="preconnect" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="300" height="75" allowtransparency="true" frameborder="0"></iframe>
 
     <div v-show="motd" class="Server-stats">
       <div class="Server-stats-module">
@@ -74,7 +74,7 @@ iframe{
     box-sizing: content-box;
     z-index: 0; 
   }
-  iframe{
+  iframe {
     visibility: visible;
     margin-right: 1.5%;
     -moz-border-radius: 1.8%;
@@ -86,7 +86,14 @@ iframe{
     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
     z-index: -1;
     margin-top: 0.5%;
+    transition: width 3s, height 5s;
+    width: 300px;
+    height: 75px;
   } 
+  iframe:hover {
+    width: 300px;
+    height: 700px;
+  }
 }
 </style>
 
