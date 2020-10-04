@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr class="Bar">
-    <iframe align="right" rel="preconnect" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="300" height="75" allowtransparency="true" frameborder="0"></iframe>
+    <iframe align="right" rel="preconnect" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="300" height="70" allowtransparency="true" frameborder="0"></iframe>
 
     <div v-show="motd" class="Server-stats">
       <div class="Server-stats-module">
