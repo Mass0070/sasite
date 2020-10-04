@@ -88,7 +88,7 @@ iframe{
     margin-top: 0.5%;
     transition: width 3s, height 5s;
     width: 300px;
-    height: 75px;
+    height: 70px;
   } 
   iframe:hover {
     width: 300px;
