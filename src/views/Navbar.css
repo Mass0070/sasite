@@ -3,13 +3,73 @@ em {
     font-family: 'DM Mono', monospace;
 }
 
-.navbar-brand {
-    color: blue!important;
+.navbar-brand{
+    margin-top: 0;
     font-size: 135%;
 }
-.navbar-brand span {
-    color: green!important;
-    font-family: 'DM Mono', monospace;
+.navbar-brand-S {
+    color: transparent;
+    background-image: linear-gradient(to right, blue,dodgerblue	,blue,dodgerblue	);
+    animation: text 10s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 1000%;
+    text-decoration: none;
+}
+
+    .navbar-brand-S:hover {
+        text-decoration: none;
+        color: transparent;
+        background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
+        animation: text 10s linear infinite;
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 1000%;
+        text-decoration: none;
+    }
+    .navbar-brand-S:active {
+        text-decoration: none;
+        color: transparent;
+        background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
+        animation: text 10s linear infinite;
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 1000%;
+        text-decoration: none;
+    }
+.navbar-brand-A {
+    color: transparent;
+    background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
+    animation: text 10s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 1000%;
+    text-decoration: none;
+}
+
+.navbar-brand-A:hover {
+    text-decoration: none;
+    color: transparent;
+    background-image: linear-gradient(to right, blue,dodgerblue	,blue,dodgerblue	);
+    animation: text 10s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 1000%;
+    text-decoration: none;
+}
+
+@keyframes text {
+    0% {
+        background-position: 0% 100%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
 }
 .bg-info {
     background-color: #282d31!important;
