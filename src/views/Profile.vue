@@ -19,7 +19,9 @@
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
         <b-popover :target="x.username" triggers="hover" :title="x.username" placement="bottom">
-          <template v-slot-content>Slet profil</template>
+          <template v-slot-content>
+            <b-button pill @click="sletprofile(x.uuid)" variant="danger">Slet kontoen</b-button>
+          </template>
         </b-popover>
       </div>
       <div class="Button-Plus-Div">
@@ -381,6 +383,20 @@ export default {
         }
       })
       this.UpdateLinks()
+    },
+    sletprofile: async function(uuid) {
+      await axios.delete('https://api.superawesome.ml/api/verify/' + uuid, {
+        headers: {
+            "API-Key": `${localStorage.token}`
+          }
+      })
+      .then(async(response) => {
+        if(response.data.success) return console.log("Slettet " + uuid);
+        console.log("Ikke slettet")
+      })
+      .catch(error => {
+        console.log("Error " + uuid)
+      })
     },
     UpdateLinks: async function() {
       if(this.$route.params.id) {
