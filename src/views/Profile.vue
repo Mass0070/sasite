@@ -17,7 +17,7 @@
     <div class="Links" v-show="Linked">
       <div class="LinkedKontoer">Minecraft kontoer<span>:</span></div>
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
-        <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
+        <b-img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" fluid :alt="x.username" width="100" height="100"></b-img>
         <b-popover :target="x.username" triggers="hover" :title="x.username" placement="bottom">
           <template v-slot-content v-if="!$route.params.id">
             <b-button pill @click="sletprofile(x.uuid)" variant="danger">Slet kontoen</b-button>
@@ -157,7 +157,8 @@ a {
 .Unban {
   margin: 0 auto;
   background-color: #2f2f2f;
-
+  line-height: 1;
+  display: inline-block;
   border: 4px solid #1f5bbb;
   border-radius: 30px;
   text-align: center;
