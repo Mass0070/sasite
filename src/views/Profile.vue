@@ -157,7 +157,7 @@ a {
 .Unban {
   margin: 0 auto;
   background-color: #2f2f2f;
-  line-height: 1;
+  line-height: normal;
   display: inline-block;
   border: 4px solid #1f5bbb;
   border-radius: 30px;
@@ -166,6 +166,8 @@ a {
 }
 .Unban:hover {
   border: 4px solid green;
+  line-height: normal;
+  display: inline-block;
   transform: scale(.9);
   transition: .7s;
 }
