@@ -383,6 +383,7 @@ export default {
         }
       })
       this.UpdateLinks()
+      this.code = ''
     },
     sletprofile: async function(uuid) {
       await axios.delete('https://api.superawesome.ml/api/verify/' + uuid, {
