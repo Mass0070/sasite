@@ -368,9 +368,6 @@ export default {
       }
     })
     this.UpdateLinks()
-    setInterval(() => {
-      this.UpdateLinks()
-    }, 5000);
   },
   methods: {
     getTime: function (time) {
