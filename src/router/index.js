@@ -26,12 +26,7 @@ const routes = [
     component: Ansøgning
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile
-  },
-  {
-    path: '/profile/:id',
+    path: '/profile/:id?',
     name: 'Profile',
     component: Profile
   },

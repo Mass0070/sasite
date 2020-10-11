@@ -19,12 +19,12 @@
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <img :id="x.username" v-bind:src="'https://minotar.net/avatar/' + x.username" alt="Stickman" width="100" height="100">
         <b-popover :target="x.username" triggers="hover" :title="x.username" placement="bottom">
-          <template v-slot-content>
+          <template v-slot-content v-if="!$route.params.id">
             <b-button pill @click="sletprofile(x.uuid)" variant="danger">Slet kontoen</b-button>
           </template>
         </b-popover>
       </div>
-      <div class="Button-Plus-Div">
+      <div class="Button-Plus-Div" v-if="!$route.params.id">
         <b-button variant="success">
           <b-icon v-b-modal="'Plus'" icon="plus" aria-label="Help" class="Button-Plus-Icon"></b-icon>
           <b-modal @ok="Add" id="Plus">
