@@ -27,7 +27,7 @@
       <div class="Button-Plus-Div" v-if="!$route.params.id">
         <b-button variant="success">
           <b-icon v-b-modal="'Plus'" icon="plus" aria-label="Help" class="Button-Plus-Icon"></b-icon>
-          <b-modal @ok="Add" id="Plus">
+          <b-modal cancel-title="Annuller" @ok="Add" @hide="code = ''" id="Plus">
             <b-form-input v-model="code" id="Number" type="number" placeholder="Indtast koden"></b-form-input>
           </b-modal>
         </b-button>
@@ -395,6 +395,7 @@ export default {
       .catch(error => {
         console.log("Error " + uuid)
       })
+      this.UpdateLinks()
     },
     UpdateLinks: async function() {
       if(this.$route.params.id) {

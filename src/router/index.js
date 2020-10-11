@@ -6,6 +6,7 @@ const Auth = () => import(/* webpackChunkName: "group-Auth" */ `../views/auth.vu
 const Ansøgning = () => import(/* webpackChunkName: "group-Ansøgning" */ `../views/Ansøgning.vue`)
 const Profile = () => import(/* webpackChunkName: "group-Profile" */ `../views/Profile.vue`)
 const Logout = () => import(/* webpackChunkName: "group-Logout" */ `../views/Logout.vue`)
+const Ansøg = () => import(/* webpackChunkName: "group-ansøgning" */ `../views/Ansøg.vue`)
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/ansøgning/:id',
     name: 'Ansøgning',
     component: Ansøgning
+  },
+  {
+    path: '/ansøg',
+    name: 'Ansøg',
+    component: Ansøg
   },
   {
     path: '/profile/:id?',
