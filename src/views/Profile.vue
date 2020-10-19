@@ -157,8 +157,6 @@ a {
 .Unban {
   margin: 0 auto;
   background-color: #2f2f2f;
-  line-height: normal;
-  display: inline-block;
   border: 4px solid #1f5bbb;
   border-radius: 30px;
   text-align: center;
