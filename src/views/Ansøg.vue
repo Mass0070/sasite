@@ -13,11 +13,32 @@
             Når du ansøger om unban på webbrowseren vil du får svar på din email du har tilknyttet til din discord.
             <br></br>
             Du har kun en chance for at få unban, hvis du bliver <span>afvist</span> har du ikke en chance længere.
+            <b-button @click="ansøg = !ansøg" variant="success">
+                <b-modal title="Ansøg" title-class="text-primary" content-class="bg-dark" header-close-variant="primary" cancel-title="Annuller" v-model="ansøg">
+                    <b-form-select :options="options" size="sm" class="mt-3"></b-form-select>
+                </b-modal>
+            </b-button>
             </b-card-text>
         </b-card>
     </div>
 </template>
 <script>
+import { BButton } from 'bootstrap-vue'
+
+
 export default {
+    data() {
+        return {
+            ansøg: false,
+            options: [
+                { value: null, text: 'Please select an option' },
+                { value: 'a', text: 'This is First option' },
+                { value: 'b', text: 'Selected Option' }
+            ]
+        }
+    },
+    components: {
+        BButton
+    }
 }
 </script>
