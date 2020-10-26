@@ -11,7 +11,7 @@
         >
             <b-card-text>
             Når du ansøger om unban på webbrowseren vil du får svar på din email du har tilknyttet til din discord.
-            <br></br>
+            <br>
             Du har kun en chance for at få unban, hvis du bliver <span>afvist</span> har du ikke en chance længere.
             <b-button @click="ansøg = !ansøg" variant="success">
                 <b-modal title="Ansøg" title-class="text-primary" content-class="bg-dark" header-close-variant="primary" cancel-title="Annuller" v-model="ansøg">
