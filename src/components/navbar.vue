@@ -28,7 +28,7 @@
 
 <script defer>
 import Axios from "axios";
-import css from "../views/Navbar.css";
+import "../views/Navbar.css";
 
 export default {
   name: "navbar",
