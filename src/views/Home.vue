@@ -1,16 +1,26 @@
 <template>
   <div>
-    <hr class="Bar">
-    <iframe align="right" rel="preconnect" src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark" width="300" height="70" allowtransparency="true" frameborder="0"></iframe>
+    <hr class="Bar" />
+    <iframe
+      align="right"
+      rel="preconnect"
+      src="https://canary.discordapp.com/widget?id=313097609948430336&theme=dark"
+      width="300"
+      height="70"
+      allowtransparency="true"
+      frameborder="0"
+    ></iframe>
 
     <div v-show="motd" class="Server-stats">
       <div class="Server-stats-module">
-        <h1 v-show="players" class="Online">Online: <span>{{ players.online }}</span>/<span>{{ players.max }}</span></h1>
+        <h1 v-show="players" class="Online">
+          Online: <span>{{ players.online }}</span
+          >/<span>{{ players.max }}</span>
+        </h1>
         <p class="Hjemmeside-Motd"><span v-html="motd"></span></p>
       </div>
     </div>
   </div>
-  
 </template>
 
 <style>
@@ -21,11 +31,11 @@
 }
 a {
   font-weight: 700;
-  font-family: montserrat,sans-serif;
+  font-family: montserrat, sans-serif;
 }
 
 p.Hjemmeside-Motd {
-    margin-top: 2.5%;
+  margin-top: 2.5%;
 }
 .Server-stats {
   max-width: 80%;
@@ -35,9 +45,9 @@ p.Hjemmeside-Motd {
   padding: 0.3%;
   margin: auto;
   margin-top: 25%;
-  text-align: center; 
+  text-align: center;
   box-sizing: content-box;
-  z-index: 0; 
+  z-index: 0;
 }
 .Server-stats-module {
   background: #222;
@@ -45,21 +55,21 @@ p.Hjemmeside-Motd {
   padding: 2rem;
   z-index: 0;
 }
-.Online span{
-	color: #00b300;
+.Online span {
+  color: #00b300;
   animation: blinker-one 2.3s linear infinite;
 }
 .Online h1 {
-  color: black; 
+  color: black;
 }
 .Online {
   margin: auto;
   color: green;
   z-index: 0;
 }
-iframe{
+iframe {
   visibility: hidden;
-} 
+}
 @media only screen and (min-width: 870px) {
   /* For desktop: */
   .Server-stats {
@@ -70,9 +80,9 @@ iframe{
     padding: 0.1%;
     margin: auto;
     margin-top: 4.5%;
-    text-align: center; 
+    text-align: center;
     box-sizing: content-box;
-    z-index: 0; 
+    z-index: 0;
   }
   iframe {
     visibility: visible;
@@ -83,13 +93,13 @@ iframe{
     -moz-box-shadow: 0.6% 0.6% 1.6% #000;
     -webkit-box-shadow: 0.6% 0.6% 1.6% #000;
     box-shadow: 0.6% 0.6% 1.6% #000;
-    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
     z-index: -1;
     margin-top: 0.5%;
     transition: width 3s, height 5s;
     width: 300px;
     height: 70px;
-  } 
+  }
   iframe:hover {
     width: 300px;
     height: 700px;
@@ -98,21 +108,19 @@ iframe{
 </style>
 
 <script defer>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  data () {
+  data() {
     return {
       motd: false,
       players: false
-    }
+    };
   },
   async created() {
-    axios
-      .get('https://api.mcsrvstat.us/2/superawesome.dk')
-      .then(response => {
-        this.motd = response.data.motd.html[0]
-        this.players = response.data.players
-      })
+    axios.get("https://api.mcsrvstat.us/2/superawesome.dk").then(response => {
+      this.motd = response.data.motd.html[0];
+      this.players = response.data.players;
+    });
   }
-}
+};
 </script>

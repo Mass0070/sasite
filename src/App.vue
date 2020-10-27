@@ -4,7 +4,7 @@
       <navbar />
     </div>
     <div id="Router">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -15,25 +15,27 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'montserrat', sans-serif;
+  font-family: "montserrat", sans-serif;
   background: url("/SA.jpeg");
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size:1rem;
-  font-weight:400;
-  color:#212529;
-  text-align:left;
-  background-color:#fff;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
   line-height: normal;
 }
 </style>
 
 <script defer>
-import navbar from "./components/navbar"
+import navbar from "./components/navbar";
 export default {
-  name: 'app', 
+  name: "app",
   components: {
     navbar
   }
-}
+};
 </script>
