@@ -17,7 +17,7 @@ em {
     text-decoration: none;
 }
 
-    .navbar-brand-S:hover {
+    .navbar-brand-S:hover .navbar-brand-S:active {
         text-decoration: none;
         color: transparent;
         background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
@@ -25,17 +25,6 @@ em {
         background-clip: text;
         -webkit-background-clip: text;
         background-size: 1000%;
-        text-decoration: none;
-    }
-    .navbar-brand-S:active {
-        text-decoration: none;
-        color: transparent;
-        background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
-        animation: text 10s linear infinite;
-        background-clip: text;
-        -webkit-background-clip: text;
-        background-size: 1000%;
-        text-decoration: none;
     }
 .navbar-brand-A {
     color: transparent;
