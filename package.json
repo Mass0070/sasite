@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -22,6 +24,7 @@
     "bootstrap": "^4.5.3",
     "popper.js": "^1.16.0",
     "portal-vue": "^2.1.6",
+    "eslint": "^7.10.0",
     "vue-cli-plugin-bootstrap-vue": "~0.7.0",
     "vue-template-compiler": "^2.6.12"
   }
