@@ -1,8 +1,8 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <b-navbar-brand href="/">
-      <a target="_self" class="navbar-brand-S">Super</a>
-      <a target="_self" class="navbar-brand-A">Awesome</a>
+      <a class="navbar-brand-S">Super</a>
+      <a class="navbar-brand-A">Awesome</a>
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
       <b-nav-item href="/ansøg" center>

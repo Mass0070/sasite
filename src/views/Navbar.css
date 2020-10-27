@@ -7,17 +7,18 @@ em {
     margin-top: 0;
     font-size: 135%;
 }
-.navbar-brand-S .navbar-brand-A:hover {
+.navbar-brand-S, .navbar-brand-A:hover {
+    text-decoration: none;
     color: transparent;
     background-image: linear-gradient(to right, blue,dodgerblue	,blue,dodgerblue	);
     animation: text 10s linear infinite;
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 1000%;
-    text-decoration: none;
+    z-index: 10;
 }
 
-.navbar-brand-S:hover .navbar-brand-S:active {
+.navbar-brand-S:hover, .navbar-brand-S:active {
     text-decoration: none;
     color: transparent;
     background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
@@ -25,15 +26,16 @@ em {
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 1000%;
+    z-index: 10;
 }
 .navbar-brand-A {
+    text-decoration: none;
     color: transparent;
     background-image: linear-gradient(to right, darkgreen,limegreen,darkgreen,limegreen);
     animation: text 10s linear infinite;
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 1000%;
-    text-decoration: none;
 }
 
 @keyframes text {
