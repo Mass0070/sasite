@@ -113,14 +113,14 @@ export default {
   data() {
     return {
       motd: false,
-      players: false
+      players: false,
     };
   },
   async created() {
-    axios.get("https://api.mcsrvstat.us/2/superawesome.dk").then(response => {
+    axios.get("https://api.mcsrvstat.us/2/superawesome.dk").then((response) => {
       this.motd = response.data.motd.html[0];
       this.players = response.data.players;
     });
-  }
+  },
 };
 </script>

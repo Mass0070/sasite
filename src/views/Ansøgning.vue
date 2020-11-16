@@ -191,10 +191,10 @@ export default {
       await axios
         .get("https://api.superawesome.ml/api/apply/" + this.$route.params.id, {
           headers: {
-            "API-Key": `${localStorage.token}`
-          }
+            "API-Key": `${localStorage.token}`,
+          },
         })
-        .then(response => {
+        .then((response) => {
           switch (response.status) {
             case 200:
               break;
@@ -216,7 +216,7 @@ export default {
           }
           this.question = questionARK;
         })
-        .catch(error => {
+        .catch((error) => {
           if (error.response) {
             switch (error.response.status) {
               case 200:
@@ -247,7 +247,7 @@ export default {
   data() {
     return {
       info: false,
-      question: {}
+      question: {},
     };
   },
   methods: {
@@ -261,7 +261,7 @@ export default {
       } else {
         return false;
       }
-    }
-  }
+    },
+  },
 };
 </script>

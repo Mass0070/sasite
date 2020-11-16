@@ -2,24 +2,33 @@ import Vue from "vue";
 import "./plugins/bootstrap-vue";
 import App from "./App.vue";
 import router from "./router";
-//import socket from 'socket.io-client'
-//import VueSocketIO from 'vue-socket.io';
+import socketio from "socket.io-client";
+import VueSocketIO from "vue-socket.io";
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: "UA-169986949-1",
+  router,
+});
 
 Vue.config.productionTip = false;
 
-/*const SocketInstance = socket.connect('95.217.176.159:3000/users', {
+const socket = socketio.connect("https://superawesome.ml/users", {
   query: {
-    authorization: "none"
-  }
-})
-Vue.use(new VueSocketIO({
+    authorization: `${localStorage.token}`,
+  },
+});
+
+Vue.use(
+  new VueSocketIO({
     debug: true,
-    connection: SocketInstance
-})) */
+    connection: socket,
+  })
+);
 
 new Vue({
   router,
-  render: function(h) {
+  render: function (h) {
     return h(App);
-  }
+  },
 }).$mount("#app");

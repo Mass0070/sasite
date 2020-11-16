@@ -6,7 +6,12 @@
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem; margin-top: 1%; margin-bottom: 1%; margin-left: 1%"
+      style="
+        max-width: 20rem;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 1%;
+      "
       class="mb-2"
     >
       <b-card-text>
@@ -45,12 +50,12 @@ export default {
       options: [
         { value: null, text: "Please select an option" },
         { value: "a", text: "This is First option" },
-        { value: "b", text: "Selected Option" }
-      ]
+        { value: "b", text: "Selected Option" },
+      ],
     };
   },
   components: {
-    BButton
-  }
+    BButton,
+  },
 };
 </script>

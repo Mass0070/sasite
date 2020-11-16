@@ -9,6 +9,6 @@ export default {
       window.localStorage.removeItem("token");
     }
     window.location.replace("/");
-  }
+  },
 };
 </script>

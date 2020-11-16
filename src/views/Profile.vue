@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr />
-    <div style="display: inline-flex; padding-top: 1%; padding-bottom: 1%;">
+    <div style="display: inline-flex; padding-top: 1%; padding-bottom: 1%">
       <div v-show="username" class="Discord-Boks">
         <a class="Discord-Profil">
           <img
@@ -342,13 +342,13 @@ export default {
       userid: false,
       finaleUrl: false,
       Linked: false,
-      code: ""
+      code: "",
     };
   },
   components: {
     BPopover,
     BButton,
-    BIconPlus
+    BIconPlus,
   },
   async created() {
     let profile;
@@ -357,10 +357,10 @@ export default {
     await axios
       .get("https://api.superawesome.ml/api/user/" + profile, {
         headers: {
-          "API-Key": `${localStorage.token}`
-        }
+          "API-Key": `${localStorage.token}`,
+        },
       })
-      .then(async response => {
+      .then(async (response) => {
         switch (response.status) {
           case 200:
             break;
@@ -400,7 +400,7 @@ export default {
             "?size=256";
         }
       })
-      .catch(async error => {
+      .catch(async (error) => {
         if (error.response) {
           switch (error.response.status) {
             case 200:
@@ -458,32 +458,30 @@ export default {
     this.UpdateLinks();
   },
   methods: {
-    getTime: function(time) {
-      return dayjs(time)
-        .locale("da")
-        .format("D MMMM YYYY HH:MM");
+    getTime: function (time) {
+      return dayjs(time).locale("da").format("D MMMM YYYY HH:MM");
     },
-    Add: function() {
+    Add: function () {
       axios.post(
         "https://api.superawesome.ml/api/verify/" + this.code,
         {},
         {
           headers: {
-            "API-Key": `${localStorage.token}`
-          }
+            "API-Key": `${localStorage.token}`,
+          },
         }
       );
       this.UpdateLinks();
       this.code = "";
     },
-    sletprofile: async function(uuid) {
+    sletprofile: async function (uuid) {
       await axios
         .delete("https://api.superawesome.ml/api/verify/" + uuid, {
           headers: {
-            "API-Key": `${localStorage.token}`
-          }
+            "API-Key": `${localStorage.token}`,
+          },
         })
-        .then(async response => {
+        .then(async (response) => {
           if (response.data.success) return console.log("Slettet " + uuid);
           console.log("Ikke slettet");
         })
@@ -492,18 +490,18 @@ export default {
         });
       this.UpdateLinks();
     },
-    UpdateLinks: async function() {
+    UpdateLinks: async function () {
       if (this.$route.params.id) {
         await axios
           .get(
             "https://api.superawesome.ml/api/verify/" + this.$route.params.id,
             {
               headers: {
-                "API-Key": `${localStorage.token}`
-              }
+                "API-Key": `${localStorage.token}`,
+              },
             }
           )
-          .then(async response => {
+          .then(async (response) => {
             this.Linked = response.data;
           })
           .catch(() => {});
@@ -511,15 +509,15 @@ export default {
         await axios
           .get("https://api.superawesome.ml/api/verify/", {
             headers: {
-              "API-Key": `${localStorage.token}`
-            }
+              "API-Key": `${localStorage.token}`,
+            },
           })
-          .then(async response => {
+          .then(async (response) => {
             this.Linked = response.data;
           })
           .catch(() => {});
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -5,7 +5,7 @@ import {
   FormInputPlugin,
   CardPlugin,
   ImagePlugin,
-  FormSelectPlugin
+  FormSelectPlugin,
 } from "bootstrap-vue";
 Vue.use(ModalPlugin);
 Vue.use(NavbarPlugin);

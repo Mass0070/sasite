@@ -5,9 +5,7 @@
       <a class="navbar-brand-A">Awesome</a>
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
-      <b-nav-item href="/ansøg" center>
-        Ansøg
-      </b-nav-item>
+      <b-nav-item href="/ansøg" center> Ansøg </b-nav-item>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
       <b-nav-item-dropdown v-if="profile === true" right>
@@ -17,11 +15,7 @@
         <b-dropdown-item href="/profile">Profil</b-dropdown-item>
         <b-dropdown-item href="/logout">Log ud</b-dropdown-item>
       </b-nav-item-dropdown>
-      <b-nav-item
-        v-else
-        :href=link
-        >Log ind</b-nav-item
-      >
+      <b-nav-item v-else :href="link">Log ind</b-nav-item>
     </b-navbar-nav>
   </b-navbar>
 </template>
@@ -37,27 +31,28 @@ export default {
       services: [
         {
           title: "Mine ansøgninger",
-          link: "/profile"
+          link: "/profile",
         },
         {
           title: "Log ud",
-          link: "/logout"
-        }
+          link: "/logout",
+        },
       ],
       profile: false,
-      link: "https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=https%3A%2F%2Fapi.superawesome.ml%2Fdiscord%2Fcallback&response_type=code&scope=identify%20email"
+      link:
+        "https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=https%3A%2F%2Fapi.superawesome.ml%2Fdiscord%2Fcallback&response_type=code&scope=identify%20email",
     };
   },
   async created() {
     Axios.get("https://api.superawesome.ml/api/auth/", {
       headers: {
-        "API-Key": `${localStorage.token}`
-      }
+        "API-Key": `${localStorage.token}`,
+      },
     })
       .then(() => {
         this.profile = true;
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response) {
           switch (error.response.status) {
             case 200:
@@ -68,6 +63,6 @@ export default {
           }
         }
       });
-  }
+  },
 };
 </script>
