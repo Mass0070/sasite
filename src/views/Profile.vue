@@ -74,7 +74,7 @@
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div v-for="x in info" class="Unban" :key="x.id">
         <p class="UnbanId">
-          <a v-bind:href="'/ansøgning/' + x.UnbanId"
+          <a v-bind:href="'/application/' + x.UnbanId"
             ><span>ID:</span> {{ x.UnbanId }}</a
           >
         </p>

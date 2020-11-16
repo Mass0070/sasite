@@ -28,7 +28,7 @@ const routes = [
     component: Auth,
   },
   {
-    path: "/ansøgning/:id",
+    path: "/application/:id",
     name: "Ansøgning",
     component: Ansøgning,
   },
