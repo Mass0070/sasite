@@ -5,7 +5,7 @@
       <a class="navbar-brand-A">Awesome</a>
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
-      <b-nav-item href="/ansøg" center> Ansøg </b-nav-item>
+      <b-nav-item href="/apply" center> Ansøg </b-nav-item>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
       <b-nav-item-dropdown v-if="profile === true" right>

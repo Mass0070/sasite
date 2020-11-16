@@ -33,7 +33,7 @@ const routes = [
     component: Ansøgning,
   },
   {
-    path: "/ansøg",
+    path: "/apply",
     name: "Ansøg",
     component: Ansøg,
   },
