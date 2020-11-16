@@ -5,12 +5,11 @@
 <script>
 export default {
   mounted() {
-    let urlParams = new URLSearchParams(window.location.hash);
+    console.log(window.location.search)
+    let urlParams = new URLSearchParams(window.location.search);
     console.log(urlParams);
-    window.localStorage.token = urlParams.get("access_token");
-    setTimeout(() => {
-      window.location.replace("/profile");
-    }, 1000);
+    window.localStorage.token = urlParams.get("code");
+    window.location.replace("/profile");
   }
 };
 </script>

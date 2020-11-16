@@ -19,7 +19,7 @@
       </b-nav-item-dropdown>
       <b-nav-item
         v-else
-        href="https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=https%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify%20email"
+        :href=link
         >Log ind</b-nav-item
       >
     </b-navbar-nav>
@@ -44,7 +44,8 @@ export default {
           link: "/logout"
         }
       ],
-      profile: false
+      profile: false,
+      link: "https://discord.com/api/oauth2/authorize?client_id=694582426474774570&redirect_uri=https%3A%2F%2Fapi.superawesome.ml%2Fdiscord%2Fcallback&response_type=code&scope=identify%20email"
     };
   },
   async created() {
