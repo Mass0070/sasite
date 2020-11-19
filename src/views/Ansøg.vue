@@ -22,7 +22,7 @@
         <span>afvist</span> har du ikke en chance længere.
         <b-button @click="ansøg = !ansøg" variant="success">
           <b-modal
-            title="Ansøg"
+            title="Unban Ansøgning"
             title-class="text-primary"
             content-class="bg-dark"
             header-close-variant="primary"
@@ -31,6 +31,7 @@
           >
             <b-form-select
               :options="options"
+              v-model="selected"
               size="sm"
               class="mt-3"
             ></b-form-select>
@@ -48,6 +49,7 @@ export default {
   data() {
     return {
       ansøg: false,
+      selected: null,
       options: [
         { value: null, text: "Please select an option" },
         { value: "a", text: "This is First option" },
@@ -62,6 +64,9 @@ export default {
     tidUdløb: function() {
       this.ansøg = false;
     }
+  }, 
+  mounted() {
+    
   }
 };
 </script>
