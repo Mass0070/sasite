@@ -37,5 +37,30 @@ export default {
   components: {
     navbar,
   },
+  sockets: {
+    tidUdløb: function() {
+      this.alert("Din tid er udløbet")
+    }
+  }, 
+  methods: {
+    alert: function(message) {
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', this.$swal.stopTimer)
+          toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'error',
+        title: message
+      })
+    } 
+  }
 };
 </script>

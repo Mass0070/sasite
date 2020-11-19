@@ -44,6 +44,7 @@
 import { BButton } from "bootstrap-vue";
 
 export default {
+  name: "ansøg",
   data() {
     return {
       ansøg: false,
@@ -57,5 +58,10 @@ export default {
   components: {
     BButton,
   },
+  sockets: {
+    tidUdløb: function() {
+      this.ansøg = false;
+    }
+  }
 };
 </script>
