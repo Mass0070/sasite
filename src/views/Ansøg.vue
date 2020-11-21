@@ -43,6 +43,7 @@
 </template>
 <script>
 import { BButton } from "bootstrap-vue";
+import Axios from "axios";
 
 export default {
   name: "ansøg",
@@ -51,9 +52,7 @@ export default {
       ansøg: false,
       selected: null,
       options: [
-        { value: null, text: "Please select an option" },
-        { value: "a", text: "This is First option" },
-        { value: "b", text: "Selected Option" },
+        { value: null, text: "Ingame-navn?" },
       ],
     };
   },
@@ -65,8 +64,42 @@ export default {
       this.ansøg = false;
     }
   }, 
+  methods() {
+    updateOptions: function() {
+      let accounts = []
+      await Axios
+            .get(
+              "https://api.superawesome.ml/api/verify/",
+              {
+                headers: {
+                  "API-Key": `${localStorage.token}`,
+                },
+              }
+            )
+            .then(async (response) => {
+              accounts = response.data;
+            })
+            .catch(() => {});
+      console.log(accounts)
+      for(var e of accounts) {
+        var returnvalue = {};
+        returnvalue["value"] = e.uuid
+        returnvalue["text"] = e.username
+        this.options.push(returnvalue)
+      }
+      return;
+    },
+    checkanswer: function() {
+      return;
+    }
+  },
+  async created() {
+    this.updateOptions()
+  },
   mounted() {
-    
+    this.$root.$on('shown', (bvEvent, modalId) => {
+      this.checkanswer
+    })
   }
 };
 </script>
