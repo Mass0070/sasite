@@ -64,8 +64,8 @@ export default {
       this.ansøg = false;
     }
   }, 
-  methods() {
-    updateOptions: function() {
+  methods: {
+    updateOptions: async function() {
       let accounts = []
       await Axios
             .get(
@@ -98,6 +98,7 @@ export default {
   },
   mounted() {
     this.$root.$on('shown', (bvEvent, modalId) => {
+      console.log(bvEvent + modalId)
       this.checkanswer
     })
   }

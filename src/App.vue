@@ -39,16 +39,22 @@ export default {
   },
   sockets: {
     tidUdløb: function() {
-      this.alert("Din tid er udløbet")
+      this.alert("Din tid er udløbet", "error")
+    },
+    Accept: function() {
+      this.alert("Din ansøgning er accepteret", "success")
+    },
+    Afvist: function() {
+      this.alert("Din ansøgning er accepteret", "success")
     }
   }, 
   methods: {
-    alert: function(message) {
+    alert: function(message, icon) {
       const Toast = this.$swal.mixin({
         toast: true,
         position: 'bottom-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 15000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', this.$swal.stopTimer)
@@ -57,7 +63,7 @@ export default {
       })
 
       Toast.fire({
-        icon: 'error',
+        icon: icon,
         title: message
       })
     } 
