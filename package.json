@@ -11,7 +11,7 @@
   "dependencies": {
     "axios": "0.21.0",
     "bootstrap": "4.5.3",
-    "bootstrap-vue": "2.19.0",
+    "bootstrap-vue": "2.20.1",
     "dayjs": "1.9.6",
     "socket.io-client": "3.0.3",
     "vue": "2.6.12",
@@ -27,11 +27,11 @@
     "@vue/eslint-config-prettier": "6.0.0",
     "bootstrap": "4.5.3",
     "eslint": "7.14.0",
-    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-prettier": "3.2.0",
     "eslint-plugin-vue": "7.1.0",
     "popper.js": "1.16.1",
     "portal-vue": "2.1.7",
-    "prettier": "2.2.0",
+    "prettier": "2.2.1",
     "vue-cli-plugin-bootstrap-vue": "0.7.0",
     "vue-template-compiler": "2.6.12"
   }
