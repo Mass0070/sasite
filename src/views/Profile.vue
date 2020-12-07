@@ -519,5 +519,13 @@ export default {
       }
     },
   },
+  sockets: {
+    link() {
+      this.UpdateLinks()
+    },
+    unlink() {
+      this.UpdateLinks()
+    }
+  }
 };
 </script>

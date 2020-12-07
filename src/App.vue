@@ -46,6 +46,12 @@ export default {
     },
     Deny: function() {
       this.alert("Din ansøgning er afvist", "error")
+    },
+    link(mc) {
+      this.alert("Du er blevet linket med " + mc, "success")
+    },
+    unlink(mc) {
+      this.alert("Du er blevet unlinket med " + mc, "success")
     }
   }, 
   methods: {
