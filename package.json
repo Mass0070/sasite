@@ -13,7 +13,7 @@
     "bootstrap": "4.5.3",
     "bootstrap-vue": "2.20.1",
     "dayjs": "1.9.7",
-    "socket.io-client": "3.0.3",
+    "socket.io-client": "3.0.4",
     "vue": "2.6.12",
     "vue-analytics": "5.22.1",
     "vue-router": "3.4.9",
