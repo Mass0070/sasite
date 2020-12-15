@@ -1,49 +1,11 @@
 <template>
   <div>
-    <b-card
-      title="Unban"
-      img-src="https://picsum.photos/600/300/?image=25"
-      img-alt="Image"
-      img-top
-      tag="article"
-      style="
-        max-width: 20rem;
-        margin-top: 1%;
-        margin-bottom: 1%;
-        margin-left: 1%;
-      "
-      class="mb-2"
-    >
-      <b-card-text>
-        Når du ansøger om unban på webbrowseren vil du får svar på din email du
-        har tilknyttet til din discord.
-        <br />
-        Du har kun en chance for at få unban, hvis du bliver
-        <span>afvist</span> har du ikke en chance længere.
-        <b-button @click="ansøg = !ansøg" variant="success">
-          <b-modal
-            title="Unban Ansøgning"
-            title-class="text-primary"
-            content-class="bg-dark"
-            header-close-variant="primary"
-            cancel-title="Annuller"
-            v-model="ansøg"
-          >
-            <b-form-select
-              :options="options"
-              v-model="selected"
-              size="sm"
-              class="mt-3"
-            ></b-form-select>
-          </b-modal>
-        </b-button>
-      </b-card-text>
-    </b-card>
+    <unban-ansog-card />
   </div>
 </template>
 <script>
-import { BButton } from "bootstrap-vue";
-import Axios from "axios";
+//import Axios from "axios";
+import UnbanAnsogCard from './Unban/UnbanAnsogCard.vue';
 
 export default {
   name: "ansøg",
@@ -57,14 +19,9 @@ export default {
     };
   },
   components: {
-    BButton,
-  },
-  sockets: {
-    tidUdløb: function() {
-      this.ansøg = false;
-    }
+    UnbanAnsogCard,
   }, 
-  methods: {
+  /*methods: {
     updateOptions: async function() {
       let accounts = []
       await Axios
@@ -101,6 +58,6 @@ export default {
       console.log(bvEvent + modalId)
       this.checkanswer
     })
-  }
+  } */
 };
 </script>
