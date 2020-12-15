@@ -101,6 +101,7 @@
 }
 .Hover {
   font-family: arial;
+  margin-top: 2em;
 }
 .Hover:hover {
   opacity: 0.8;
@@ -108,15 +109,13 @@
 #about {
   margin: 0 auto;
   margin-top: 6%;
-  background-color: #2f2f2f;
+  background-color: #212529;
   border: 3px solid #1f5bbb;
   border-radius: 30px;
-  width: 75%;
   padding: 2%;
-  padding-right: 5%;
-  padding-left: 5%;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(250px, auto);
+  padding-right: 2%;
+  padding-left: 2%;
+  width: 90%;
 }
 .ansøgnings-h3 {
   color: #3a56e2;
@@ -128,10 +127,9 @@
   color: #34a206;
   font-size: 85%;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 0.5em;
   font-family: "Lucida Console", Courier, monospace;
-  width: 70%;
-  margin-left: 15%;
+  margin: auto;
 }
 .ansøgnings-p-sidst {
   color: #34a206;
@@ -139,19 +137,14 @@
   text-align: center;
   font-family: "Lucida Console", Courier, monospace;
   width: 70%;
-  margin-top: 5%;
+  margin-top: 0.5em;
   margin-left: 15%;
-  margin-bottom: 15%;
+  margin-bottom: 3%;
 }
 @media only screen and (min-width: 930px) {
   /* For desktop: */
   #about {
-    top: 50%;
-    left: 50%;
-    display: grid;
-    border-radius: 30px;
-    width: 65%;
-    grid-auto-rows: minmax(250px, auto);
+    width: 85%;
     margin-bottom: 5%;
   }
   .ansøgnings-h3 {
@@ -164,10 +157,8 @@
     color: #34a206;
     font-size: 85%;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 0.5em;
     font-family: "Lucida Console", Courier, monospace;
-    width: 70%;
-    margin-left: 15%;
   }
   .ansøgnings-p-sidst {
     color: #34a206;
@@ -176,7 +167,7 @@
     margin-top: 2%;
     font-family: "Lucida Console", Courier, monospace;
     width: 70%;
-    margin-top: 5%;
+    margin-top: 0.5em;
     margin-left: 15%;
   }
 }

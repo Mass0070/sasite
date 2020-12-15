@@ -72,7 +72,7 @@
       </div>
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
-      <div v-for="x in info" class="Unban" :key="x.id">
+      <div v-for="x in info" class="Unban" :key="x.id" @click="$router.push({ name: 'Ansøgning', params: { id: x.UnbanId }})">
         <p class="UnbanId">
           <a v-bind:href="'/application/' + x.UnbanId"
             ><span>ID:</span> {{ x.UnbanId }}</a
@@ -227,65 +227,59 @@ a {
 }
 
 .Unban {
-  margin: 0 auto;
-  background-color: #2f2f2f;
-  border: 4px solid #1f5bbb;
   border-radius: 30px;
   text-align: center;
   transition: 0.7s;
+  border: 4px solid #1f5bbb;
+  background-color: #212529;
+  width: 20em;
+  height: 20em;
 }
 .Unban:hover {
-  border: 4px solid green;
+  box-shadow: -4px 4px 15px rgba(0, 107, 214, 0.5), 4px -4px 15px rgba(0, 231, 169, 0.5);
+  transition: 0.7s;
   line-height: normal;
-  display: inline-block;
   transform: scale(0.9);
   transition: 0.7s;
 }
 .Grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  grid-auto-rows: 260px;
+  justify-content: center;
   margin-top: 15px;
 }
 
 .UnbanId {
-  font-size: 22px;
-  text-decoration: none;
-  margin-top: 5%;
   color: lightgrey;
+  margin-top: 1em;
 }
 .UnbanId span {
   color: #04ef04;
-  font-size: 22px;
 }
 
 .P-Status {
-  margin-top: 10px;
+  margin-top: 1em;
 }
 .P-Status-accepteret {
-  font-size: 19px;
   color: #04ef04;
   font-family: "Times New Roman", Times, serif;
 }
 .P-Status-afvis {
-  font-size: 19px;
   color: crimson;
   font-family: "Times New Roman", Times, serif;
 }
 
 .P-Oprettet {
-  margin-top: 8px;
+  margin-top: 1em;
 }
 .P-Oprettet span {
-  font-size: 19px;
   color: #04ef04;
 }
 .P-Opdateret {
-  margin-top: 8px;
+  margin-top: 1em;
 }
 .P-Opdateret span {
-  font-size: 19px;
   color: #04ef04;
 }
 
