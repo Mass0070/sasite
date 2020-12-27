@@ -15,7 +15,7 @@
         <b-dropdown-item href="/profile">Profil</b-dropdown-item>
         <b-dropdown-item href="/logout">Log ud</b-dropdown-item>
       </b-nav-item-dropdown>
-      <b-nav-item v-else :href="link">Log ind</b-nav-item>
+      <b-nav-item class="Nav-Tekst" v-else :href="link">Log ind</b-nav-item>
     </b-navbar-nav>
   </b-navbar>
 </template>
