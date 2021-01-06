@@ -5,7 +5,7 @@
 </template>
 <script>
 //import Axios from "axios";
-import UnbanAnsogCard from './Unban/UnbanAnsogCard.vue';
+import UnbanAnsogCard from "./Unban/UnbanAnsogCard.vue";
 
 export default {
   name: "ansøg",
@@ -13,14 +13,12 @@ export default {
     return {
       ansøg: false,
       selected: null,
-      options: [
-        { value: null, text: "Ingame-navn?" },
-      ],
+      options: [{ value: null, text: "Ingame-navn?" }],
     };
   },
   components: {
     UnbanAnsogCard,
-  }, 
+  },
   /*methods: {
     updateOptions: async function() {
       let accounts = []

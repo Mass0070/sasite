@@ -38,41 +38,41 @@ export default {
     navbar,
   },
   sockets: {
-    tidUdløb: function() {
-      this.alert("Din tid er udløbet", "error")
+    tidUdløb: function () {
+      this.alert("Din tid er udløbet", "error");
     },
-    Accept: function() {
-      this.alert("Din ansøgning er accepteret", "success")
+    Accept: function () {
+      this.alert("Din ansøgning er accepteret", "success");
     },
-    Deny: function() {
-      this.alert("Din ansøgning er afvist", "error")
+    Deny: function () {
+      this.alert("Din ansøgning er afvist", "error");
     },
     link(mc) {
-      this.alert("Du er blevet linket med " + mc, "success")
+      this.alert("Du er blevet linket med " + mc, "success");
     },
     unlink(mc) {
-      this.alert("Du er blevet unlinket med " + mc, "success")
-    }
-  }, 
+      this.alert("Du er blevet unlinket med " + mc, "success");
+    },
+  },
   methods: {
-    alert: function(message, icon) {
+    alert: function (message, icon) {
       const Toast = this.$swal.mixin({
         toast: true,
-        position: 'bottom-end',
+        position: "bottom-end",
         showConfirmButton: false,
         timer: 15000,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', this.$swal.stopTimer)
-          toast.addEventListener('mouseleave', this.$swal.resumeTimer)
-        }
-      })
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
 
       Toast.fire({
         icon: icon,
-        title: message
-      })
-    } 
-  }
+        title: message,
+      });
+    },
+  },
 };
 </script>

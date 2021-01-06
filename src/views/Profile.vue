@@ -72,7 +72,12 @@
       </div>
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
-      <div v-for="x in info" class="Unban" :key="x.id" @click="$router.push({ name: 'Ansøgning', params: { id: x.UnbanId }})">
+      <div
+        v-for="x in info"
+        class="Unban"
+        :key="x.id"
+        @click="$router.push({ name: 'Ansøgning', params: { id: x.UnbanId } })"
+      >
         <p class="UnbanId">
           <a v-bind:href="'/application/' + x.UnbanId"
             ><span>ID:</span> {{ x.UnbanId }}</a
@@ -236,7 +241,8 @@ a {
   height: 20em;
 }
 .Unban:hover {
-  box-shadow: -4px 4px 15px rgba(0, 107, 214, 0.5), 4px -4px 15px rgba(0, 231, 169, 0.5);
+  box-shadow: -4px 4px 15px rgba(0, 107, 214, 0.5),
+    4px -4px 15px rgba(0, 231, 169, 0.5);
   transition: 0.7s;
   line-height: normal;
   transform: scale(0.9);
@@ -515,11 +521,11 @@ export default {
   },
   sockets: {
     link() {
-      this.UpdateLinks()
+      this.UpdateLinks();
     },
     unlink() {
-      this.UpdateLinks()
-    }
-  }
+      this.UpdateLinks();
+    },
+  },
 };
 </script>
