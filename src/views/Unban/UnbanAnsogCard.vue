@@ -1,5 +1,20 @@
 <template>
     <div>
+        <b-modal
+            title="Unban Ansøgning"
+            v-model="ansog"
+            title-class="text-primary"
+            content-class="bg-dark"
+            header-close-variant="primary"
+            cancel-title="Annuller"
+        >
+            <b-form-select
+            :options="options"
+            v-model="selected"
+            size="sm"
+            class="mt-3"
+            ></b-form-select>
+        </b-modal>
         <b-card
         title="Unban"
         img-src="https://picsum.photos/600/300/?image=25"
@@ -16,7 +31,6 @@
                 <b-button @click="ansog = !ansog" variant="success"> 
                     Ansøg om unban
                 </b-button>
-                <unban-ansog-modal-1 v-model="ansog" enablemodal=true>
             </b-card-text>
         </b-card>
     </div>
@@ -24,22 +38,41 @@
 
 <script>
 import { BButton } from "bootstrap-vue";
-import UnbanAnsogModal1 from './UnbanAnsogModal1.vue';
 export default {
     name: "UnbanAnsogCard",
     data() {
         return {
             ansog: false,
+            selected: null,
+            options: [{ value: null, text: "Ingame-navn?" }],
         }
     },
     components: {
-        BButton,
-        UnbanAnsogModal1,
+        BButton
     },
     sockets: {
         tidUdløb: function() {
             this.ansøg = false;
         }
     },
+    async created() {
+        
+    },
+    methods: {
+        UpdateLinks: async function () {
+            await axios
+          .get(
+            "https://api.superawesome.ml/api/verify/" + this.$route.params.id,
+            {
+              headers: {
+                "API-Key": `${localStorage.token}`,
+              },
+            }
+          )
+          .then(async (response) => {
+            this.options = response.data
+          })
+        }
+    }
 }
 </script>
