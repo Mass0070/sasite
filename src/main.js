@@ -18,10 +18,11 @@ Vue.use(VueAnalytics, {
 
 Vue.config.productionTip = false;
 
-const socket = socketio.connect("https://superawesome.ml/users", {
+const socket = socketio("https://superawesome.ml/users", {
   query: {
     authorization: `${localStorage.token}`,
   },
+  autoConnect: false
 });
 
 Vue.use(
