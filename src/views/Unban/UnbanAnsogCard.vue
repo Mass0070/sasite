@@ -134,13 +134,15 @@
     </b-modal>
     <b-card
       title="Unban"
-      img-src="https://cdn.craftingstore.net/file/craftingstore-cdn/rPPmDHlLQ1/88877c02a17a70356ccf94a415c454ff/zipmrffshrn5icbngxqv.png"
+      img-src="https://mysticvortex.ml/unban.png"
       img-alt="Unban"
       img-top
       tag="Unban"
       style="
         max-width: 20rem;
         margin-bottom: 1%;
+        background: #2f3136;
+        color: wheat;
       "
       class="mb-2"
       align="center"
@@ -151,7 +153,7 @@
         Når du er klar så tryk på "Ansøg om unban".
         Er du blevet <span>afvist</span> har du ikke en chance længere.
         <br />
-        <b-button cent @click="opretUnban" variant="success">
+        <b-button cent @click="opretUnban" variant="success" style="margin-top: 5%; font-family: 'DM Mono', monospace;">
           Ansøg om unban
         </b-button>
       </b-card-text>
