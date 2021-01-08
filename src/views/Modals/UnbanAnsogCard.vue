@@ -243,7 +243,7 @@ import axios from "axios";
 import { BButton, BFormTextarea } from "bootstrap-vue";
 import questionARK from "./../../question";
 export default {
-  name: 'Unbanansogcard',
+  name: "Unbanansogcard",
   data() {
     return {
       options: [],

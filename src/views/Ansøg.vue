@@ -18,7 +18,7 @@
 export default {
   name: "ansøg",
   components: {
-    UnbanAnsogCard: () => import('./Modals/UnbanAnsogCard.vue')
+    UnbanAnsogCard: () => import("./Modals/UnbanAnsogCard.vue")
     //SupporterAnsogCard,
   },
 };
