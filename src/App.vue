@@ -71,10 +71,10 @@ export default {
       });
     },
   },
-  created: function() {
-    if(localStorage.token.length >= 10) {
-      this.$socket.open()
+  created: function () {
+    if (localStorage.token.length >= 10) {
+      this.$socket.open();
     }
-  }
+  },
 };
 </script>

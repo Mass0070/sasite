@@ -150,10 +150,15 @@
       <b-card-text>
         Er du klar til at ansøge om unban?
         <br />
-        Når du er klar så tryk på "Ansøg om unban".
-        Er du blevet <span>afvist</span> har du ikke en chance længere.
+        Når du er klar så tryk på "Ansøg om unban". Er du blevet
+        <span>afvist</span> har du ikke en chance længere.
         <br />
-        <b-button cent @click="opretUnban" variant="success" style="margin-top: 5%; font-family: 'DM Mono', monospace;">
+        <b-button
+          cent
+          @click="opretUnban"
+          variant="success"
+          style="margin-top: 5%; font-family: 'DM Mono', monospace"
+        >
           Ansøg om unban
         </b-button>
       </b-card-text>
@@ -241,47 +246,47 @@ export default {
   name: "UnbanAnsogCard",
   data() {
     return {
-      options: [ ],
-      options2: [ ],
-      ansøgning: { },
+      options: [],
+      options2: [],
+      ansøgning: {},
       question: {},
-      current: null
+      current: null,
     };
   },
   components: {
     BButton,
-    BFormTextarea
+    BFormTextarea,
   },
   sockets: {
     tidUdløb: function () {
-      this.$bvModal.hide(this.current)
-      this.alert("Din ansøgning er blevet anulleret", "warning")
+      this.$bvModal.hide(this.current);
+      this.alert("Din ansøgning er blevet anulleret", "warning");
     },
     newanswer: function () {
-      this.getSvar()
-      this.show()
+      this.getSvar();
+      this.show();
     },
     annuller: function () {
-      this.alert("Din ansøgning er blevet anulleret", "warning")
+      this.alert("Din ansøgning er blevet anulleret", "warning");
     },
     indsend: function () {
-      this.alert("Din ansøgning er blevet indsendt", "success")
-    }
+      this.alert("Din ansøgning er blevet indsendt", "success");
+    },
   },
   mounted() {
-    this.$root.$on('bv::modal::show', async (bvEvent, modalId) => {
-      this.current = modalId
-      await this.getSvar()
-      if(modalId === "svar1") {
-        this.UpdateLinks()
+    this.$root.$on("bv::modal::show", async (bvEvent, modalId) => {
+      this.current = modalId;
+      await this.getSvar();
+      if (modalId === "svar1") {
+        this.UpdateLinks();
       }
-      if(modalId === "svar2") {
-        this.getSvar2()
+      if (modalId === "svar2") {
+        this.getSvar2();
       }
-      if(modalId === "svar6") {
+      if (modalId === "svar6") {
         this.question = questionARK;
       }
-    })
+    });
   },
   methods: {
     isMobile() {
@@ -301,22 +306,37 @@ export default {
           headers: {
             "API-Key": `${localStorage.token}`,
           },
-        }
-      ).then(async (response) => {
-        if(response.data.svar1 && response.data.svar2 && response.data.svar3 && response.data.svar4 && response.data.svar5) {
-          this.$bvModal.show("svar6")
-        } else if(response.data.svar1 && response.data.svar2 && response.data.svar3 && response.data.svar4) {
-          this.$bvModal.show("svar5")
-        } else if(response.data.svar1 && response.data.svar2 && response.data.svar3) {
-          this.$bvModal.show("svar4")
-        } else if(response.data.svar1 && response.data.svar2) {
-          this.$bvModal.show("svar3")
-        } else if(response.data.svar1) {
-          this.$bvModal.show("svar2")
-        } else {
-          this.$bvModal.show("svar1")
-        }
-      })
+        })
+        .then(async (response) => {
+          if (
+            response.data.svar1 &&
+            response.data.svar2 &&
+            response.data.svar3 &&
+            response.data.svar4 &&
+            response.data.svar5
+          ) {
+            this.$bvModal.show("svar6");
+          } else if (
+            response.data.svar1 &&
+            response.data.svar2 &&
+            response.data.svar3 &&
+            response.data.svar4
+          ) {
+            this.$bvModal.show("svar5");
+          } else if (
+            response.data.svar1 &&
+            response.data.svar2 &&
+            response.data.svar3
+          ) {
+            this.$bvModal.show("svar4");
+          } else if (response.data.svar1 && response.data.svar2) {
+            this.$bvModal.show("svar3");
+          } else if (response.data.svar1) {
+            this.$bvModal.show("svar2");
+          } else {
+            this.$bvModal.show("svar1");
+          }
+        });
     },
     getSvar: async function () {
       await axios
@@ -324,40 +344,36 @@ export default {
           headers: {
             "API-Key": `${localStorage.token}`,
           },
-        }
-      )
-      .then(async (response) => {
-        this.ansøgning = response.data
-        response.data
-      })
+        })
+        .then(async (response) => {
+          this.ansøgning = response.data;
+          response.data;
+        });
     },
     UpdateLinks: async function () {
       await axios
-        .get(
-          "https://api.superawesome.ml/api/verify/",
-          {
-            headers: {
-              "API-Key": `${localStorage.token}`,
-            },
-          }
-        )
+        .get("https://api.superawesome.ml/api/verify/", {
+          headers: {
+            "API-Key": `${localStorage.token}`,
+          },
+        })
         .then(async (response) => {
           let newdata = response.data.map((e) => {
             return {
               value: e.uuid,
               text: e.username,
-              disabled: e.blacklist
-            }
-          })
-          newdata.push({ value: null, text: "Ingame-navn?" })
-          this.options = newdata
+              disabled: e.blacklist,
+            };
+          });
+          newdata.push({ value: null, text: "Ingame-navn?" });
+          this.options = newdata;
         });
     },
     addSvar: async function (svar, response) {
       let data = {
         [svar]: response,
-      }
-      console.log(data)
+      };
+      console.log(data);
       await axios
         .put(
           "https://api.superawesome.ml/api/apply/" + this.ansøgning.UnbanId,
@@ -366,42 +382,44 @@ export default {
             headers: {
               "API-Key": `${localStorage.token}`,
             },
-          },
+          }
         )
-        .then(response => {
-          if(response.data.message === "Svar1 done" || response.data.message === "Svar2 done" || response.data.message === "Svar3 done" || response.data.message === "Svar4 done" || response.data.message === "Svar5 done") {
+        .then((response) => {
+          if (
+            response.data.message === "Svar1 done" ||
+            response.data.message === "Svar2 done" ||
+            response.data.message === "Svar3 done" ||
+            response.data.message === "Svar4 done" ||
+            response.data.message === "Svar5 done"
+          ) {
             return this.show();
           }
-          if(svar) {
-            this.alert(response.data.message, "error")
+          if (svar) {
+            this.alert(response.data.message, "error");
           }
-        })
+        });
     },
     opretUnban: async function () {
       await axios
-        .post(
-          "https://api.superawesome.ml/api/apply/",
-          null,
-          {
-            headers: {
-              "API-Key": `${localStorage.token}`,
-            },
+        .post("https://api.superawesome.ml/api/apply/", null, {
+          headers: {
+            "API-Key": `${localStorage.token}`,
           },
-        )
-        .then(async (response) => {
-          if(response.data.message === "Ansøgning er ikke åben.") {
-            this.alert("Ansøgning er ikke åben.", "error")
-          } else if (response.data.message === "Igang") {
-            this.getSvar()
-            this.show()
-          } else if (response.data.message === "Sendt") {
-            this.alert("Du har allerede sendt en ansøgning.", "error")
-          } else if (response.data.message === "Oprettet") {
-            this.alert("Du har startet din ansøgning.", "success")
-          } else {
-            console.log(response.data.message)
-          }
         })
+        .then(async (response) => {
+          if (response.data.message === "Ansøgning er ikke åben.") {
+            this.alert("Ansøgning er ikke åben.", "error");
+          } else if (response.data.message === "Igang") {
+            this.getSvar();
+            this.show();
+          } else if (response.data.message === "Sendt") {
+            this.alert("Du har allerede sendt en ansøgning.", "error");
+          } else if (response.data.message === "Oprettet") {
+            this.alert("Du har startet din ansøgning.", "success");
+          } else {
+            console.log(response.data.message);
+          }
+        });
     },
     alert: function (message, icon) {
       const Toast = this.$swal.mixin({
@@ -417,62 +435,60 @@ export default {
       Toast.fire({
         icon: icon,
         title: message,
-      }).then(result => {
-        if(result.isConfirmed && message === "Du har startet din ansøgning.") {
-          this.show()
+      }).then((result) => {
+        if (result.isConfirmed && message === "Du har startet din ansøgning.") {
+          this.show();
         }
       });
     },
-    getSvar2: async function() {
-      console.log(this.ansøgning.uuid)
+    getSvar2: async function () {
+      console.log(this.ansøgning.uuid);
       await axios
-        .get(
-          "https://api.ashcon.app/mojang/v2/user/" + this.ansøgning.uuid,
-        )
+        .get("https://api.ashcon.app/mojang/v2/user/" + this.ansøgning.uuid)
         .then(async (response) => {
-          console.log(response.data)
+          console.log(response.data);
           let newdata = response.data.username_history.map((e) => {
             return {
               value: e.username,
-              text: e.username
-            }
-          })
-          newdata.push({ value: null, text: "2. Dit ingame navn, da du blev banned?" })
-          this.options2 = newdata
+              text: e.username,
+            };
+          });
+          newdata.push({
+            value: null,
+            text: "2. Dit ingame navn, da du blev banned?",
+          });
+          this.options2 = newdata;
         });
     },
-    indsend: async function() {
+    indsend: async function () {
       await axios
-        .post(
-          "https://api.superawesome.ml/api/apply/indsend",
-          null,
-          {
-            headers: {
-              "API-Key": `${localStorage.token}`,
-            },
-          }
-        ).then(async(response) => {
-          if(response.data.message === "Need answer on") {
-            this.alert("Mangler svar på " + response.data.needsvar.toString(), "error")
-          }
+        .post("https://api.superawesome.ml/api/apply/indsend", null, {
+          headers: {
+            "API-Key": `${localStorage.token}`,
+          },
         })
+        .then(async (response) => {
+          if (response.data.message === "Need answer on") {
+            this.alert(
+              "Mangler svar på " + response.data.needsvar.toString(),
+              "error"
+            );
+          }
+        });
     },
-    annuller: async function() {
+    annuller: async function () {
       await axios
-        .post(
-          "https://api.superawesome.ml/api/apply/annuller",
-          null,
-          {
-            headers: {
-              "API-Key": `${localStorage.token}`,
-            },
-          }
-        ).then(async(response) => {
-          if(response.data.message === "Not found") {
-            this.alert("Kunne ikke finde din ansøgning", "error")
-          }
+        .post("https://api.superawesome.ml/api/apply/annuller", null, {
+          headers: {
+            "API-Key": `${localStorage.token}`,
+          },
         })
-    }
+        .then(async (response) => {
+          if (response.data.message === "Not found") {
+            this.alert("Kunne ikke finde din ansøgning", "error");
+          }
+        });
+    },
   },
 };
 </script>

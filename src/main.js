@@ -22,7 +22,7 @@ const socket = socketio("https://superawesome.ml/users", {
   query: {
     authorization: `${localStorage.token}`,
   },
-  autoConnect: false
+  autoConnect: false,
 });
 
 Vue.use(
