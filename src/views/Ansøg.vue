@@ -13,13 +13,12 @@
   </div>
 </template>
 <script>
-import UnbanAnsogCard from "./Modals/UnbanAnsogCard.vue";
 //import SupporterAnsogCard from "./Modals/SupporterAnsogCard.vue";
 
 export default {
   name: "ansøg",
   components: {
-    UnbanAnsogCard,
+    UnbanAnsogCard: () => import('./Modals/UnbanAnsogCard.vue')
     //SupporterAnsogCard,
   },
 };
