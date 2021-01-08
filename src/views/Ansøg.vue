@@ -4,13 +4,14 @@
   </div>
 </template>
 <script>
-//import Axios from "axios";
-import UnbanAnsogCard from "./Unban/UnbanAnsogCard.vue";
+import UnbanAnsogCard from "./Modals/UnbanAnsogCard.vue";
+//import SupporterAnsogCard from "./Modals/SupporterAnsogCard.vue";
 
 export default {
   name: "ansøg",
   components: {
     UnbanAnsogCard,
+    //SupporterAnsogCard,
   },
 };
 </script>

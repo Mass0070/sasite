@@ -244,7 +244,8 @@ export default {
       options: [ ],
       options2: [ ],
       ansøgning: { },
-      question: {}
+      question: {},
+      current: null
     };
   },
   components: {
@@ -253,8 +254,8 @@ export default {
   },
   sockets: {
     tidUdløb: function () {
+      this.$bvModal.hide(this.current)
       this.alert("Din ansøgning er blevet anulleret", "warning")
-      this.$bvModal.hide()
     },
     newanswer: function () {
       this.getSvar()
@@ -269,6 +270,7 @@ export default {
   },
   mounted() {
     this.$root.$on('bv::modal::show', async (bvEvent, modalId) => {
+      this.current = modalId
       await this.getSvar()
       if(modalId === "svar1") {
         this.UpdateLinks()
