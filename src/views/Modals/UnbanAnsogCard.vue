@@ -418,9 +418,9 @@ export default {
         });
     },
     opretUnban: async function () {
-      await this.getSvar()
-      if(this.ansøgning.status === "Igang") {
-        this.show()
+      await this.getSvar();
+      if (this.ansøgning.status === "Igang") {
+        this.show();
         return;
       }
       await axios
