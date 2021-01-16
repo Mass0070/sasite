@@ -114,7 +114,7 @@
       content-class="bg-dark"
       header-close-variant="primary"
       cancel-title="Annuller"
-      id="svar6"
+      id="Afslutning"
       ok-title="Indsend"
       @ok="indsend()"
       @cancel="annuller()"
@@ -341,7 +341,7 @@ export default {
             response.data.svar4 &&
             response.data.svar5
           ) {
-            this.$bvModal.show("svar6");
+            this.$bvModal.show("Afslutning");
           } else if (
             response.data.svar1 &&
             response.data.svar2 &&
