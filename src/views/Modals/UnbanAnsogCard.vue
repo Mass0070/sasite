@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-modal
-      title="Unban Ansøgning 1"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -13,7 +13,7 @@
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.q1 }}</p>
+      <p class="my-4">{{ question.Unban[0] }}</p>
       <b-form-select
         :options="options"
         v-model="ansøgning.uuid"
@@ -22,7 +22,7 @@
       ></b-form-select>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 2"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -34,7 +34,7 @@
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.q2 }}</p>
+      <p class="my-4">{{ question.Unban[1] }}</p>
       <b-form-select
         :options="options2"
         v-model="ansøgning.svar2"
@@ -43,7 +43,7 @@
       ></b-form-select>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 3"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -55,16 +55,17 @@
       header-border-variant="dark"
       footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[2] }}</p>
       <b-form-textarea
         id="textarea"
         v-model="ansøgning.svar3"
-        placeholder="3. Ban grund?"
+        :placeholder="question.Unban[2]"
         rows="3"
         max-rows="6"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 4"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -76,16 +77,17 @@
       header-border-variant="dark"
       footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[3] }}</p>
       <b-form-textarea
         id="textarea"
         v-model="ansøgning.svar4"
-        placeholder="4. Hvorfor skal vi unbanne dig?"
+        :placeholder="question.Unban[3]"
         rows="3"
         max-rows="6"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 5"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -97,16 +99,17 @@
       header-border-variant="dark"
       footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[4] }}</p>
       <b-form-textarea
         id="textarea"
         v-model="ansøgning.svar5"
-        placeholder="5. Kontakter du staff omkring din appeal, vil den blive afvist, OK?"
+        :placeholder="question.Unban[4]"
         rows="3"
         max-rows="6"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 5"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -120,27 +123,27 @@
     >
       <div id="about">
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q1 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[0] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar1 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q2 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[1] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar2 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q3 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[2] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar3 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q4 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[3] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar4 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q5 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[4] }}</h3>
           <p class="ansøgnings-p-sidst">{{ ansøgning.svar5 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
@@ -222,6 +225,14 @@
   margin-bottom: 3%;
   word-wrap: break-word;
 }
+.my-4 {
+  color: wheat;
+  font-size: 25px;
+  text-shadow: 4px 4px 0 #222;
+  font-weight: 650;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
 @media only screen and (min-width: 930px) {
   /* For desktop: */
   #about {
@@ -267,7 +278,7 @@ export default {
       options: [],
       options2: [],
       ansøgning: {},
-      question: {},
+      question: questionARK,
       current: null,
     };
   },
@@ -278,7 +289,7 @@ export default {
   sockets: {
     tidUdløb: function () {
       this.$bvModal.hide(this.current);
-      this.alert("Din tid på ansøgning er blevet udløbet", "warning");
+      this.alert("Din tid på ansøgning er udløbet", "warning");
     },
     newanswer: function () {
       this.getSvar();
@@ -300,9 +311,6 @@ export default {
       }
       if (modalId === "svar2") {
         this.getSvar2();
-      }
-      if (modalId === "svar6") {
-        this.question = questionARK;
       }
     });
   },
@@ -383,7 +391,9 @@ export default {
               disabled: e.blacklist,
             };
           });
-          newdata.push({ value: null, text: "Ingame-navn?" });
+          let Unblacklist = newdata.find((x) => x.disabled === false);
+          if (Unblacklist) this.ansøgning.uuid = Unblacklist.value;
+          if (!Unblacklist) this.ansøgning.uuid = newdata[0].value;
           this.options = newdata;
         });
     },
@@ -478,7 +488,7 @@ export default {
           });
           newdata.push({
             value: null,
-            text: "2. Dit ingame navn, da du blev banned?",
+            text: questionARK.Unban[1],
           });
           this.options2 = newdata;
         });
