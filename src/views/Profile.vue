@@ -25,7 +25,7 @@
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <b-img
           :id="x.username"
-          v-bind:src="'https://minotar.net/avatar/' + x.username"
+          v-bind:src="'https://minotar.net/avatar/' + x.uuid"
           fluid
           :alt="x.username"
           width="100"
@@ -60,6 +60,8 @@
             @ok="Add"
             @hide="code = ''"
             id="Plus"
+            header-border-variant="dark"
+            footer-border-variant="dark"
           >
             <b-form-input
               v-model="code"

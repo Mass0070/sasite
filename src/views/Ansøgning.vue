@@ -130,6 +130,7 @@
   margin-top: 0.5em;
   font-family: "Lucida Console", Courier, monospace;
   margin: auto;
+  word-wrap: break-word;
 }
 .ansøgnings-p-sidst {
   color: #34a206;
@@ -140,6 +141,7 @@
   margin-top: 0.5em;
   margin-left: 15%;
   margin-bottom: 3%;
+  word-wrap: break-word;
 }
 @media only screen and (min-width: 930px) {
   /* For desktop: */
@@ -159,6 +161,7 @@
     text-align: center;
     margin-top: 0.5em;
     font-family: "Lucida Console", Courier, monospace;
+    word-wrap: break-word;
   }
   .ansøgnings-p-sidst {
     color: #34a206;
@@ -169,6 +172,7 @@
     width: 70%;
     margin-top: 0.5em;
     margin-left: 15%;
+    word-wrap: break-word;
   }
 }
 </style>

@@ -10,7 +10,10 @@
       ok-title="Næste"
       @ok="addSvar('svar1', ansøgning.uuid)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.q1 }}</p>
       <b-form-select
         :options="options"
         v-model="ansøgning.uuid"
@@ -28,7 +31,10 @@
       ok-title="Næste"
       @ok="addSvar('svar2', ansøgning.svar2)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.q2 }}</p>
       <b-form-select
         :options="options2"
         v-model="ansøgning.svar2"
@@ -46,6 +52,8 @@
       ok-title="Næste"
       @ok="addSvar('svar3', ansøgning.svar3)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
       <b-form-textarea
         id="textarea"
@@ -65,6 +73,8 @@
       ok-title="Næste"
       @ok="addSvar('svar4', ansøgning.svar4)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
       <b-form-textarea
         id="textarea"
@@ -75,7 +85,7 @@
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 4"
+      title="Unban Ansøgning 5"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -84,6 +94,8 @@
       ok-title="Næste"
       @ok="addSvar('svar5', ansøgning.svar5)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
       <b-form-textarea
         id="textarea"
@@ -103,6 +115,8 @@
       ok-title="Indsend"
       @ok="indsend()"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
       <div id="about">
         <div class="Hover">
@@ -195,6 +209,7 @@
   margin-top: 0.5em;
   font-family: "Lucida Console", Courier, monospace;
   margin: auto;
+  word-wrap: break-word;
 }
 .ansøgnings-p-sidst {
   color: #34a206;
@@ -205,6 +220,7 @@
   margin-top: 0.5em;
   margin-left: 15%;
   margin-bottom: 3%;
+  word-wrap: break-word;
 }
 @media only screen and (min-width: 930px) {
   /* For desktop: */
@@ -224,6 +240,7 @@
     text-align: center;
     margin-top: 0.5em;
     font-family: "Lucida Console", Courier, monospace;
+    word-wrap: break-word;
   }
   .ansøgnings-p-sidst {
     color: #34a206;
@@ -234,6 +251,7 @@
     width: 70%;
     margin-top: 0.5em;
     margin-left: 15%;
+    word-wrap: break-word;
   }
 }
 </style>
@@ -260,7 +278,7 @@ export default {
   sockets: {
     tidUdløb: function () {
       this.$bvModal.hide(this.current);
-      this.alert("Din ansøgning er blevet anulleret", "warning");
+      this.alert("Din tid på ansøgning er blevet udløbet", "warning");
     },
     newanswer: function () {
       this.getSvar();
@@ -400,6 +418,11 @@ export default {
         });
     },
     opretUnban: async function () {
+      await this.getSvar()
+      if(this.ansøgning.status === "Igang") {
+        this.show()
+        return;
+      }
       await axios
         .post("https://api.superawesome.ml/api/apply/", null, {
           headers: {

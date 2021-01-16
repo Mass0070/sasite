@@ -41,7 +41,7 @@ export default {
     Accept: function () {
       this.alert("Din ansøgning er accepteret", "success");
     },
-    Deny: function () {
+    Afvist: function () {
       this.alert("Din ansøgning er afvist", "error");
     },
     link(mc) {
