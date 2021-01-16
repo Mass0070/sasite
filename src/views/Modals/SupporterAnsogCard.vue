@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-modal
-      title="Unban Ansøgning 1"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -10,7 +10,10 @@
       ok-title="Næste"
       @ok="addSvar('svar1', ansøgning.uuid)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[0] }}</p>
       <b-form-select
         :options="options"
         v-model="ansøgning.uuid"
@@ -19,7 +22,7 @@
       ></b-form-select>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 2"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -28,7 +31,10 @@
       ok-title="Næste"
       @ok="addSvar('svar2', ansøgning.svar2)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[1] }}</p>
       <b-form-select
         :options="options2"
         v-model="ansøgning.svar2"
@@ -37,7 +43,7 @@
       ></b-form-select>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 3"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -46,17 +52,20 @@
       ok-title="Næste"
       @ok="addSvar('svar3', ansøgning.svar3)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[2] }}</p>
       <b-form-textarea
         id="textarea"
         v-model="ansøgning.svar3"
-        placeholder="3. Ban grund?"
+        :placeholder="question.Unban[2]"
         rows="3"
         max-rows="6"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 4"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -65,17 +74,20 @@
       ok-title="Næste"
       @ok="addSvar('svar4', ansøgning.svar4)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[3] }}</p>
       <b-form-textarea
         id="textarea"
         v-model="ansøgning.svar4"
-        placeholder="4. Hvorfor skal vi unbanne dig?"
+        :placeholder="question.Unban[3]"
         rows="3"
         max-rows="6"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 4"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -84,17 +96,20 @@
       ok-title="Næste"
       @ok="addSvar('svar5', ansøgning.svar5)"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
+      <p class="my-4">{{ question.Unban[4] }}</p>
       <b-form-textarea
         id="textarea"
         v-model="ansøgning.svar5"
-        placeholder="5. Kontakter du staff omkring din appeal, vil den blive afvist, OK?"
+        :placeholder="question.Unban[4]"
         rows="3"
         max-rows="6"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning 5"
+      title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -103,30 +118,32 @@
       ok-title="Indsend"
       @ok="indsend()"
       @cancel="annuller()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
     >
       <div id="about">
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q1 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[0] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar1 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q2 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[1] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar2 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q3 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[2] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar3 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q4 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[3] }}</h3>
           <p class="ansøgnings-p">{{ ansøgning.svar4 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
         <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.q5 }}</h3>
+          <h3 class="ansøgnings-h3">{{ question.Unban[4] }}</h3>
           <p class="ansøgnings-p-sidst">{{ ansøgning.svar5 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
@@ -195,6 +212,7 @@
   margin-top: 0.5em;
   font-family: "Lucida Console", Courier, monospace;
   margin: auto;
+  word-wrap: break-word;
 }
 .ansøgnings-p-sidst {
   color: #34a206;
@@ -205,6 +223,15 @@
   margin-top: 0.5em;
   margin-left: 15%;
   margin-bottom: 3%;
+  word-wrap: break-word;
+}
+.my-4 {
+  color: wheat;
+  font-size: 25px;
+  text-shadow: 4px 4px 0 #222;
+  font-weight: 650;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 @media only screen and (min-width: 930px) {
   /* For desktop: */
@@ -224,6 +251,7 @@
     text-align: center;
     margin-top: 0.5em;
     font-family: "Lucida Console", Courier, monospace;
+    word-wrap: break-word;
   }
   .ansøgnings-p-sidst {
     color: #34a206;
@@ -234,6 +262,7 @@
     width: 70%;
     margin-top: 0.5em;
     margin-left: 15%;
+    word-wrap: break-word;
   }
 }
 </style>
@@ -243,35 +272,19 @@ import axios from "axios";
 import { BButton, BFormTextarea } from "bootstrap-vue";
 import questionARK from "./../../question";
 export default {
-  name: "SupporterAnsogCard",
+  name: "Unbanansogcard",
   data() {
     return {
       options: [],
       options2: [],
       ansøgning: {},
-      question: {},
+      question: questionARK,
       current: null,
     };
   },
   components: {
     BButton,
     BFormTextarea,
-  },
-  sockets: {
-    tidUdløb: function () {
-      this.$bvModal.hide(this.current);
-      this.alert("Din ansøgning er blevet anulleret", "warning");
-    },
-    newanswer: function () {
-      this.getSvar();
-      this.show();
-    },
-    annuller: function () {
-      this.alert("Din ansøgning er blevet anulleret", "warning");
-    },
-    indsend: function () {
-      this.alert("Din ansøgning er blevet indsendt", "success");
-    },
   },
   mounted() {
     this.$root.$on("bv::modal::show", async (bvEvent, modalId) => {
@@ -282,9 +295,6 @@ export default {
       }
       if (modalId === "svar2") {
         this.getSvar2();
-      }
-      if (modalId === "svar6") {
-        this.question = questionARK;
       }
     });
   },
@@ -365,7 +375,9 @@ export default {
               disabled: e.blacklist,
             };
           });
-          newdata.push({ value: null, text: "Ingame-navn?" });
+          let Unblacklist = newdata.find((x) => x.disabled === false);
+          if (Unblacklist) this.ansøgning.uuid = Unblacklist.value;
+          if (!Unblacklist) this.ansøgning.uuid = newdata[0].value;
           this.options = newdata;
         });
     },
@@ -400,6 +412,11 @@ export default {
         });
     },
     opretUnban: async function () {
+      await this.getSvar();
+      if (this.ansøgning.status === "Igang") {
+        this.show();
+        return;
+      }
       await axios
         .post("https://api.superawesome.ml/api/apply/", null, {
           headers: {
@@ -455,7 +472,7 @@ export default {
           });
           newdata.push({
             value: null,
-            text: "2. Dit ingame navn, da du blev banned?",
+            text: questionARK.Unban[1],
           });
           this.options2 = newdata;
         });
