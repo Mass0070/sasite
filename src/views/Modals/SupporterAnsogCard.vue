@@ -1,111 +1,232 @@
 <template>
   <div>
     <b-modal
-      title="Unban Ansøgning"
+      title="Supporter Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
       cancel-title="Annuller"
-      id="svar1"
+      id="supporter-svar1"
       ok-title="Næste"
-      @ok="addSvar('svar1', ansøgning.uuid)"
+      @ok="nextSvar()"
       @cancel="annuller()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[0] }}</p>
+      <p class="my-4">{{ Squestion.Supporter[0] }}</p>
       <b-form-select
-        :options="options"
-        v-model="ansøgning.uuid"
+        :options="Soptions"
+        v-model="Application.info.uuid"
         size="sm"
         class="mt-3"
+        @change="Updatesvar()"
       ></b-form-select>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning"
+      title="Supporter Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar2"
+      cancel-title="Tilbage"
+      id="supporter-svar2"
       ok-title="Næste"
-      @ok="addSvar('svar2', ansøgning.svar2)"
-      @cancel="annuller()"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[1] }}</p>
-      <b-form-select
-        :options="options2"
-        v-model="ansøgning.svar2"
-        size="sm"
-        class="mt-3"
-      ></b-form-select>
-    </b-modal>
-    <b-modal
-      title="Unban Ansøgning"
-      title-class="text-primary"
-      content-class="bg-dark"
-      header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar3"
-      ok-title="Næste"
-      @ok="addSvar('svar3', ansøgning.svar3)"
-      @cancel="annuller()"
-      header-border-variant="dark"
-      footer-border-variant="dark"
-    >
-      <p class="my-4">{{ question.Unban[2] }}</p>
+      <p class="my-4">{{ Squestion.Supporter[1] }}</p>
       <b-form-textarea
         id="textarea"
-        v-model="ansøgning.svar3"
-        :placeholder="question.Unban[2]"
+        v-model="Application.svar.svar2"
+        :placeholder="Squestion.Supporter[1]"
         rows="3"
         max-rows="6"
+        @change="Updatesvar()"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning"
+      title="Supporter Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar4"
+      cancel-title="Tilbage"
+      id="supporter-svar3"
       ok-title="Næste"
-      @ok="addSvar('svar4', ansøgning.svar4)"
-      @cancel="annuller()"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[3] }}</p>
+      <p class="my-4">{{ Squestion.Supporter[2] }}</p>
       <b-form-textarea
         id="textarea"
-        v-model="ansøgning.svar4"
-        :placeholder="question.Unban[3]"
+        v-model="Application.svar.svar3"
+        :placeholder="Squestion.Supporter[2]"
         rows="3"
         max-rows="6"
+        @change="Updatesvar()"
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning"
+      title="Supporter Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar5"
+      cancel-title="Tilbage"
+      id="supporter-svar4"
       ok-title="Næste"
-      @ok="addSvar('svar5', ansøgning.svar5)"
-      @cancel="annuller()"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[4] }}</p>
+      <p class="my-4">{{ Squestion.Supporter[3] }}</p>
       <b-form-textarea
         id="textarea"
-        v-model="ansøgning.svar5"
-        :placeholder="question.Unban[4]"
+        v-model="Application.svar.svar4"
+        :placeholder="Squestion.Supporter[3]"
         rows="3"
         max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar5"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[4] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar5"
+        :placeholder="Squestion.Supporter[4]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar6"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[5] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar6"
+        :placeholder="Squestion.Supporter[5]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar7"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[6] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar7"
+        :placeholder="Squestion.Supporter[6]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar8"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[7] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar8"
+        :placeholder="Squestion.Supporter[7]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar9"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[8] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar9"
+        :placeholder="Squestion.Supporter[8]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar10"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[9] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar10"
+        :placeholder="Squestion.Supporter[9]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
       ></b-form-textarea>
     </b-modal>
     <b-modal
@@ -114,7 +235,7 @@
       content-class="bg-dark"
       header-close-variant="primary"
       cancel-title="Annuller"
-      id="Afslutning"
+      id="supporter-afslutning"
       ok-title="Indsend"
       @ok="indsend()"
       @cancel="annuller()"
@@ -122,64 +243,64 @@
       footer-border-variant="dark"
     >
       <div id="about">
-        <div v-if="info.svar.svar1" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[0] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar1 }}</p>
+        <div v-if="Application.svar.svar1" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[0] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar1 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar2" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[1] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar2 }}</p>
+        <div v-if="Application.svar.svar2" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[1] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar2 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar3" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[2] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar3 }}</p>
+        <div v-if="Application.svar.svar3" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[2] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar3 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar4" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[3] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar4 }}</p>
+        <div v-if="Application.svar.svar4" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[3] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar4 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar5" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[4] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar5 }}</p>
+        <div v-if="Application.svar.svar5" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[4] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar5 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar6" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[5] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar6 }}</p>
+        <div v-if="Application.svar.svar6" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[5] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar6 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar7" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[6] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar7 }}</p>
+        <div v-if="Application.svar.svar7" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[6] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar7 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar8" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[7] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar8 }}</p>
+        <div v-if="Application.svar.svar8" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[7] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar8 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar9" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[8] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar9 }}</p>
+        <div v-if="Application.svar.svar9" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[8] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar9 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div v-if="info.svar.svar10" class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Supporter[9] }}</h3>
-          <p class="ansøgnings-p">{{ info.svar.svar10 }}</p>
+        <div v-if="Application.svar.svar10" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[9] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar10 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
       </div>
     </b-modal>
     <b-card
-      title="Unban"
-      img-src="https://superawesome.ml/unban.png"
-      img-alt="Unban"
+      title="Supporter"
+      img-src="https://superawesome.ml/Supporter.png"
+      img-alt="Supporter"
       img-top
-      tag="Unban"
+      tag="Supporter"
       style="
         max-width: 20rem;
         margin-bottom: 1%;
@@ -295,16 +416,18 @@
 <script>
 import axios from "axios";
 import { BButton, BFormTextarea } from "bootstrap-vue";
-import questionARK from "./../../question";
+import SquestionARK from "./../../question";
 export default {
-  name: "Unbanansogcard",
+  name: "Supporteransogcard",
   data() {
     return {
-      options: [],
-      options2: [],
-      ansøgning: {},
-      question: questionARK,
-      current: null,
+      Soptions: [],
+      Application: {
+        info: {},
+        svar: {},
+      },
+      Squestion: SquestionARK,
+      Scurrent: null,
     };
   },
   components: {
@@ -315,11 +438,8 @@ export default {
     this.$root.$on("bv::modal::show", async (bvEvent, modalId) => {
       this.current = modalId;
       await this.getSvar();
-      if (modalId === "svar1") {
+      if (modalId === "supporter-svar1") {
         this.UpdateLinks();
-      }
-      if (modalId === "svar2") {
-        this.getSvar2();
       }
     });
   },
@@ -335,48 +455,39 @@ export default {
         return false;
       }
     },
-    show: async function () {
+    getSvar: async function () {
       await axios
-        .post("https://api.superawesome.ml/api/apply/@me", null, {
+        .post("http://localhost:4040/supporterapply/@meAlle", null, {
           headers: {
             "API-Key": `${localStorage.token}`,
           },
         })
         .then(async (response) => {
-          if (response.data.length === 12) {
-            this.$bvModal.show("Afslutningen");
-          } else if (
-            response.data.svar1 &&
-            response.data.svar2 &&
-            response.data.svar3 &&
-            response.data.svar4
-          ) {
-            this.$bvModal.show("svar5");
-          } else if (
-            response.data.svar1 &&
-            response.data.svar2 &&
-            response.data.svar3
-          ) {
-            this.$bvModal.show("svar4");
-          } else if (response.data.svar1 && response.data.svar2) {
-            this.$bvModal.show("svar3");
-          } else if (response.data.svar1) {
-            this.$bvModal.show("svar2");
-          } else {
-            this.$bvModal.show("svar1");
+          if (response.data.length > 0) {
+            this.Application = response.data.find(
+              (x) => x.info && x.info.status === "Igang"
+            );
+            if (!this.Application.svar) this.Application.svar = {};
+            if (!this.Application.info) this.Application.info = {};
           }
         });
     },
-    getSvar: async function () {
+    opretSupporter: async function () {
+      await this.getSvar();
+      if (this.Application && this.Application.info.status === "Igang") {
+        this.$bvModal.show("supporter-svar1");
+        return;
+      }
       await axios
-        .post("https://api.superawesome.ml/api/apply/@me", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
+        .post("http://localhost:4040/supporterapply/", null, {
+          headers: { "API-Key": `${localStorage.token}` },
         })
-        .then(async (response) => {
-          this.ansøgning = response.data;
-          response.data;
+        .then((response) => {
+          if (response.data.success) {
+            this.$bvModal.show("supporter-svar1");
+          } else {
+            this.alert(response.data.message, "error");
+          }
         });
     },
     UpdateLinks: async function () {
@@ -395,67 +506,95 @@ export default {
             };
           });
           let Unblacklist = newdata.find((x) => x.disabled === false);
-          if (Unblacklist) this.ansøgning.uuid = Unblacklist.value;
-          if (!Unblacklist) this.ansøgning.uuid = newdata[0].value;
-          this.options = newdata;
+          if (!this.Application.info.uuid) {
+            if (Unblacklist) this.Application.info.uuid = Unblacklist.value;
+            if (!Unblacklist) this.Application.info.uuid = newdata[0].value;
+          }
+          this.Soptions = newdata;
         });
     },
-    addSvar: async function (svar, response) {
-      let data = {
-        [svar]: response,
-      };
-      console.log(data);
+    Updatesvar: async function () {
+      await axios.post(
+        "http://localhost:4040/supporterapply/" + this.Application._id,
+        {
+          [this.Application.info.uuid ? "uuid" : null]: this.Application.info
+            .uuid,
+          ...this.Application.svar,
+        },
+        { headers: { "API-Key": `${localStorage.token}` } }
+      );
+    },
+    nextSvar: async function () {
+      this.$bvModal.hide(this.current);
+      if (this.current === "supporter-svar1") {
+        this.$bvModal.show("supporter-svar2");
+      } else if (this.current === "supporter-svar2") {
+        this.$bvModal.show("supporter-svar3");
+      } else if (this.current === "supporter-svar3") {
+        this.$bvModal.show("supporter-svar4");
+      } else if (this.current === "supporter-svar4") {
+        this.$bvModal.show("supporter-svar5");
+      } else if (this.current === "supporter-svar5") {
+        this.$bvModal.show("supporter-svar6");
+      } else if (this.current === "supporter-svar6") {
+        this.$bvModal.show("supporter-svar7");
+      } else if (this.current === "supporter-svar7") {
+        this.$bvModal.show("supporter-svar8");
+      } else if (this.current === "supporter-svar8") {
+        this.$bvModal.show("supporter-svar9");
+      } else if (this.current === "supporter-svar9") {
+        this.$bvModal.show("supporter-svar10");
+      } else if (this.current === "supporter-svar10") {
+        this.$bvModal.show("supporter-afslutning");
+      }
+    },
+    backSvar: async function () {
+      this.$bvModal.hide(this.current);
+      if (this.current === "supporter-svar10") {
+        this.$bvModal.show("supporter-svar9");
+      } else if (this.current === "supporter-svar9") {
+        this.$bvModal.show("supporter-svar8");
+      } else if (this.current === "supporter-svar8") {
+        this.$bvModal.show("supporter-svar7");
+      } else if (this.current === "supporter-svar7") {
+        this.$bvModal.show("supporter-svar6");
+      } else if (this.current === "supporter-svar6") {
+        this.$bvModal.show("supporter-svar5");
+      } else if (this.current === "supporter-svar5") {
+        this.$bvModal.show("supporter-svar4");
+      } else if (this.current === "supporter-svar4") {
+        this.$bvModal.show("supporter-svar3");
+      } else if (this.current === "supporter-svar3") {
+        this.$bvModal.show("supporter-svar2");
+      } else if (this.current === "supporter-svar2") {
+        this.$bvModal.show("supporter-svar1");
+      }
+    },
+    indsend: async function () {
       await axios
-        .put(
-          "https://api.superawesome.ml/api/apply/" + this.ansøgning.UnbanId,
-          data,
-          {
-            headers: {
-              "API-Key": `${localStorage.token}`,
-            },
-          }
+        .post(
+          "http://localhost:4040/supporterapply/" +
+            this.Application._id +
+            "/indsend",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
         )
         .then((response) => {
-          if (
-            response.data.message === "Svar1 done" ||
-            response.data.message === "Svar2 done" ||
-            response.data.message === "Svar3 done" ||
-            response.data.message === "Svar4 done" ||
-            response.data.message === "Svar5 done"
-          ) {
-            return this.show();
-          }
-          if (svar) {
+          if (response.data.success) {
+            this.alert("Du har indsendt din ansøgning", "success");
+          } else {
             this.alert(response.data.message, "error");
           }
         });
     },
-    opretSupporter: async function () {
-      await this.getSvar();
-      if (this.ansøgning.status === "Igang") {
-        this.show();
-        return;
-      }
-      await axios
-        .post("https://api.superawesome.ml/api/apply/", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          if (response.data.message === "Ansøgning er ikke åben.") {
-            this.alert("Ansøgning er ikke åben.", "error");
-          } else if (response.data.message === "Igang") {
-            this.getSvar();
-            this.show();
-          } else if (response.data.message === "Sendt") {
-            this.alert("Du har allerede sendt en ansøgning.", "error");
-          } else if (response.data.message === "Oprettet") {
-            this.alert("Du har startet din ansøgning.", "success");
-          } else {
-            console.log(response.data.message);
-          }
-        });
+    annuller: async function () {
+      await axios.post(
+        "http://localhost:4040/supporterapply/" +
+          this.Application._id +
+          "/annuller",
+        null,
+        { headers: { "API-Key": `${localStorage.token}` } }
+      );
     },
     alert: function (message, icon) {
       const Toast = this.$swal.mixin({
@@ -476,54 +615,6 @@ export default {
           this.show();
         }
       });
-    },
-    getSvar2: async function () {
-      console.log(this.ansøgning.uuid);
-      await axios
-        .get("https://api.ashcon.app/mojang/v2/user/" + this.ansøgning.uuid)
-        .then(async (response) => {
-          console.log(response.data);
-          let newdata = response.data.username_history.map((e) => {
-            return {
-              value: e.username,
-              text: e.username,
-            };
-          });
-          newdata.push({
-            value: null,
-            text: questionARK.Unban[1],
-          });
-          this.options2 = newdata;
-        });
-    },
-    indsend: async function () {
-      await axios
-        .post("https://api.superawesome.ml/api/apply/indsend", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          if (response.data.message === "Need answer on") {
-            this.alert(
-              "Mangler svar på " + response.data.needsvar.toString(),
-              "error"
-            );
-          }
-        });
-    },
-    annuller: async function () {
-      await axios
-        .post("https://api.superawesome.ml/api/apply/annuller", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          if (response.data.message === "Not found") {
-            this.alert("Kunne ikke finde din ansøgning", "error");
-          }
-        });
     },
   },
 };

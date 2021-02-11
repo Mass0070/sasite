@@ -10,6 +10,7 @@
     "
   >
     <unban-ansog-card />
+    <supporter-ansog-card />
   </div>
 </template>
 <script>
@@ -19,7 +20,7 @@ export default {
   name: "ansøg",
   components: {
     UnbanAnsogCard: () => import("./Modals/UnbanAnsogCard.vue"),
-    //SupporterAnsogCard,
+    SupporterAnsogCard: () => import("./Modals/SupporterAnsogCard.vue"),
   },
 };
 </script>
