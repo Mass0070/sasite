@@ -386,8 +386,8 @@ export default {
     getApplications: async function (type) {
       let link;
       if (type === "supporter")
-        link = "http://localhost:4040/supporterapply/@meAlle";
-      else link = "http://localhost:4040/api/apply/@meAlle";
+        link = "https://api.superawesome.ml/supporterapply/@meAlle";
+      else link = "https://api.superawesome.ml/api/apply/@meAlle";
       await axios
         .post(
           link,

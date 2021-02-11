@@ -210,7 +210,7 @@ export default {
   async created() {
     if (localStorage.token) {
       await axios
-        .get("http://localhost:4040/supporterapply/" + this.$route.params.id, {
+        .get("https://api.superawesome.ml/supporterapply/" + this.$route.params.id, {
           headers: {
             "API-Key": `${localStorage.token}`,
           },

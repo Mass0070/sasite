@@ -457,7 +457,7 @@ export default {
     },
     getSvar: async function () {
       await axios
-        .post("http://localhost:4040/supporterapply/@meAlle", null, {
+        .post("https://api.superawesome.ml/supporterapply/@meAlle", null, {
           headers: {
             "API-Key": `${localStorage.token}`,
           },
@@ -479,7 +479,7 @@ export default {
         return;
       }
       await axios
-        .post("http://localhost:4040/supporterapply/", null, {
+        .post("https://api.superawesome.ml/supporterapply/", null, {
           headers: { "API-Key": `${localStorage.token}` },
         })
         .then((response) => {
@@ -515,7 +515,7 @@ export default {
     },
     Updatesvar: async function () {
       await axios.post(
-        "http://localhost:4040/supporterapply/" + this.Application._id,
+        "https://api.superawesome.ml/supporterapply/" + this.Application._id,
         {
           [this.Application.info.uuid ? "uuid" : null]: this.Application.info
             .uuid,
@@ -573,7 +573,7 @@ export default {
     indsend: async function () {
       await axios
         .post(
-          "http://localhost:4040/supporterapply/" +
+          "https://api.superawesome.ml/supporterapply/" +
             this.Application._id +
             "/indsend",
           null,
@@ -589,7 +589,7 @@ export default {
     },
     annuller: async function () {
       await axios.post(
-        "http://localhost:4040/supporterapply/" +
+        "https://api.superawesome.ml/supporterapply/" +
           this.Application._id +
           "/annuller",
         null,
