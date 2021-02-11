@@ -1,31 +1,57 @@
 <template>
   <div>
     <hr class="Bar" />
-    <div id="about" v-if="info.svar1">
-      <div class="Hover">
-        <h3 class="ansøgnings-h3">{{ question.Unban[0] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar1 }}</p>
+    <div id="about" v-if="info.svar">
+      <div v-if="info.svar.svar1" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[0] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar1 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
-        <h3 class="ansøgnings-h3">{{ question.Unban[1] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar2 }}</p>
+      <div v-if="info.svar.svar2" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[1] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar2 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
-        <h3 class="ansøgnings-h3">{{ question.Unban[2] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar3 }}</p>
+      <div v-if="info.svar.svar3" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[2] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar3 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
-        <h3 class="ansøgnings-h3">{{ question.Unban[3] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar4 }}</p>
+      <div v-if="info.svar.svar4" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[3] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar4 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
-        <h3 class="ansøgnings-h3">{{ question.Unban[4] }}</h3>
-        <p class="ansøgnings-p-sidst">{{ info.svar5 }}</p>
+      <div v-if="info.svar.svar5" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[4] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar5 }}</p>
       </div>
+      <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.svar.svar6" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[5] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar6 }}</p>
+      </div>
+      <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.svar.svar7" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[6] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar7 }}</p>
+      </div>
+      <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.svar.svar8" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[7] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar8 }}</p>
+      </div>
+      <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.svar.svar9" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[8] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar9 }}</p>
+      </div>
+      <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.svar.svar10" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[9] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar10 }}</p>
+      </div>
+      <hr v-show="isMobile()" class="Split" />
     </div>
     <div
       v-else-if="info === 'Ikke login' || info === 'Not authorized'"
@@ -46,7 +72,7 @@
     <div v-else-if="info === 'Ikke fundet'" id="Notloggedin">
       <div id="Notloggedindiv">
         <h1 class="Notloggedindiv-span">
-          Kunne <span>ikke</span> finde en profile med dette id
+          Kunne <span>ikke</span> finde en ansøgning med dette id
         </h1>
         <p class="AndetID">Prøv et andet id.</p>
       </div>
@@ -184,57 +210,18 @@ export default {
   async created() {
     if (localStorage.token) {
       await axios
-        .get("https://api.superawesome.ml/api/apply/" + this.$route.params.id, {
+        .get("http://localhost:4040/supporterapply/" + this.$route.params.id, {
           headers: {
             "API-Key": `${localStorage.token}`,
           },
         })
         .then((response) => {
-          switch (response.status) {
-            case 200:
-              break;
-            case 401:
-              this.info = "Ikke adgang";
-              break;
-            case 402:
-              this.info = "Ikke fundet";
-              break;
-            case 403:
-              this.info = "Not authorized";
-              break;
-            case 500:
-              this.info = "Fejl, kontakt venlist staffs.";
-              break;
-          }
           if (!this.info) {
             this.info = response.data;
           }
           this.question = questionARK;
         })
-        .catch((error) => {
-          if (error.response) {
-            switch (error.response.status) {
-              case 200:
-                break;
-              case 401:
-                this.info = "Ikke adgang";
-                break;
-              case 402:
-                this.info = "Ikke fundet";
-                break;
-              case 403:
-                this.info = "Not authorized";
-                break;
-              case 500:
-                this.info = "Fejl, kontakt venlist staffs.";
-                break;
-            }
-          }
-          if (!this.info) {
-            this.info =
-              "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem";
-          }
-        });
+        .catch(() => {});
     } else {
       this.info = "Ikke login";
     }

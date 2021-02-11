@@ -109,7 +109,7 @@
       ></b-form-textarea>
     </b-modal>
     <b-modal
-      title="Unban Ansøgning"
+      title="Supporter Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
@@ -122,29 +122,54 @@
       footer-border-variant="dark"
     >
       <div id="about">
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[0] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar1 }}</p>
+        <div v-if="info.svar.svar1" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[0] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar1 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[1] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar2 }}</p>
+        <div v-if="info.svar.svar2" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[1] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar2 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[2] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar3 }}</p>
+        <div v-if="info.svar.svar3" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[2] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar3 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[3] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar4 }}</p>
+        <div v-if="info.svar.svar4" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[3] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar4 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[4] }}</h3>
-          <p class="ansøgnings-p-sidst">{{ ansøgning.svar5 }}</p>
+        <div v-if="info.svar.svar5" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[4] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar5 }}</p>
+        </div>
+        <hr v-show="isMobile()" class="Split" />
+        <div v-if="info.svar.svar6" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[5] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar6 }}</p>
+        </div>
+        <hr v-show="isMobile()" class="Split" />
+        <div v-if="info.svar.svar7" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[6] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar7 }}</p>
+        </div>
+        <hr v-show="isMobile()" class="Split" />
+        <div v-if="info.svar.svar8" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[7] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar8 }}</p>
+        </div>
+        <hr v-show="isMobile()" class="Split" />
+        <div v-if="info.svar.svar9" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[8] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar9 }}</p>
+        </div>
+        <hr v-show="isMobile()" class="Split" />
+        <div v-if="info.svar.svar10" class="Hover">
+          <h3 class="ansøgnings-h3">{{ question.Supporter[9] }}</h3>
+          <p class="ansøgnings-p">{{ info.svar.svar10 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
       </div>
@@ -165,18 +190,18 @@
       align="center"
     >
       <b-card-text>
-        Er du klar til at ansøge om unban?
+        Er du klar til at ansøge om supporter?
         <br />
-        Når du er klar så tryk på "Ansøg om unban". Er du blevet
-        <span>afvist</span> har du ikke en chance længere.
+        Når du er klar så tryk på "Ansøg om supporter". Er du blevet
+        <span>afvist</span> skal du minimum vente 3 måneder.
         <br />
         <b-button
           cent
-          @click="opretUnban"
+          @click="opretSupporter"
           variant="success"
           style="margin-top: 5%; font-family: 'DM Mono', monospace"
         >
-          Ansøg om unban
+          Ansøg om supporter
         </b-button>
       </b-card-text>
     </b-card>
@@ -405,7 +430,7 @@ export default {
           }
         });
     },
-    opretUnban: async function () {
+    opretSupporter: async function () {
       await this.getSvar();
       if (this.ansøgning.status === "Igang") {
         this.show();

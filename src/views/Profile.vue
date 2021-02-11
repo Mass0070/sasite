@@ -73,21 +73,21 @@
         </b-button>
       </div>
     </div>
-    <div>
+    <div class="Change">
       <b-form-checkbox
         v-model="view"
         name="check-button"
         switch
         @change="Change"
-        class="Change"
       >
-        Switch Checkbox <b>(Checked: {{ checked }})</b>
+        {{ checked }}
       </b-form-checkbox>
     </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div
         v-for="x in info"
         class="Unban"
+        v-show="info"
         :key="x.id"
         @click="
           $router.push({
@@ -100,15 +100,10 @@
           <a> <span>ID:</span> {{ x.UnbanId ? x.UnbanId : x._id }} </a>
         </p>
         <p class="P-Status">
-          Status:<br /><span
-            class="P-Status-afvis"
-            v-if="x.status ? x.status : x.info.status === 'Afvist'"
-            >{{ x.status ? x.status : x.info.status }}</span
-          ><span
-            class="P-Status-accepteret"
-            v-else-if="x.status ? x.status : x.info.status === 'Accepteret'"
-            >{{ x.status ? x.status : x.info.status }}</span
-          ><span v-else>{{ x.status ? x.status : x.info.status }}</span>
+          Status:<br />
+          <span v-if="x.status ? x.status : x.info.status"
+            >{{ x.status ? x.status : x.info.status }}
+          </span>
         </p>
         <p class="P-Oprettet">
           Oprettet:<br /><span>{{ getTime(x.createdAt) }}</span>
@@ -224,14 +219,16 @@ a {
 }
 
 .Change {
-  margin-top: 5%;
+  margin-top: 1%;
   position: fixed;
   left: 50%;
   transform: translate(-50%, -50%);
   color: red;
+  position: fixed;
 }
 
 .Unban {
+  margin-top: 1%;
   border-radius: 30px;
   text-align: center;
   transition: 0.7s;
@@ -343,7 +340,8 @@ export default {
       finaleUrl: false,
       Linked: false,
       code: "",
-      checked: false,
+      checked: "Unban Ansøgninger",
+      view: false,
     };
   },
   components: {
@@ -352,11 +350,38 @@ export default {
     BIconPlus,
   },
   async created() {
+    this.getProfile();
     this.UpdateLinks();
+    this.getApplications("Unban");
   },
   methods: {
-    getProfile: function () {
-      console.log("Work in progress!");
+    getProfile: async function () {
+      let profile = await this.$route.params.id;
+      if (!profile) profile = "";
+      await axios
+        .get("https://api.superawesome.ml/api/user/" + profile, {
+          headers: {
+            "API-Key": `${localStorage.token}`,
+          },
+        })
+        .then(async (response) => {
+          if (response.status === 402 || response.status === 200) {
+            let filetype = ".png";
+            this.userid = await response.data.shift().userid;
+            this.avatar = await response.data.shift().avatar;
+            this.username = response.data.shift().username;
+            if (this.avatar.startsWith("a_")) {
+              filetype = ".gif";
+            }
+            this.finaleUrl =
+              "https://cdn.discordapp.com/avatars/" +
+              this.userid +
+              "/" +
+              this.avatar +
+              filetype +
+              "?size=256";
+          }
+        });
     },
     getApplications: async function (type) {
       let link;
@@ -364,14 +389,15 @@ export default {
         link = "http://localhost:4040/supporterapply/@meAlle";
       else link = "http://localhost:4040/api/apply/@meAlle";
       await axios
-        .get(link, {
-          headers: { "API-Key": `${localStorage.token}` },
-          data: {
-            [(await this.$route.params.id)
-              ? await this.$route.params.id
-              : null]: await this.$route.params.id,
+        .post(
+          link,
+          {
+            [this.$route.params.id ? "discordId" : null]: this.$route.params.id,
           },
-        })
+          {
+            headers: { "API-Key": `${localStorage.token}` },
+          }
+        )
         .then((response) => {
           this.info = response.data;
         });
@@ -380,8 +406,10 @@ export default {
       this.info = [];
       if (checked) {
         this.getApplications("supporter");
+        this.checked = "Supporter Ansøgninger";
       } else {
         this.getApplications("unban");
+        this.checked = "Unban Ansøgninger";
       }
     },
     getTime: function (time) {
