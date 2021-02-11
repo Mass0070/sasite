@@ -234,6 +234,29 @@
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="supporter-svar11"
+      ok-title="Næste"
+      @ok="nextSvar()"
+      @cancel="backSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Supporter[10] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar11"
+        :placeholder="Squestion.Supporter[10]"
+        rows="3"
+        max-rows="6"
+        @change="Updatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Supporter Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
       cancel-title="Annuller"
       id="supporter-afslutning"
       ok-title="Indsend"
@@ -527,6 +550,7 @@ export default {
     nextSvar: async function () {
       this.$bvModal.hide(this.current);
       if (this.current === "supporter-svar1") {
+        this.Updatesvar()
         this.$bvModal.show("supporter-svar2");
       } else if (this.current === "supporter-svar2") {
         this.$bvModal.show("supporter-svar3");
@@ -545,12 +569,16 @@ export default {
       } else if (this.current === "supporter-svar9") {
         this.$bvModal.show("supporter-svar10");
       } else if (this.current === "supporter-svar10") {
+        this.$bvModal.show("supporter-svar11");
+      } else if (this.current === "supporter-svar11") {
         this.$bvModal.show("supporter-afslutning");
       }
     },
     backSvar: async function () {
       this.$bvModal.hide(this.current);
-      if (this.current === "supporter-svar10") {
+      if (this.current === "supporter-svar11") {
+        this.$bvModal.show("supporter-svar10");
+      } else if (this.current === "supporter-svar10") {
         this.$bvModal.show("supporter-svar9");
       } else if (this.current === "supporter-svar9") {
         this.$bvModal.show("supporter-svar8");

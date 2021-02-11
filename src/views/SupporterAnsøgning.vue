@@ -52,6 +52,11 @@
         <p class="ansøgnings-p">{{ info.svar.svar10 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.svar.svar11" class="Hover">
+        <h3 class="ansøgnings-h3">{{ question.Supporter[10] }}</h3>
+        <p class="ansøgnings-p">{{ info.svar.svar11 }}</p>
+      </div>
+      <hr v-show="isMobile()" class="Split" />
     </div>
     <div
       v-else-if="info === 'Ikke login' || info === 'Not authorized'"
