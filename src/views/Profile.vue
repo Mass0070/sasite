@@ -343,7 +343,7 @@ export default {
       finaleUrl: false,
       Linked: false,
       code: "",
-      checked: false
+      checked: false,
     };
   },
   components: {
