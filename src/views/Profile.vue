@@ -73,28 +73,42 @@
         </b-button>
       </div>
     </div>
+    <div>
+      <b-form-checkbox
+        v-model="view"
+        name="check-button"
+        switch
+        @change="Change"
+        class="Change"
+      >
+        Switch Checkbox <b>(Checked: {{ checked }})</b>
+      </b-form-checkbox>
+    </div>
     <div v-if="Array.isArray(info) && info.length > 0" class="Grid">
       <div
         v-for="x in info"
         class="Unban"
         :key="x.id"
-        @click="$router.push({ name: 'Ansøgning', params: { id: x.UnbanId } })"
+        @click="
+          $router.push({
+            name: x.UnbanId ? 'Ansøgning' : 'Supporter',
+            params: { id: x.UnbanId ? x.UnbanId : x._id },
+          })
+        "
       >
         <p class="UnbanId">
-          <a v-bind:href="'/application/' + x.UnbanId"
-            ><span>ID:</span> {{ x.UnbanId }}</a
-          >
+          <a> <span>ID:</span> {{ x.UnbanId ? x.UnbanId : x._id }} </a>
         </p>
         <p class="P-Status">
           Status:<br /><span
             class="P-Status-afvis"
-            v-if="x.status === 'Afvist'"
-            >{{ x.status }}</span
+            v-if="x.status ? x.status : x.info.status === 'Afvist'"
+            >{{ x.status ? x.status : x.info.status }}</span
           ><span
             class="P-Status-accepteret"
-            v-else-if="x.status === 'Accepteret'"
-            >{{ x.status }}</span
-          ><span v-else>{{ x.status }}</span>
+            v-else-if="x.status ? x.status : x.info.status === 'Accepteret'"
+            >{{ x.status ? x.status : x.info.status }}</span
+          ><span v-else>{{ x.status ? x.status : x.info.status }}</span>
         </p>
         <p class="P-Oprettet">
           Oprettet:<br /><span>{{ getTime(x.createdAt) }}</span>
@@ -102,14 +116,6 @@
         <p class="P-Opdateret">
           Seneste opdateret:<br /><span>{{ getTime(x.updatedAt) }}</span>
         </p>
-      </div>
-    </div>
-    <div v-else-if="info === 'Ingen ansøgning'" id="zeroClass">
-      <div id="zeroClassdiv">
-        <h1 class="Ingen-ansøgning">
-          {{ this.$route.params.id ? "Profilen" : "Du" }} har
-          <span>ikke</span> lavet nogen ansøgninger
-        </h1>
       </div>
     </div>
     <div
@@ -126,22 +132,6 @@
           >
           for at login.
         </p>
-      </div>
-    </div>
-    <div v-else-if="info === 'Ikke fundet'" id="Notloggedin">
-      <div class="Notloggedindiv2">
-        <h1 class="Notloggedindiv-span">
-          Profilen med dette id kunne <span>ikke</span> findes.
-        </h1>
-        <p class="Logind">
-          Måske har profilen ikke nogen ansøgninger, men ellers prøv et andet
-          id.
-        </p>
-      </div>
-    </div>
-    <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
-      <div class="Notloggedindiv2">
-        <h1 class="Notloggedindiv2">{{ info }}</h1>
       </div>
     </div>
   </div>
@@ -231,6 +221,14 @@ a {
 }
 .btn-success {
   background-color: #28a745;
+}
+
+.Change {
+  margin-top: 5%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
 }
 
 .Unban {
@@ -345,6 +343,7 @@ export default {
       finaleUrl: false,
       Linked: false,
       code: "",
+      checked: false
     };
   },
   components: {
@@ -353,113 +352,38 @@ export default {
     BIconPlus,
   },
   async created() {
-    let profile;
-    profile = await this.$route.params.id;
-    if (!profile) profile = "";
-    await axios
-      .get("https://api.superawesome.ml/api/user/" + profile, {
-        headers: {
-          "API-Key": `${localStorage.token}`,
-        },
-      })
-      .then(async (response) => {
-        switch (response.status) {
-          case 200:
-            break;
-          case 401:
-            this.info = "Ikke adgang";
-            break;
-          case 402:
-            this.info = "Ingen ansøgning";
-            break;
-          case 405:
-            this.info = "Ikke fundet";
-            break;
-          case 403:
-            this.info = "Not authorized";
-            break;
-          case 500:
-            this.info = "Fejl, kontakt venlist staffs.";
-            break;
-        }
-        if (!this.info) {
-          this.info = response.data;
-        }
-        if (response.status === 402 || response.status === 200) {
-          let filetype = ".png";
-          this.userid = await response.data.shift().userid;
-          this.avatar = await response.data.shift().avatar;
-          this.username = response.data.shift().username;
-          if (this.avatar.startsWith("a_")) {
-            filetype = ".gif";
-          }
-          this.finaleUrl =
-            "https://cdn.discordapp.com/avatars/" +
-            this.userid +
-            "/" +
-            this.avatar +
-            filetype +
-            "?size=256";
-        }
-      })
-      .catch(async (error) => {
-        if (error.response) {
-          switch (error.response.status) {
-            case 200:
-              break;
-            case 401:
-              this.info = "Ikke adgang";
-              break;
-            case 402:
-              this.info = "Ingen ansøgning";
-              break;
-            case 405:
-              this.info = "Ikke fundet";
-              break;
-            case 403:
-              this.info = "Not authorized";
-              break;
-            case 500:
-              this.info = "Fejl, kontakt venlist staffs.";
-              break;
-          }
-          if (!this.info) {
-            this.info =
-              "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem";
-          }
-          if (error.response.status === 402 || error.response.status === 200) {
-            let filetype = ".png";
-            this.userid = await error.response.data.shift().userid;
-            this.avatar = await error.response.data.shift().avatar;
-            this.username = await error.response.data.shift().username;
-            if (this.avatar && this.avatar.startsWith("a_")) {
-              filetype = ".gif";
-              this.finaleUrl =
-                "https://cdn.discordapp.com/avatars/" +
-                this.userid +
-                "/" +
-                this.avatar +
-                filetype +
-                "?size=256";
-            }
-            if (this.avatar) {
-              this.finaleUrl =
-                "https://cdn.discordapp.com/avatars/" +
-                this.userid +
-                "/" +
-                this.avatar +
-                filetype +
-                "?size=256";
-            } else {
-              this.finaleUrl =
-                "https://cdn.discordapp.com/embed/avatars/0.png?size=256";
-            }
-          }
-        }
-      });
     this.UpdateLinks();
   },
   methods: {
+    getProfile: function () {
+      console.log("Work in progress!");
+    },
+    getApplications: async function (type) {
+      let link;
+      if (type === "supporter")
+        link = "http://localhost:4040/supporterapply/@meAlle";
+      else link = "http://localhost:4040/api/apply/@meAlle";
+      await axios
+        .get(link, {
+          headers: { "API-Key": `${localStorage.token}` },
+          data: {
+            [(await this.$route.params.id)
+              ? await this.$route.params.id
+              : null]: await this.$route.params.id,
+          },
+        })
+        .then((response) => {
+          this.info = response.data;
+        });
+    },
+    Change: function (checked) {
+      this.info = [];
+      if (checked) {
+        this.getApplications("supporter");
+      } else {
+        this.getApplications("unban");
+      }
+    },
     getTime: function (time) {
       return dayjs(time).locale("da").format("D MMMM YYYY HH:MM");
     },

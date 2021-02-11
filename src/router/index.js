@@ -7,6 +7,10 @@ const Auth = () =>
   import(/* webpackChunkName: "group-Auth" */ `../views/auth.vue`);
 const Ansøgning = () =>
   import(/* webpackChunkName: "group-Ansøgning" */ `../views/Ansøgning.vue`);
+const SupporterAnsøgning = () =>
+  import(
+    /* webpackChunkName: "group-SupporterAnsøgning" */ `../views/SupporterAnsøgning.vue`
+  );
 const Profile = () =>
   import(/* webpackChunkName: "group-Profile" */ `../views/Profile.vue`);
 const Logout = () =>
@@ -31,6 +35,11 @@ const routes = [
     path: "/application/:id",
     name: "Ansøgning",
     component: Ansøgning,
+  },
+  {
+    path: "/supporter/:id",
+    name: "Supporter",
+    component: SupporterAnsøgning,
   },
   {
     path: "/apply",
