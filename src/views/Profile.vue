@@ -211,8 +211,8 @@ a {
   padding-left: 0.5em;
 }
 .Button-Plus-Icon {
-  width: 85px;
-  height: 85px;
+  width: 70px;
+  height: 80px;
 }
 .btn-success {
   background-color: #28a745;
