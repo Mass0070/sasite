@@ -220,11 +220,13 @@ a {
 
 .Change {
   margin-top: 1%;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
   color: red;
-  position: fixed;
+  font-family: 'DM Mono', monospace;
+  font-size: 110%;
+  transform: scale(1)!important;
 }
 
 .Unban {
