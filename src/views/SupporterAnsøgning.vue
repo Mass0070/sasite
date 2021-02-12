@@ -58,44 +58,6 @@
       </div>
       <hr v-show="isMobile()" class="Split" />
     </div>
-    <div
-      v-else-if="info === 'Ikke login' || info === 'Not authorized'"
-      id="Notloggedin"
-    >
-      <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
-        <p class="Logind">
-          Tryk
-          <a
-            href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify"
-            >her</a
-          >
-          for at login.
-        </p>
-      </div>
-    </div>
-    <div v-else-if="info === 'Ikke fundet'" id="Notloggedin">
-      <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">
-          Kunne <span>ikke</span> finde en ansøgning med dette id
-        </h1>
-        <p class="AndetID">Prøv et andet id.</p>
-      </div>
-    </div>
-    <div v-else-if="info === 'Ikke adgang'" id="Notloggedin">
-      <div id="Notloggedindiv">
-        <h1>Du har ikke adgang til at se den ansøgning.</h1>
-        <p>
-          Bliv staff for at kunne se denne ansøgning ellers kig på din egen
-          istedet
-        </p>
-      </div>
-    </div>
-    <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
-      <div class="Notloggedindiv-span">
-        <h1>{{ info }}</h1>
-      </div>
-    </div>
   </div>
 </template>
 

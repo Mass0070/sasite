@@ -316,6 +316,11 @@
           <p class="ansøgnings-p">{{ Application.svar.svar10 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
+        <div v-if="Application.svar.svar11" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Supporter[10] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar11 }}</p>
+        </div>
+        <hr v-show="isMobile()" class="Split" />
       </div>
     </b-modal>
     <b-card
@@ -487,11 +492,13 @@ export default {
         })
         .then(async (response) => {
           if (response.data.length > 0) {
-            this.Application = response.data.find(
-              (x) => x.info && x.info.status === "Igang"
-            );
-            if (!this.Application.svar) this.Application.svar = {};
-            if (!this.Application.info) this.Application.info = {};
+            let svar = { }
+            let FindOne = response.data.find((x) => x.info && x.info.status === "Igang")
+            if(!FindOne) {
+              this.Application = { svar, info: {}}
+              return
+            }
+            this.Application = { svar, ...FindOne}
           }
         });
     },
@@ -622,7 +629,13 @@ export default {
           "/annuller",
         null,
         { headers: { "API-Key": `${localStorage.token}` } }
-      );
+      ).then((response) => {
+        if(response.data.success) {
+          this.alert("Din ansøgning er blevet anulleret", "warning")
+        } else {
+          this.alert(response.data.message, "error")
+        }
+      })
     },
     alert: function (message, icon) {
       const Toast = this.$swal.mixin({
@@ -638,11 +651,7 @@ export default {
       Toast.fire({
         icon: icon,
         title: message,
-      }).then((result) => {
-        if (result.isConfirmed && message === "Du har startet din ansøgning.") {
-          this.show();
-        }
-      });
+      })
     },
   },
 };
