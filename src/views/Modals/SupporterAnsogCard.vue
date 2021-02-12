@@ -617,6 +617,7 @@ export default {
         .then((response) => {
           if (response.data.success) {
             this.alert("Du har indsendt din ansøgning", "success");
+            this.Application = { svar: {}, info: {}}
           } else {
             this.alert(response.data.message, "error");
           }
@@ -632,6 +633,7 @@ export default {
       ).then((response) => {
         if(response.data.success) {
           this.alert("Din ansøgning er blevet anulleret", "warning")
+          this.Application = { svar: {}, info: {}}
         } else {
           this.alert(response.data.message, "error")
         }
