@@ -57,6 +57,10 @@
         <p class="ansøgnings-p">{{ info.svar.svar11 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
+      <div v-if="info.staff && info.info.status === `Sendt`">
+        <b-button @click="Afvis" variant="danger">Afvis</b-button>
+        <b-button @click="Accept" variant="success">Accept</b-button>
+      </div>
     </div>
   </div>
 </template>
@@ -173,6 +177,7 @@
 <script>
 import axios from "axios";
 import questionARK from "../question";
+import { BButton } from "bootstrap-vue";
 export default {
   async created() {
     if (localStorage.token) {
@@ -196,6 +201,9 @@ export default {
       this.info = "Ikke login";
     }
   },
+  components: {
+    BButton,
+  },
   data() {
     return {
       info: false,
@@ -213,6 +221,56 @@ export default {
       } else {
         return false;
       }
+    },
+    async Accept() {
+      await axios
+        .post(
+          "https://api.superawesome.ml/supporterapply/" +
+            this.info._id +
+            "/accept",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.alert("Du har accepteret ansøgningen.", "success");
+          } else {
+            this.alert(response.data.message, "error");
+          }
+        });
+    },
+    async Afvis() {
+      await axios
+        .post(
+          "https://api.superawesome.ml/supporterapply/" +
+            this.info._id +
+            "/afvis",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.alert("Du har afvist ansøgningen.", "success");
+          } else {
+            this.alert(response.data.message, "error");
+          }
+        });
+    },
+    alert: function (message, icon) {
+      const Toast = this.$swal.mixin({
+        showConfirmButton: true,
+        timer: 15000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: icon,
+        title: message,
+      });
     },
   },
 };

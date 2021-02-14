@@ -17,6 +17,8 @@ const Logout = () =>
   import(/* webpackChunkName: "group-Logout" */ `../views/Logout.vue`);
 const Ansøg = () =>
   import(/* webpackChunkName: "group-Ansøg" */ `../views/Ansøg.vue`);
+const review = () =>
+  import(/* webpackChunkName: "group-review" */ `../views/review.vue`);
 
 Vue.use(VueRouter);
 
@@ -40,6 +42,11 @@ const routes = [
     path: "/supporter/:id",
     name: "Supporter",
     component: SupporterAnsøgning,
+  },
+  {
+    path: "/review",
+    name: "Review",
+    component: review,
   },
   {
     path: "/apply",
