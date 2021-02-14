@@ -14,8 +14,6 @@
   </div>
 </template>
 <script>
-//import SupporterAnsogCard from "./Modals/SupporterAnsogCard.vue";
-
 export default {
   name: "ansøg",
   components: {
