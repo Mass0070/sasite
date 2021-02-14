@@ -177,11 +177,14 @@ export default {
   async created() {
     if (localStorage.token) {
       await axios
-        .get("https://api.superawesome.ml/supporterapply/" + this.$route.params.id, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
+        .get(
+          "https://api.superawesome.ml/supporterapply/" + this.$route.params.id,
+          {
+            headers: {
+              "API-Key": `${localStorage.token}`,
+            },
+          }
+        )
         .then((response) => {
           if (!this.info) {
             this.info = response.data;

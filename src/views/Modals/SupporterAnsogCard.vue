@@ -492,13 +492,15 @@ export default {
         })
         .then(async (response) => {
           if (response.data.length > 0) {
-            let svar = { }
-            let FindOne = response.data.find((x) => x.info && x.info.status === "Igang")
-            if(!FindOne) {
-              this.Application = { svar, info: {}}
-              return
+            let svar = {};
+            let FindOne = response.data.find(
+              (x) => x.info && x.info.status === "Igang"
+            );
+            if (!FindOne) {
+              this.Application = { svar, info: {} };
+              return;
             }
-            this.Application = { svar, ...FindOne}
+            this.Application = { svar, ...FindOne };
           }
         });
     },
@@ -557,7 +559,7 @@ export default {
     nextSvar: async function () {
       this.$bvModal.hide(this.current);
       if (this.current === "supporter-svar1") {
-        this.Updatesvar()
+        this.Updatesvar();
         this.$bvModal.show("supporter-svar2");
       } else if (this.current === "supporter-svar2") {
         this.$bvModal.show("supporter-svar3");
@@ -617,27 +619,29 @@ export default {
         .then((response) => {
           if (response.data.success) {
             this.alert("Du har indsendt din ansøgning", "success");
-            this.Application = { svar: {}, info: {}}
+            this.Application = { svar: {}, info: {} };
           } else {
             this.alert(response.data.message, "error");
           }
         });
     },
     annuller: async function () {
-      await axios.post(
-        "https://api.superawesome.ml/supporterapply/" +
-          this.Application._id +
-          "/annuller",
-        null,
-        { headers: { "API-Key": `${localStorage.token}` } }
-      ).then((response) => {
-        if(response.data.success) {
-          this.alert("Din ansøgning er blevet anulleret", "warning")
-          this.Application = { svar: {}, info: {}}
-        } else {
-          this.alert(response.data.message, "error")
-        }
-      })
+      await axios
+        .post(
+          "https://api.superawesome.ml/supporterapply/" +
+            this.Application._id +
+            "/annuller",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.alert("Din ansøgning er blevet anulleret", "warning");
+            this.Application = { svar: {}, info: {} };
+          } else {
+            this.alert(response.data.message, "error");
+          }
+        });
     },
     alert: function (message, icon) {
       const Toast = this.$swal.mixin({
@@ -653,7 +657,7 @@ export default {
       Toast.fire({
         icon: icon,
         title: message,
-      })
+      });
     },
   },
 };
