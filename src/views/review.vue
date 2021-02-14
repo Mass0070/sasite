@@ -21,7 +21,9 @@
         </p>
         <p class="UnbanId">
           <a>
-            <span>DISCORD ID:</span>
+            <span>INFO:</span>
+            <br>
+            {{ x.svar1 ? x.svar1 : x.svar.svar1}}
             {{ x.discordId ? x.discordId : x.info.discordId }}
           </a>
         </p>
@@ -126,9 +128,6 @@
         <p class="P-Oprettet">
           Oprettet:<br /><span>{{ getTime(x.createdAt) }}</span>
         </p>
-        <p class="P-Opdateret">
-          Seneste opdateret:<br /><span>{{ getTime(x.updatedAt) }}</span>
-        </p>
       </div>
     </div>
   </div>
@@ -143,7 +142,7 @@
   border: 4px solid #1f5bbb;
   background-color: #212529;
   width: 20em;
-  height: 24em;
+  height: 22em;
 }
 .Unban:hover {
   box-shadow: -4px 4px 15px rgba(0, 107, 214, 0.5),

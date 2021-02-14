@@ -151,7 +151,6 @@
     </b-modal>
     <b-card
       title="Unban"
-      img-src="https://superawesome.ml/unban.png"
       img-alt="Unban"
       img-top
       tag="Unban"

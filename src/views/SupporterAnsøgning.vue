@@ -2,7 +2,11 @@
   <div>
     <hr class="Bar" />
     <div id="about" v-if="info.svar">
-      <div v-if="info.svar.svar1" class="Hover">
+      <b-button-group style="left: 50%; transform: translate(-50%, -50%); margin-top: 2.5em;" v-if="info.staff && info.info.status === `Sendt`">
+        <b-button @click="Afvis" variant="danger">Afvis</b-button>
+        <b-button @click="Accept" variant="success">Accept</b-button>
+      </b-button-group>
+      <div v-if="info.svar.svar1" style="margin-top: -2em!important" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Supporter[0] }}</h3>
         <p class="ansøgnings-p">{{ info.svar.svar1 }}</p>
       </div>
@@ -52,14 +56,9 @@
         <p class="ansøgnings-p">{{ info.svar.svar10 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div v-if="info.svar.svar11" class="Hover">
+      <div v-if="info.svar.svar11" style="margin-bottom: 2.5em!important" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Supporter[10] }}</h3>
         <p class="ansøgnings-p">{{ info.svar.svar11 }}</p>
-      </div>
-      <hr v-show="isMobile()" class="Split" />
-      <div v-if="info.staff && info.info.status === `Sendt`">
-        <b-button @click="Afvis" variant="danger">Afvis</b-button>
-        <b-button @click="Accept" variant="success">Accept</b-button>
       </div>
     </div>
   </div>
@@ -105,7 +104,8 @@
 }
 #about {
   margin: 0 auto;
-  margin-top: 6%;
+  margin-top: 3%;
+  margin-bottom: 2em;
   background-color: #212529;
   border: 3px solid #1f5bbb;
   border-radius: 30px;
@@ -177,7 +177,7 @@
 <script>
 import axios from "axios";
 import questionARK from "../question";
-import { BButton } from "bootstrap-vue";
+import { BButton, BButtonGroup } from "bootstrap-vue";
 export default {
   async created() {
     if (localStorage.token) {
@@ -203,6 +203,7 @@ export default {
   },
   components: {
     BButton,
+    BButtonGroup,
   },
   data() {
     return {

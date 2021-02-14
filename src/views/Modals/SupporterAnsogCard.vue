@@ -325,7 +325,6 @@
     </b-modal>
     <b-card
       title="Supporter"
-      img-src="https://superawesome.ml/Supporter.png"
       img-alt="Supporter"
       img-top
       tag="Supporter"
