@@ -101,100 +101,19 @@
         </p>
         <p class="P-Status">
           Status:<br />
-          <span class="P-Status-Afvist" v-if="getStatus(x) === 'Afvist'"
-            ><svg
-              data-v-41be6633=""
-              viewBox="0 0 16 16"
-              width="1em"
-              height="1em"
-              focusable="false"
-              role="img"
-              aria-label="x circle"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              class="bi-x-circle mx-auto b-icon bi"
-            >
-              <g data-v-41be6633="">
-                <path
-                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                ></path>
-                <path
-                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                ></path>
-              </g></svg
-            >{{ getStatus(x) }}</span
+          <span class="P-Status-Afvist" v-if="getStatus(x) === 'Afvist'">
+            <b-icon-x-circle />{{ getStatus(x) }}
+          </span>
+          <span class="P-Status-Accepteret" v-else-if="getStatus(x) === 'Accepteret'">
+            <b-icon-check-circle />{{ getStatus(x) }}</span
           >
-          <span
-            class="P-Status-Accepteret"
-            v-else-if="getStatus(x) === 'Accepteret'"
-            ><svg
-              data-v-41be6633=""
-              viewBox="0 0 16 16"
-              width="1em"
-              height="1em"
-              focusable="false"
-              role="img"
-              aria-label="check circle"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              class="bi-check-circle mx-auto b-icon bi"
-            >
-              <g data-v-41be6633="">
-                <path
-                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                ></path>
-                <path
-                  d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
-                ></path>
-              </g></svg
-            >{{ getStatus(x) }}</span
-          >
-          <span class="P-Status-Sendt" v-else-if="getStatus(x) === 'Sendt'"
-            ><svg
-              data-v-41be6633=""
-              viewBox="0 0 16 16"
-              width="1em"
-              height="1em"
-              focusable="false"
-              role="img"
-              aria-label="dash circle"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              class="bi-dash-circle mx-auto b-icon bi"
-            >
-              <g data-v-41be6633="">
-                <path
-                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                ></path>
-                <path
-                  d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
-                ></path>
-              </g></svg
-            >{{ getStatus(x) }}</span
-          >
-          <span v-else-if="getStatus(x) === 'Annulleret'"
-            ><svg
-              data-v-41be6633=""
-              viewBox="0 0 16 16"
-              width="1em"
-              height="1em"
-              focusable="false"
-              role="img"
-              aria-label="slash circle"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              class="bi-slash-circle mx-auto b-icon bi"
-            >
-              <g data-v-41be6633="">
-                <path
-                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                ></path>
-                <path
-                  d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"
-                ></path>
-              </g></svg
-            >{{ getStatus(x) }}</span
-          >
+          <span class="P-Status-Sendt" v-else-if="getStatus(x) === 'Sendt'">
+            <b-icon-dash-circle />
+            {{ getStatus(x) }}
+          </span>
+          <span v-else-if="getStatus(x) === 'Annulleret'">
+            <b-icon-slash-circle />{{ getStatus(x) }}
+          </span>
           <span v-else>{{ getStatus(x) }}</span>
         </p>
         <p class="P-Oprettet">
@@ -428,7 +347,7 @@ a {
 <script>
 import axios from "axios";
 import dayjs from "dayjs";
-import { BPopover, BButton, BIconPlus } from "bootstrap-vue";
+import { BPopover, BButton, BIconPlus, BIconSlashCircle, BIconDashCircle, BIconCheckCircle, BIconXCircle } from "bootstrap-vue";
 export default {
   data() {
     return {
@@ -446,6 +365,10 @@ export default {
     BPopover,
     BButton,
     BIconPlus,
+    BIconSlashCircle,
+    BIconCheckCircle,
+    BIconDashCircle,
+    BIconXCircle
   },
   async created() {
     this.getProfile();
