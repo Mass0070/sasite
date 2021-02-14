@@ -234,6 +234,7 @@ export default {
         .then((response) => {
           if (response.data.success) {
             this.alert("Du har accepteret ansøgningen.", "success");
+            this.info.info.status === "Accepteret"
           } else {
             this.alert(response.data.message, "error");
           }
@@ -251,6 +252,7 @@ export default {
         .then((response) => {
           if (response.data.success) {
             this.alert("Du har afvist ansøgningen.", "success");
+            this.info.info.status === "Afvist"
           } else {
             this.alert(response.data.message, "error");
           }
