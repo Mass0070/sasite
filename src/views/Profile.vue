@@ -456,7 +456,7 @@ export default {
     getStatus: function (x) {
       let status = "NULL";
       if (x.status !== null) status = x.status;
-      if (x.info.status !== null) status = x.info.status;
+      if (x.info && x.info.status !== null) status = x.info.status;
       return status;
     },
     getProfile: async function () {
