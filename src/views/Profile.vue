@@ -25,7 +25,7 @@
       <div v-for="x in Linked" :key="x.uuid" class="Links-for">
         <b-img
           :id="x.username"
-          v-bind:src="'https://minotar.net/avatar/' + x.uuid"
+          v-bind:src="'https://crafatar.com/avatars/' + x.uuid + '?overlay'"
           fluid
           :alt="x.username"
           width="100"
