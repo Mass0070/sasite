@@ -73,7 +73,7 @@
         </b-button>
       </div>
     </div>
-    <div class="Change">
+    <div class="Change" v-show="info">
       <b-form-checkbox
         v-model="view"
         name="check-button"
