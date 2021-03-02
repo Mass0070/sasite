@@ -11,6 +11,7 @@
             width="128"
             height="128"
           />
+        <div class="Animation"></div>
         </a>
 
         <div class="Discord-Navn">
@@ -43,6 +44,7 @@
             >
           </template>
         </b-popover>
+      <div class="Animation-B"></div>
       </div>
       <div class="Button-Plus-Div" v-if="!$route.params.id">
         <b-button variant="success">
@@ -71,6 +73,7 @@
             ></b-form-input>
           </b-modal>
         </b-button>
+        <div class="Animation-B2"></div>
       </div>
     </div>
     <div class="Change" v-show="info">
@@ -206,12 +209,11 @@ a {
 }
 .Links img {
   border-radius: 50%;
-  border: 3px dotted #c60cc4;
+  position: absolute;
 }
 .Links button {
   z-index: 2;
   border-radius: 50%;
-  border: 3px dotted #c60cc4;
 }
 .Links-for {
   padding-top: 2.5em;
@@ -249,6 +251,8 @@ a {
   background-color: #212529;
   width: 20em;
   height: 20em;
+  box-sizing: content-box;
+  border-style: double;
 }
 .Unban:hover {
   box-shadow: -4px 4px 15px rgba(0, 107, 214, 0.5),
@@ -314,10 +318,35 @@ a {
   display: block;
   width: 70px;
   height: 70px;
-  border-radius: 50%;
   margin: -25px 10px;
-  border: 3px outset orange;
+  border-radius: 50%;
 }
+.Animation {
+  border: 3px outset orange;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: Spin 5s infinite;
+  margin-top: -70px;
+  margin-left: 10px;
+}
+.Animation-B {
+  border: 3px dotted #c60cc4;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: Spin 35s infinite;
+}
+.Animation-B2 {
+  border: 3px dotted #c60cc4;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: Spin 35s infinite;
+  margin-top: -98px;
+  margin-left: -2px;
+}
+
 .Discord-Profil {
   display: block;
   width: 40px;
@@ -341,6 +370,24 @@ a {
 }
 .LinkedKontoer span {
   color: crimson;
+}
+
+
+@keyframes Spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes Color {
+  0% {
+
+  }
+  50% {
+
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
 
