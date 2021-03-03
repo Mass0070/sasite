@@ -44,7 +44,6 @@
             >
           </template>
         </b-popover>
-      <div class="Animation-B"></div>
       </div>
       <div class="Button-Plus-Div" v-if="!$route.params.id">
         <b-button variant="success">
@@ -73,7 +72,6 @@
             ></b-form-input>
           </b-modal>
         </b-button>
-        <div class="Animation-B2"></div>
       </div>
     </div>
     <div class="Change" v-show="info">
@@ -209,15 +207,18 @@ a {
 }
 .Links img {
   border-radius: 50%;
-  position: absolute;
+  border: 3px dotted #c60cc4;
 }
 .Links button {
   z-index: 2;
   border-radius: 50%;
+  border: 3px dotted #c60cc4;
 }
 .Links-for {
   padding-top: 2.5em;
   padding-left: 0.5em;
+  box-sizing: content-box;
+  border-style: double;
 }
 .Button-Plus-Div {
   padding-top: 2.5em;
@@ -330,22 +331,6 @@ a {
   margin-top: -70px;
   margin-left: 10px;
 }
-.Animation-B {
-  border: 3px dotted #c60cc4;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  animation: Spin 35s infinite;
-}
-.Animation-B2 {
-  border: 3px dotted #c60cc4;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  animation: Spin 35s infinite;
-  margin-top: -98px;
-  margin-left: -2px;
-}
 
 .Discord-Profil {
   display: block;
@@ -374,17 +359,6 @@ a {
 
 
 @keyframes Spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes Color {
-  0% {
-
-  }
-  50% {
-
-  }
   100% {
     transform: rotate(360deg);
   }
