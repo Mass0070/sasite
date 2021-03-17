@@ -6,19 +6,20 @@
       content-class="bg-dark"
       header-close-variant="primary"
       cancel-title="Annuller"
-      id="svar1"
+      id="unban-svar1"
       ok-title="Næste"
-      @ok="addSvar('svar1', ansøgning.uuid)"
-      @cancel="annuller()"
+      @ok="unextSvar()"
+      @cancel="uannuller()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[0] }}</p>
+      <p class="my-4">{{ Squestion.Unban[0] }}</p>
       <b-form-select
-        :options="options"
-        v-model="ansøgning.uuid"
+        :options="Soptions"
+        v-model="Application.info.uuid"
         size="sm"
         class="mt-3"
+        @change="uUpdatesvar()"
       ></b-form-select>
     </b-modal>
     <b-modal
@@ -26,42 +27,91 @@
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar2"
+      cancel-title="Tilbage"
+      id="unban-svar2"
       ok-title="Næste"
-      @ok="addSvar('svar2', ansøgning.svar2)"
-      @cancel="annuller()"
+      @ok="unextSvar()"
+      @cancel="ubackSvar()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[1] }}</p>
-      <b-form-select
-        :options="options2"
-        v-model="ansøgning.svar2"
-        size="sm"
-        class="mt-3"
-      ></b-form-select>
+      <p class="my-4">{{ Squestion.Unban[1] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar2"
+        :placeholder="Squestion.Unban[1]"
+        rows="3"
+        max-rows="6"
+        @change="uUpdatesvar()"
+      ></b-form-textarea>
     </b-modal>
     <b-modal
       title="Unban Ansøgning"
       title-class="text-primary"
       content-class="bg-dark"
       header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar3"
+      cancel-title="Tilbage"
+      id="unban-svar3"
       ok-title="Næste"
-      @ok="addSvar('svar3', ansøgning.svar3)"
-      @cancel="annuller()"
+      @ok="unextSvar()"
+      @cancel="ubackSvar()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
-      <p class="my-4">{{ question.Unban[2] }}</p>
+      <p class="my-4">{{ Squestion.Unban[2] }}</p>
       <b-form-textarea
         id="textarea"
-        v-model="ansøgning.svar3"
-        :placeholder="question.Unban[2]"
+        v-model="Application.svar.svar3"
+        :placeholder="Squestion.Unban[2]"
         rows="3"
         max-rows="6"
+        @change="uUpdatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Unban Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="unban-svar4"
+      ok-title="Næste"
+      @ok="unextSvar()"
+      @cancel="ubackSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Unban[3] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar4"
+        :placeholder="Squestion.Unban[3]"
+        rows="3"
+        max-rows="6"
+        @change="uUpdatesvar()"
+      ></b-form-textarea>
+    </b-modal>
+    <b-modal
+      title="Unban Ansøgning"
+      title-class="text-primary"
+      content-class="bg-dark"
+      header-close-variant="primary"
+      cancel-title="Tilbage"
+      id="unban-svar5"
+      ok-title="Næste"
+      @ok="unextSvar()"
+      @cancel="ubackSvar()"
+      header-border-variant="dark"
+      footer-border-variant="dark"
+    >
+      <p class="my-4">{{ Squestion.Unban[4] }}</p>
+      <b-form-textarea
+        id="textarea"
+        v-model="Application.svar.svar5"
+        :placeholder="Squestion.Unban[4]"
+        rows="3"
+        max-rows="6"
+        @change="uUpdatesvar()"
       ></b-form-textarea>
     </b-modal>
     <b-modal
@@ -70,81 +120,37 @@
       content-class="bg-dark"
       header-close-variant="primary"
       cancel-title="Annuller"
-      id="svar4"
-      ok-title="Næste"
-      @ok="addSvar('svar4', ansøgning.svar4)"
-      @cancel="annuller()"
-      header-border-variant="dark"
-      footer-border-variant="dark"
-    >
-      <p class="my-4">{{ question.Unban[3] }}</p>
-      <b-form-textarea
-        id="textarea"
-        v-model="ansøgning.svar4"
-        :placeholder="question.Unban[3]"
-        rows="3"
-        max-rows="6"
-      ></b-form-textarea>
-    </b-modal>
-    <b-modal
-      title="Unban Ansøgning"
-      title-class="text-primary"
-      content-class="bg-dark"
-      header-close-variant="primary"
-      cancel-title="Annuller"
-      id="svar5"
-      ok-title="Næste"
-      @ok="addSvar('svar5', ansøgning.svar5)"
-      @cancel="annuller()"
-      header-border-variant="dark"
-      footer-border-variant="dark"
-    >
-      <p class="my-4">{{ question.Unban[4] }}</p>
-      <b-form-textarea
-        id="textarea"
-        v-model="ansøgning.svar5"
-        :placeholder="question.Unban[4]"
-        rows="3"
-        max-rows="6"
-      ></b-form-textarea>
-    </b-modal>
-    <b-modal
-      title="Unban Ansøgning"
-      title-class="text-primary"
-      content-class="bg-dark"
-      header-close-variant="primary"
-      cancel-title="Annuller"
-      id="Afslutning"
+      id="unban-afslutning"
       ok-title="Indsend"
-      @ok="indsend()"
-      @cancel="annuller()"
+      @ok="uindsend()"
+      @cancel="uannuller()"
       header-border-variant="dark"
       footer-border-variant="dark"
     >
       <div id="about">
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[0] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar1 }}</p>
+        <div v-if="Application.svar.svar1" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Unban[0] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar1 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[1] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar2 }}</p>
+        <div v-if="Application.svar.svar2" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Unban[1] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar2 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[2] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar3 }}</p>
+        <div v-if="Application.svar.svar3" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Unban[2] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar3 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[3] }}</h3>
-          <p class="ansøgnings-p">{{ ansøgning.svar4 }}</p>
+        <div v-if="Application.svar.svar4" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Unban[3] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar4 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
-        <div class="Hover">
-          <h3 class="ansøgnings-h3">{{ question.Unban[4] }}</h3>
-          <p class="ansøgnings-p-sidst">{{ ansøgning.svar5 }}</p>
+        <div v-if="Application.svar.svar5" class="Hover">
+          <h3 class="ansøgnings-h3">{{ Squestion.Unban[4] }}</h3>
+          <p class="ansøgnings-p">{{ Application.svar.svar5 }}</p>
         </div>
         <hr v-show="isMobile()" class="Split" />
       </div>
@@ -171,7 +177,7 @@
         <br />
         <b-button
           cent
-          @click="opretUnban"
+          @click="opretUnbanModal"
           variant="success"
           style="margin-top: 5%; font-family: 'DM Mono', monospace"
         >
@@ -269,16 +275,17 @@
 <script>
 import axios from "axios";
 import { BButton, BFormTextarea } from "bootstrap-vue";
-import questionARK from "./../../question";
+import SquestionARK from "./../../question";
 export default {
   name: "Unbanansogcard",
   data() {
     return {
-      options: [],
-      options2: [],
-      ansøgning: {},
-      question: questionARK,
-      current: null,
+      Soptions: [],
+      Application: {
+        info: {},
+        svar: {},
+      },
+      Squestion: SquestionARK,
     };
   },
   components: {
@@ -288,28 +295,27 @@ export default {
   sockets: {
     tidUdløb: function () {
       this.$bvModal.hide(this.current);
-      this.alert("Din tid på ansøgning er udløbet", "warning");
+      this.ualert("Din tid på ansøgning er udløbet", "warning");
     },
     newanswer: function () {
-      this.getSvar();
-      this.show();
+      this.getUnbanSvar();
     },
     annuller: function () {
-      this.alert("Din ansøgning er blevet anulleret", "warning");
+      this.ualert("Din ansøgning er blevet anulleret", "warning");
     },
     indsend: function () {
-      this.alert("Din ansøgning er blevet indsendt", "success");
+      this.ualert("Din ansøgning er blevet indsendt", "success");
     },
   },
   mounted() {
     this.$root.$on("bv::modal::show", async (bvEvent, modalId) => {
-      this.current = modalId;
-      await this.getSvar();
-      if (modalId === "svar1") {
-        this.UpdateLinks();
-      }
-      if (modalId === "svar2") {
-        this.getSvar2();
+      if(modalId.startsWith("unban")) {
+        this.current = modalId;
+        await this.getUnbanSvar();
+        if (modalId === "unban-svar1") {
+          await this.uUpdateAccs();
+          await this.uUpdateLinks()
+        }
       }
     });
   },
@@ -325,57 +331,30 @@ export default {
         return false;
       }
     },
-    show: async function () {
-      await axios
-        .post("https://api.superawesome.ml/api/apply/@me", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          if (
-            response.data.svar1 &&
-            response.data.svar2 &&
-            response.data.svar3 &&
-            response.data.svar4 &&
-            response.data.svar5
-          ) {
-            this.$bvModal.show("Afslutning");
-          } else if (
-            response.data.svar1 &&
-            response.data.svar2 &&
-            response.data.svar3 &&
-            response.data.svar4
-          ) {
-            this.$bvModal.show("svar5");
-          } else if (
-            response.data.svar1 &&
-            response.data.svar2 &&
-            response.data.svar3
-          ) {
-            this.$bvModal.show("svar4");
-          } else if (response.data.svar1 && response.data.svar2) {
-            this.$bvModal.show("svar3");
-          } else if (response.data.svar1) {
-            this.$bvModal.show("svar2");
-          } else {
-            this.$bvModal.show("svar1");
-          }
-        });
+    opretUnbanModal: async function() {
+      await this.getUnbanSvar();
+      if (this.Application && this.Application.info.status === "Igang") {
+        this.$bvModal.show("unban-svar1");
+        return;
+      }
+      await this.uUpdateAccs();
+      let newmap = { }
+      this.Soptions.forEach(x => {
+        newmap[x.value] = x.text
+      })
+      let response = await this.$swal({
+        title: 'Opret en unban ansøgning',
+        input: 'select',
+        inputOptions: newmap,
+        inputPlaceholder: 'Ingame-navn?',
+        showCancelButton: true
+      })
+      if(response.isConfirmed) {
+        this.Application.info.uuid = response.value
+        await this.opretUnban({ uuid: response.value })
+      }
     },
-    getSvar: async function () {
-      await axios
-        .post("https://api.superawesome.ml/api/apply/@me", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          this.ansøgning = response.data;
-          response.data;
-        });
-    },
-    UpdateLinks: async function () {
+    uUpdateAccs: async function () {
       await axios
         .get("https://api.superawesome.ml/api/verify/", {
           headers: {
@@ -383,77 +362,131 @@ export default {
           },
         })
         .then(async (response) => {
-          let newdata = response.data.map((e) => {
+          let newdata = await response.data.map((e) => {
             return {
               value: e.uuid,
               text: e.username,
               disabled: e.blacklist,
             };
           });
-          let Unblacklist = newdata.find((x) => x.disabled === false);
-          if (Unblacklist) this.ansøgning.uuid = Unblacklist.value;
-          if (!Unblacklist) this.ansøgning.uuid = newdata[0].value;
-          this.options = newdata;
+          this.Soptions = newdata;
         });
     },
-    addSvar: async function (svar, response) {
-      let data = {
-        [svar]: response,
-      };
-      console.log(data);
+    getUnbanSvar: async function () {
       await axios
-        .put(
-          "https://api.superawesome.ml/api/apply/" + this.ansøgning.UnbanId,
-          data,
-          {
-            headers: {
-              "API-Key": `${localStorage.token}`,
-            },
-          }
-        )
-        .then((response) => {
-          if (
-            response.data.message === "Svar1 done" ||
-            response.data.message === "Svar2 done" ||
-            response.data.message === "Svar3 done" ||
-            response.data.message === "Svar4 done" ||
-            response.data.message === "Svar5 done"
-          ) {
-            return this.show();
-          }
-          if (svar) {
-            this.alert(response.data.message, "error");
-          }
-        });
-    },
-    opretUnban: async function () {
-      await this.getSvar();
-      if (this.ansøgning.status === "Igang") {
-        this.show();
-        return;
-      }
-      await axios
-        .post("https://api.superawesome.ml/api/apply/", null, {
+        .post("https://api.superawesome.ml/apply/@meAlle", null, {
           headers: {
             "API-Key": `${localStorage.token}`,
           },
         })
         .then(async (response) => {
-          if (response.data.message === "Ansøgning er ikke åben.") {
-            this.alert("Ansøgning er ikke åben.", "error");
-          } else if (response.data.message === "Igang") {
-            this.getSvar();
-            this.show();
-          } else if (response.data.message === "Sendt") {
-            this.alert("Du har allerede sendt en ansøgning.", "error");
-          } else if (response.data.message === "Oprettet") {
-            this.alert("Du har startet din ansøgning.", "success");
-          } else {
-            console.log(response.data.message);
+          if (response.data.length > 0) {
+            let svar = {};
+            let FindOne = response.data.find(
+              (x) => x.info && x.info.status === "Igang"
+            );
+            if (!FindOne) {
+              this.Application = { svar, info: {} };
+              return;
+            }
+            this.Application = { svar, ...FindOne };
           }
         });
     },
-    alert: function (message, icon) {
+    uUpdateLinks: async function () {
+      let Unblacklist = await this.Soptions.find((x) => x.disabled === false);
+      if (!this.Application.info.uuid) {
+        if (Unblacklist) this.Application.info.uuid = Unblacklist.value;
+        if (!Unblacklist) this.Application.info.uuid = this.Soptions[0].value;
+      } 
+    },
+    opretUnban: async function (data) {
+      await this.getUnbanSvar();
+      if (this.Application && this.Application.info.status === "Igang") {
+        this.$bvModal.show("unban-svar1");
+        return;
+      }
+      await axios
+        .post("https://api.superawesome.ml/apply/", data, {
+          headers: { "API-Key": `${localStorage.token}` },
+        })
+        .then(async(response) => {
+          if (response.data.success) {
+            this.$bvModal.show("unban-svar1");
+          } else {
+            this.ualert(response.data.message, "error");
+          }
+        });
+    },
+    uUpdatesvar: async function () {
+      await axios.post(
+        "https://api.superawesome.ml/apply/" + this.Application._id,
+        {
+          [this.Application.info.uuid ? "uuid" : null]: this.Application.info
+            .uuid,
+          ...this.Application.svar,
+        },
+        { headers: { "API-Key": `${localStorage.token}` } }
+      ).then(response => {
+        if(!response.data.success) {
+          this.$bvModal.hide(this.current);
+          this.ualert(response.data.message, "error")
+        }
+      })
+    },
+    unextSvar: async function () {
+      this.$bvModal.hide(this.current);
+      if (this.current === "unban-svar1") {
+        await this.uUpdatesvar();
+      } else if (this.current === "unban-svar5") {
+        setTimeout(() => {
+          this.$bvModal.show("unban-afslutning");
+        }, 500);
+        return;
+      }
+      this.$bvModal.show("unban-svar" + (parseFloat(this.current.replace("unban-svar", "")) + 1));
+    },
+    ubackSvar: async function () {
+      this.$bvModal.hide(this.current);
+      this.$bvModal.show("unban-svar" + (parseFloat(this.current.replace("unban-svar", "")) - 1));
+    },
+    uindsend: async function () {
+      await axios
+        .post(
+          "https://api.superawesome.ml/apply/" +
+            this.Application._id +
+            "/indsend",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.ualert("Du har indsendt din ansøgning", "success");
+            this.Application = { svar: {}, info: {} };
+          } else {
+            this.ualert(response.data.message, "error");
+          }
+        });
+    },
+    uannuller: async function () {
+      await axios
+        .post(
+          "https://api.superawesome.ml/apply/" +
+            this.Application._id +
+            "/annuller",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.ualert("Din ansøgning er blevet anulleret", "warning");
+            this.Application = { svar: {}, info: {} };
+          } else {
+            this.ualert(response.data.message, "error");
+          }
+        });
+    },
+    ualert: function (message, icon) {
       const Toast = this.$swal.mixin({
         showConfirmButton: true,
         timer: 15000,
@@ -467,59 +500,7 @@ export default {
       Toast.fire({
         icon: icon,
         title: message,
-      }).then((result) => {
-        if (result.isConfirmed && message === "Du har startet din ansøgning.") {
-          this.show();
-        }
       });
-    },
-    getSvar2: async function () {
-      console.log(this.ansøgning.uuid);
-      await axios
-        .get("https://api.ashcon.app/mojang/v2/user/" + this.ansøgning.uuid)
-        .then(async (response) => {
-          console.log(response.data);
-          let newdata = response.data.username_history.map((e) => {
-            return {
-              value: e.username,
-              text: e.username,
-            };
-          });
-          newdata.push({
-            value: null,
-            text: questionARK.Unban[1],
-          });
-          this.options2 = newdata;
-        });
-    },
-    indsend: async function () {
-      await axios
-        .post("https://api.superawesome.ml/api/apply/indsend", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          if (response.data.message === "Need answer on") {
-            this.alert(
-              "Mangler svar på " + response.data.needsvar.toString(),
-              "error"
-            );
-          }
-        });
-    },
-    annuller: async function () {
-      await axios
-        .post("https://api.superawesome.ml/api/apply/annuller", null, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          if (response.data.message === "Not found") {
-            this.alert("Kunne ikke finde din ansøgning", "error");
-          }
-        });
     },
   },
 };

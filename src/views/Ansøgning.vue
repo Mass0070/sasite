@@ -1,68 +1,34 @@
 <template>
   <div>
     <hr class="Bar" />
-    <div id="about" v-if="info.svar1">
-      <div class="Hover">
+    <div id="about" v-if="info.svar">
+      <b-button-group style="left: 50%; transform: translate(-50%, -50%); margin-top: 2.5em;" v-if="info.staff && info.info.status === `Sendt`">
+        <b-button @click="Afvis" variant="danger">Afvis</b-button>
+        <b-button @click="Accept" variant="success">Accept</b-button>
+      </b-button-group>
+      <div v-if="info.svar.svar1" style="margin-top: -2em!important" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Unban[0] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar1 }}</p>
+        <p class="ansøgnings-p">{{ info.svar.svar1 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
+      <div v-if="info.svar.svar2" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Unban[1] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar2 }}</p>
+        <p class="ansøgnings-p">{{ info.svar.svar2 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
+      <div v-if="info.svar.svar3" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Unban[2] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar3 }}</p>
+        <p class="ansøgnings-p">{{ info.svar.svar3 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
+      <div v-if="info.svar.svar4" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Unban[3] }}</h3>
-        <p class="ansøgnings-p">{{ info.svar4 }}</p>
+        <p class="ansøgnings-p">{{ info.svar.svar4 }}</p>
       </div>
       <hr v-show="isMobile()" class="Split" />
-      <div class="Hover">
+      <div v-if="info.svar.svar5" class="Hover">
         <h3 class="ansøgnings-h3">{{ question.Unban[4] }}</h3>
-        <p class="ansøgnings-p-sidst">{{ info.svar5 }}</p>
-      </div>
-    </div>
-    <div
-      v-else-if="info === 'Ikke login' || info === 'Not authorized'"
-      id="Notloggedin"
-    >
-      <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">Du er <span>ikke</span> logget ind.</h1>
-        <p class="Logind">
-          Tryk
-          <a
-            href="https://discord.com/oauth2/authorize?client_id=694582426474774570&redirect_uri=http%3A%2F%2Fsuperawesome.ml%2Fauth%2F&response_type=token&scope=identify"
-            >her</a
-          >
-          for at login.
-        </p>
-      </div>
-    </div>
-    <div v-else-if="info === 'Ikke fundet'" id="Notloggedin">
-      <div id="Notloggedindiv">
-        <h1 class="Notloggedindiv-span">
-          Kunne <span>ikke</span> finde en profile med dette id
-        </h1>
-        <p class="AndetID">Prøv et andet id.</p>
-      </div>
-    </div>
-    <div v-else-if="info === 'Ikke adgang'" id="Notloggedin">
-      <div id="Notloggedindiv">
-        <h1>Du har ikke adgang til at se den ansøgning.</h1>
-        <p>
-          Bliv staff for at kunne se denne ansøgning ellers kig på din egen
-          istedet
-        </p>
-      </div>
-    </div>
-    <div v-else-if="Object.keys(info).length !== 0" id="Notloggedin">
-      <div class="Notloggedindiv-span">
-        <h1>{{ info }}</h1>
+        <p class="ansøgnings-p">{{ info.svar.svar5 }}</p>
       </div>
     </div>
   </div>
@@ -108,7 +74,8 @@
 }
 #about {
   margin: 0 auto;
-  margin-top: 6%;
+  margin-top: 3%;
+  margin-bottom: 2em;
   background-color: #212529;
   border: 3px solid #1f5bbb;
   border-radius: 30px;
@@ -180,64 +147,33 @@
 <script>
 import axios from "axios";
 import questionARK from "../question";
+import { BButton, BButtonGroup } from "bootstrap-vue";
 export default {
   async created() {
     if (localStorage.token) {
       await axios
-        .get("https://api.superawesome.ml/api/apply/" + this.$route.params.id, {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then((response) => {
-          switch (response.status) {
-            case 200:
-              break;
-            case 401:
-              this.info = "Ikke adgang";
-              break;
-            case 402:
-              this.info = "Ikke fundet";
-              break;
-            case 403:
-              this.info = "Not authorized";
-              break;
-            case 500:
-              this.info = "Fejl, kontakt venlist staffs.";
-              break;
+        .get(
+          "https://api.superawesome.ml/apply/" + this.$route.params.id,
+          {
+            headers: {
+              "API-Key": `${localStorage.token}`,
+            },
           }
+        )
+        .then((response) => {
           if (!this.info) {
             this.info = response.data;
           }
           this.question = questionARK;
         })
-        .catch((error) => {
-          if (error.response) {
-            switch (error.response.status) {
-              case 200:
-                break;
-              case 401:
-                this.info = "Ikke adgang";
-                break;
-              case 402:
-                this.info = "Ikke fundet";
-                break;
-              case 403:
-                this.info = "Not authorized";
-                break;
-              case 500:
-                this.info = "Fejl, kontakt venlist staffs.";
-                break;
-            }
-          }
-          if (!this.info) {
-            this.info =
-              "Fejl, kontakt venlist staffs. Skriv fejlkoden 416 til dem";
-          }
-        });
+        .catch(() => {});
     } else {
       this.info = "Ikke login";
     }
+  },
+  components: {
+    BButton,
+    BButtonGroup,
   },
   data() {
     return {
@@ -256,6 +192,58 @@ export default {
       } else {
         return false;
       }
+    },
+    async Accept() {
+      await axios
+        .post(
+          "https://api.superawesome.ml/apply/" +
+            this.info._id +
+            "/accept",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.alert("Du har accepteret ansøgningen.", "success");
+            this.info.info.status = "Accepteret"
+          } else {
+            this.alert(response.data.message, "error");
+          }
+        });
+    },
+    async Afvis() {
+      await axios
+        .post(
+          "https://api.superawesome.ml/apply/" +
+            this.info._id +
+            "/afvis",
+          null,
+          { headers: { "API-Key": `${localStorage.token}` } }
+        )
+        .then((response) => {
+          if (response.data.success) {
+            this.alert("Du har afvist ansøgningen.", "success");
+            this.info.info.status = "Afvist"
+          } else {
+            this.alert(response.data.message, "error");
+          }
+        });
+    },
+    alert: function (message, icon) {
+      const Toast = this.$swal.mixin({
+        showConfirmButton: true,
+        timer: 15000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: icon,
+        title: message,
+      });
     },
   },
 };

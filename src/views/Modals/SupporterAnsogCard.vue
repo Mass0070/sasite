@@ -345,7 +345,7 @@
         <br />
         <b-button
           cent
-          @click="opretSupporter"
+          @click="opretSupporterModal"
           variant="success"
           style="margin-top: 5%; font-family: 'DM Mono', monospace"
         >
@@ -463,10 +463,13 @@ export default {
   },
   mounted() {
     this.$root.$on("bv::modal::show", async (bvEvent, modalId) => {
-      this.current = modalId;
-      await this.getSvar();
-      if (modalId === "supporter-svar1") {
-        this.UpdateLinks();
+      if(modalId.startsWith("supporter")) {
+        this.current = modalId;
+        await this.getSvar();
+        if (modalId === "supporter-svar1") {
+          await this.UpdateAccs();
+          await this.UpdateLinks();
+        }
       }
     });
   },
@@ -481,6 +484,47 @@ export default {
       } else {
         return false;
       }
+    },
+    opretSupporterModal: async function() {
+      await this.getSvar();
+      if (this.Application && this.Application.info.status === "Igang") {
+        this.$bvModal.show("supporter-svar1");
+        return;
+      }
+      await this.UpdateAccs();
+      let newmap = { }
+      this.Soptions.forEach(x => {
+        newmap[x.value] = x.text
+      })
+      let response = await this.$swal({
+        title: 'Opret en supporter ansøgning',
+        input: 'select',
+        inputOptions: newmap,
+        inputPlaceholder: 'Ingame-navn?',
+        showCancelButton: true
+      })
+      if(response.isConfirmed) {
+        this.Application.info.uuid = response.value
+        await this.opretSupporter({ uuid: response.value })
+      }
+    },
+    UpdateAccs: async function () {
+      await axios
+        .get("https://api.superawesome.ml/api/verify/", {
+          headers: {
+            "API-Key": `${localStorage.token}`,
+          },
+        })
+        .then(async (response) => {
+          let newdata = await response.data.map((e) => {
+            return {
+              value: e.uuid,
+              text: e.username,
+              disabled: e.blacklist,
+            };
+          });
+          this.Soptions = newdata;
+        });
     },
     getSvar: async function () {
       await axios
@@ -503,46 +547,30 @@ export default {
           }
         });
     },
-    opretSupporter: async function () {
+    opretSupporter: async function (data) {
       await this.getSvar();
       if (this.Application && this.Application.info.status === "Igang") {
         this.$bvModal.show("supporter-svar1");
         return;
       }
       await axios
-        .post("https://api.superawesome.ml/supporterapply/", null, {
+        .post("https://api.superawesome.ml/supporterapply/", data, {
           headers: { "API-Key": `${localStorage.token}` },
         })
-        .then((response) => {
+        .then(async(response) => {
           if (response.data.success) {
-            this.$bvModal.show("supporter-svar1");
+            await this.$bvModal.show("supporter-svar1");
           } else {
             this.alert(response.data.message, "error");
           }
         });
     },
     UpdateLinks: async function () {
-      await axios
-        .get("https://api.superawesome.ml/api/verify/", {
-          headers: {
-            "API-Key": `${localStorage.token}`,
-          },
-        })
-        .then(async (response) => {
-          let newdata = response.data.map((e) => {
-            return {
-              value: e.uuid,
-              text: e.username,
-              disabled: e.blacklist,
-            };
-          });
-          let Unblacklist = newdata.find((x) => x.disabled === false);
-          if (!this.Application.info.uuid) {
-            if (Unblacklist) this.Application.info.uuid = Unblacklist.value;
-            if (!Unblacklist) this.Application.info.uuid = newdata[0].value;
-          }
-          this.Soptions = newdata;
-        });
+      let Unblacklist = await this.Soptions.find((x) => x.disabled === false);
+      if (!this.Application.info.uuid) {
+        if (Unblacklist) this.Application.info.uuid = Unblacklist.value;
+        if (!Unblacklist) this.Application.info.uuid = this.Soptions[0].value;
+      } 
     },
     Updatesvar: async function () {
       await axios.post(
@@ -553,58 +581,26 @@ export default {
           ...this.Application.svar,
         },
         { headers: { "API-Key": `${localStorage.token}` } }
-      );
+      ).then(response => {
+        if(!response.data.success) {
+          this.$bvModal.hide(this.current);
+          this.alert(response.data.message, "error")
+        }
+      })
     },
     nextSvar: async function () {
       this.$bvModal.hide(this.current);
       if (this.current === "supporter-svar1") {
-        this.Updatesvar();
-        this.$bvModal.show("supporter-svar2");
-      } else if (this.current === "supporter-svar2") {
-        this.$bvModal.show("supporter-svar3");
-      } else if (this.current === "supporter-svar3") {
-        this.$bvModal.show("supporter-svar4");
-      } else if (this.current === "supporter-svar4") {
-        this.$bvModal.show("supporter-svar5");
-      } else if (this.current === "supporter-svar5") {
-        this.$bvModal.show("supporter-svar6");
-      } else if (this.current === "supporter-svar6") {
-        this.$bvModal.show("supporter-svar7");
-      } else if (this.current === "supporter-svar7") {
-        this.$bvModal.show("supporter-svar8");
-      } else if (this.current === "supporter-svar8") {
-        this.$bvModal.show("supporter-svar9");
-      } else if (this.current === "supporter-svar9") {
-        this.$bvModal.show("supporter-svar10");
-      } else if (this.current === "supporter-svar10") {
-        this.$bvModal.show("supporter-svar11");
+        await this.Updatesvar();
       } else if (this.current === "supporter-svar11") {
         this.$bvModal.show("supporter-afslutning");
+        return;
       }
+      this.$bvModal.show("supporter-svar" + (parseFloat(this.current.replace("supporter-svar", "")) + 1));
     },
     backSvar: async function () {
       this.$bvModal.hide(this.current);
-      if (this.current === "supporter-svar11") {
-        this.$bvModal.show("supporter-svar10");
-      } else if (this.current === "supporter-svar10") {
-        this.$bvModal.show("supporter-svar9");
-      } else if (this.current === "supporter-svar9") {
-        this.$bvModal.show("supporter-svar8");
-      } else if (this.current === "supporter-svar8") {
-        this.$bvModal.show("supporter-svar7");
-      } else if (this.current === "supporter-svar7") {
-        this.$bvModal.show("supporter-svar6");
-      } else if (this.current === "supporter-svar6") {
-        this.$bvModal.show("supporter-svar5");
-      } else if (this.current === "supporter-svar5") {
-        this.$bvModal.show("supporter-svar4");
-      } else if (this.current === "supporter-svar4") {
-        this.$bvModal.show("supporter-svar3");
-      } else if (this.current === "supporter-svar3") {
-        this.$bvModal.show("supporter-svar2");
-      } else if (this.current === "supporter-svar2") {
-        this.$bvModal.show("supporter-svar1");
-      }
+      this.$bvModal.show("supporter-svar" + (parseFloat(this.current.replace("supporter-svar", "")) - 1));
     },
     indsend: async function () {
       await axios

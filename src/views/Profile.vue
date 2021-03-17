@@ -92,13 +92,13 @@
         :key="x.id"
         @click="
           $router.push({
-            name: x.UnbanId ? 'Ansøgning' : 'Supporter',
-            params: { id: x.UnbanId ? x.UnbanId : x._id },
+            name: checked === 'Unban Ansøgninger' ? 'Ansøgning' : 'Supporter',
+            params: { id: x._id },
           })
         "
       >
         <p class="UnbanId">
-          <a> <span>ID:</span> {{ x.UnbanId ? x.UnbanId : x._id }} </a>
+          <a> <span>ID:</span> {{ x._id }} </a>
         </p>
         <p class="P-Status">
           Status:<br />
@@ -398,10 +398,7 @@ export default {
   },
   methods: {
     getStatus: function (x) {
-      let status = "NULL";
-      if (x.status !== null) status = x.status;
-      if (x.info && x.info.status !== null) status = x.info.status;
-      return status;
+      return x.info.status;
     },
     getProfile: async function () {
       let profile = await this.$route.params.id;
@@ -435,7 +432,7 @@ export default {
       let link;
       if (type === "supporter")
         link = "https://api.superawesome.ml/supporterapply/@meAlle";
-      else link = "https://api.superawesome.ml/api/apply/@meAlle";
+      else link = "https://api.superawesome.ml/apply/@meAlle";
       await axios
         .post(
           link,
@@ -484,11 +481,11 @@ export default {
           },
         })
         .then(async (response) => {
-          if (response.data.success) return console.log("Slettet " + uuid);
-          console.log("Ikke slettet");
+          if (response.data.success) return ("Slettet " + uuid);
+          ("Ikke slettet");
         })
         .catch(() => {
-          console.log("Error " + uuid);
+          ("Error " + uuid);
         });
       this.UpdateLinks();
     },
