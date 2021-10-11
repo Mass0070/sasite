@@ -1,18 +1,15 @@
-em {
-    color: white;
-    font-family: 'DM Mono', monospace;
-}
+<template>
+  <div style="display: flex;">
+    <a class="navbar-brand-S">Super</a>
+    <a class="navbar-brand-A">Awesome</a>
+  </div>
+</template>
 
-.navbar-brand{
-    margin-top: 0;
-    font-size: 135%;
-    font-weight: 700;
-    font-family: montserrat, sans-serif;
-}
+<style scoped>
 .navbar-brand-S, .navbar-brand-A:hover {
     text-decoration: none;
     color: transparent;
-    background-image: linear-gradient(to right, blue,dodgerblue	,blue,dodgerblue	);
+    background-image: linear-gradient(to right, blue,dodgerblue,blue,dodgerblue);
     animation: text 10s linear infinite;
     background-clip: text;
     -webkit-background-clip: text;
@@ -53,32 +50,4 @@ em {
         background-position: 0% 100%;
     }
 }
-.bg-info {
-    background-color: #282d31!important;
-}
-ul.dropdown-menu.dropdown-menu-right.show {
-    background-color: #62676b;
-}
-.navbar-dark .navbar-nav .nav-link {
-    color: white;
-    font-family: 'DM Mono', monospace;
-    font-weight: 700;
-}
-.Nav-Tekst {
-    color: white;
-    font-family: 'DM Mono', monospace;
-    font-weight: 700;
-}
-.dropdown-item {
-    display: block;
-    width: 100%;
-    padding: .25rem 1.5rem;
-    clear: both;
-    font-weight: 400;
-    color: white;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-    font-family: 'DM Mono', monospace;
-}
+</style>
