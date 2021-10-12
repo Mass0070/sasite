@@ -1,7 +1,6 @@
 <template>
-  <div style="display: flex;">
-    <a class="navbar-brand-S">Super</a>
-    <a class="navbar-brand-A">Awesome</a>
+  <div>
+      <v-img alt="SuperAwesome.dk" max-height="50" max-width="50" src="https://dl.labymod.net/img/server/superawesome/icon@2x.webp"> </v-img>
   </div>
 </template>
 
@@ -14,7 +13,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 1000%;
-    z-index: 10;
+    z-index: 1;
 }
 
 .navbar-brand-S:hover, .navbar-brand-S:active {
@@ -25,7 +24,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 1000%;
-    z-index: 10;
+    z-index: 1;
 }
 .navbar-brand-A {
     text-decoration: none;

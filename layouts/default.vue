@@ -48,7 +48,7 @@
         </v-list-group>
         <div style="position: absolute; bottom: 0em">
           <v-divider />
-          <v-list-item>
+          <v-list-item v-if="true" >
             <v-list-item-avatar left>
               <v-img
                 src="https://crafthead.net/helm/Itz_Hoffe"
@@ -70,7 +70,8 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>
-        <superawesome />
+        <saMobile v-if="$device.isMobile" />
+        <saDesktop v-else />
       </v-toolbar-title>
       <v-spacer />
       <v-toolbar-items>
@@ -136,7 +137,7 @@ export default {
         },
         {
           icon: 'mdi-shield-account-variant',
-          title: 'Staffs teamet',
+          title: 'Staff teamet',
           to: '/staffs'
         }
       ],
