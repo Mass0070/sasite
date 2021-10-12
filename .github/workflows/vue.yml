@@ -37,8 +37,8 @@ jobs:
             ${{ runner.os }}-node-
       - name: Upgrade NPM
         run: npm install -g npm
-      #- name: Install dependencies 👨🏻‍💻
-      #  run: npm ci
+      - name: Install dependencies 👨🏻‍💻
+        run: npm ci
 
-      - name: Run linter 👀
-        run: npm run lint
+      #- name: Run linter 👀
+      #  run: npm run lint
